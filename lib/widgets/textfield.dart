@@ -82,12 +82,18 @@ class AuthTextfield extends StatelessWidget {
 }
 
 class RegularTextField extends StatelessWidget {
-  const RegularTextField({super.key});
-
+  const RegularTextField(
+      {super.key, required this.hintText, this.controller, this.keyboardtype});
+  final String? hintText;
+  final TextEditingController? controller;
+  final TextInputType? keyboardtype;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      keyboardType: keyboardtype,
       decoration: InputDecoration(
+        hintText: hintText,
         constraints: const BoxConstraints(maxHeight: 70, minHeight: 42),
         contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
         border: OutlineInputBorder(

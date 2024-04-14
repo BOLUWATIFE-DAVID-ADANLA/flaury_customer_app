@@ -48,7 +48,7 @@ class SelectUserRole extends StatelessWidget {
             //
             Expanded(
                 child: Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
                   Text(

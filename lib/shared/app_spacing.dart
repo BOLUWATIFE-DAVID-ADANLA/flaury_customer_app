@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSpacing extends StatelessWidget {
   const AppSpacing({super.key, this.v = 0, this.h = 0});
@@ -31,8 +32,8 @@ class AppSpacing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: v.toDouble(),
-      height: h.toDouble(),
+      width: v.toDouble().w,
+      height: h.toDouble().h,
     );
   }
 }
