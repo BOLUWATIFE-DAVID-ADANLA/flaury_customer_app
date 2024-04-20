@@ -1,4 +1,4 @@
-# Hi there 👋:, i see you've been employed to work on flaury_mobile so lets dive into the code structure !
+# Hi there 👋, i see you've been employed to work on flaury_mobile so lets dive into the code structure !
 
 ## Application Structure
 After a successful build, your application structure should look like this:
@@ -30,6 +30,6 @@ If you have issues with your dependencies, then run the following command in you
 ## Libraries and tools used
   riverpod for state management and for dependency injection. 
 
-### yeah that's all,  😃: 😏: please have fun working on the project.   
+### yeah that's all, 😃😏 please have fun working on the project.   
 
   
