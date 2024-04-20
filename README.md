@@ -1,4 +1,4 @@
-# flaury_mobile
+# Hi :wave: there i see you've been employed to work on flaury_mobile so lets dive in !
 
 A new Flutter project.
 
