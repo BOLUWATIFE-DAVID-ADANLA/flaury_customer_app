@@ -4,7 +4,7 @@ import 'package:flaury_mobile/routes/app_routes.dart';
 import 'package:flaury_mobile/shared/app_colors.dart';
 import 'package:flaury_mobile/shared/app_text_style.dart';
 import 'package:flaury_mobile/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/widgets/onboarding_pages.dart';
+import 'package:flaury_mobile/shared/widgets/onboarding_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

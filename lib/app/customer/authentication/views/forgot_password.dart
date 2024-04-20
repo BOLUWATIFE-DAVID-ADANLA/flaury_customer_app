@@ -1,8 +1,8 @@
 import 'package:flaury_mobile/shared/app_spacing.dart';
 import 'package:flaury_mobile/shared/app_text_style.dart';
 import 'package:flaury_mobile/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/widgets/custom_button.dart';
-import 'package:flaury_mobile/widgets/textfield.dart';
+import 'package:flaury_mobile/shared/widgets/custom_button.dart';
+import 'package:flaury_mobile/shared/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +11,8 @@ class ForgotPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _emailController =
+        TextEditingController(text: '');
     return Scaffold(
       body: SafeArea(
         child: Padding(

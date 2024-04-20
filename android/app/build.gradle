@@ -58,6 +58,19 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+      flavorDimensions "flaury"
+    productFlavors {
+        dev {
+            dimension "flaury"
+            versionNameSuffix ".dev"
+            resValue "string", "app_name", "subme Dev"
+        }
+        prod {
+            dimension "flaury"
+            versionNameSuffix ""
+            resValue "string", "app_name", "subme"
+        }
+    }
 }
 
 flutter {

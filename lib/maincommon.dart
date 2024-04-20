@@ -1,11 +1,11 @@
-
+import 'package:flaury_mobile/config/appconfig.dart';
 import 'package:flaury_mobile/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() async {
+void maincommon(Appconfig config) async {
   runApp(const ProviderScope(child: MyApp()));
   await SystemChrome.setPreferredOrientations(
     [

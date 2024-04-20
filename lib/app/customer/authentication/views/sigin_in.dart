@@ -4,8 +4,8 @@ import 'package:flaury_mobile/shared/app_spacing.dart';
 import 'package:flaury_mobile/shared/app_text_style.dart';
 import 'package:flaury_mobile/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/util/validator.dart';
-import 'package:flaury_mobile/widgets/textfield.dart';
-import 'package:flaury_mobile/widgets/custom_button.dart';
+import 'package:flaury_mobile/shared/widgets/textfield.dart';
+import 'package:flaury_mobile/shared/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

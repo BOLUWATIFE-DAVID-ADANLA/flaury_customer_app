@@ -3,7 +3,7 @@ import 'package:flaury_mobile/shared/app_colors.dart';
 import 'package:flaury_mobile/shared/app_spacing.dart';
 import 'package:flaury_mobile/shared/app_text_style.dart';
 import 'package:flaury_mobile/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/widgets/user_role_buttons.dart';
+import 'package:flaury_mobile/shared/widgets/user_role_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
