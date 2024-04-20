@@ -30,9 +30,6 @@ If you have issues with your dependencies, then run the following command in you
 ## Libraries and tools used
   riverpod for state management and for dependency injection. 
 
-## yeah 😃: 😏: please have fun working on the project   
+### yeah that's all,  😃: 😏: please have fun working on the project.   
 
   
-
-
-Stacked - State management
