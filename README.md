@@ -10,7 +10,8 @@ After a successful build, your application structure should look like this:
 ├── lib                             - The most important folder in the application, used to write most of the Dart code.
     ├── main.dart                   - Starting point of the application
     ├── app
-    |   ├── customer                - It contains the customer views, controllers. basically all that concerns the customers  
+    |   ├── customer                - It contains the customer views, controllers. basically all that concerns the customers, so this is feature based
+            | ├── authentication    - It contains the customer authentication views and controllers. so you add another feature it views and controllers 
     |   ├── ServiceProvider         - It contains the serviceProvider views, controllers. basically all that concerns the serviceProviders
     |   ├── onboarding              - It contains the ui and logic associated with the user onboarding, so it is common to both customers and service providers
     ├── config                      - It contains all the necessarry app configs like 'appflavours'  
