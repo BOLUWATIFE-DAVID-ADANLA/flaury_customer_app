@@ -1,40 +1,39 @@
 name: flaury_mobile
-description: A new Flutter project.
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-publish_to: 'none' 
+
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: '>=3.4.1 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+
+  cupertino_icons: ^1.0.6
   hooks_riverpod: ^2.4.9
   flutter_spinkit:
   flutter_screenutil:
   smooth_page_indicator:
-    
-
-
- 
-  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.10+1
+  flutter_animate:
+  device_preview: ^1.1.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
-
   assets:
-    - assets/images/
-    - assets/illustrations/
     - assets/icons/
-
+    - assets/illustrations/
   fonts:
     - family: Figtree
       fonts:
@@ -44,7 +43,3 @@ flutter:
           weight: 500
         - asset: font/Figtree-SemiBold.ttf
           weight: 400
-
-          
- 
-  
