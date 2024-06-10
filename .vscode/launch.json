@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "flaury",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flaury (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flaury (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flaury(dev)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/app/config/maindevelopment.dart",
+            "args": ["--flavor", "dev", "--target", "lib/app/config/maindevelopment.dart", "--verbose"]
+        },
+      
+        {
+            "name": "flaury(prod)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/app/config/mainproduction.dart",
+            "args": ["--flavor", "prod", "--target", "lib/app/config/mainproduction.dart", "--verbose"]
+        },
+    ]
+    }
