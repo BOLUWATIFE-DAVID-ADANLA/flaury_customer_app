@@ -8,6 +8,4 @@ class AppRoutes {
   static const String otpScreen = '/otpscreen';
   static const String registerCustomerView = '/registerCustomer';
   static const String changePassowrdView = '/changePasswordView';
-  static const String dashboardView = '/dashboard';
-  static const String homePageView = '/homePageView';
 }

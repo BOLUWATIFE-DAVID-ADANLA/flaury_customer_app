@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+
 import 'package:flaury_mobile/app/config/appconfig.dart';
 import 'package:flaury_mobile/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = config.swatchcolor;
+    final color = config.satchcolor;
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
           statusBarColor: color, statusBarIconBrightness: Brightness.light),

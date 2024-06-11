@@ -1,13 +1,13 @@
-import 'package:flaury_mobile/app/config/size_config.dart';
-import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
+import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/util/validator.dart';
 import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
 import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
+import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

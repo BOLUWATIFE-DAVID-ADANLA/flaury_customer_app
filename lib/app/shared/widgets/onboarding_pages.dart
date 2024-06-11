@@ -1,7 +1,7 @@
-import 'package:flaury_mobile/app/config/size_config.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
+import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {

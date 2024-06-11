@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Appconfig {
   final String name;
-  final Color? swatchcolor;
+  final Color? satchcolor;
 
-  Appconfig({required this.name, this.swatchcolor});
+  Appconfig({required this.name, this.satchcolor});
 }

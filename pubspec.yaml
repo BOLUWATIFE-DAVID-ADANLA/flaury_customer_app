@@ -38,7 +38,7 @@ flutter:
     - family: Figtree
       fonts:
         - asset: font/Figtree-Medium.ttf
-          weight: 600
+          weight: 700
         - asset: font/Figtree-Regular.ttf
           weight: 500
         - asset: font/Figtree-SemiBold.ttf

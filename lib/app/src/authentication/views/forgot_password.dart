@@ -1,12 +1,12 @@
-import 'package:flaury_mobile/app/config/size_config.dart';
-import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
+import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/widgets/otp_textfield.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
 import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
+import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -89,7 +89,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
 
                     // then navigate to otp screen
 
-                    Navigator.pushNamed(context, '/otpscreen');
+                    Navigator.pushNamed(context, AppRoutes.otpScreen);
                   }),
             ],
           ),
