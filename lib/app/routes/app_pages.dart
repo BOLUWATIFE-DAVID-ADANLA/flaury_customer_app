@@ -1,9 +1,12 @@
+import 'package:flaury_mobile/app/src/authentication/views/create_new_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/sigin_in.dart';
 import 'package:flaury_mobile/app/src/onboarding_view.dart';
 import 'package:flaury_mobile/app/src/splashscreen.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/dashboard.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -40,6 +43,28 @@ class AppPages {
       case AppRoutes.registerCustomerView:
         return MaterialPageRoute(
           builder: (_) => const RegisterCustomerView(),
+          settings: settings,
+        );
+      case AppRoutes.otpScreen:
+        return MaterialPageRoute(
+          builder: (_) => const OtpScreen(),
+          settings: settings,
+        );
+
+      case AppRoutes.changePassowrdView:
+        return MaterialPageRoute(
+          builder: (_) => const ChangePasswordView(),
+          settings: settings,
+        );
+      case AppRoutes.homepage:
+        return MaterialPageRoute(
+          builder: (_) => const HomepageView(),
+          settings: settings,
+        );
+
+      case AppRoutes.dashboard:
+        return MaterialPageRoute(
+          builder: (_) => const DashboardView(),
           settings: settings,
         );
 
