@@ -146,12 +146,12 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                                   height:
                                       SizeConfig.fromDesignHeight(context, 18),
                                 ), //ap
-                                Flexible(
-                                    child: AppTextRegular(
-                                        text:
-                                            'Your password has been successfully updated.',
-                                        textAlign: TextAlign.center,
-                                        fontSize: 16))
+
+                                AppTextRegular(
+                                    text:
+                                        'Your password has been successfully updated.',
+                                    textAlign: TextAlign.center,
+                                    fontSize: 16)
                               ]));
                       //add email verification logic here
 

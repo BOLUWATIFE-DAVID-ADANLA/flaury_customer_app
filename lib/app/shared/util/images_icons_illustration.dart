@@ -20,6 +20,8 @@ const String verifiedBadge = '$_baseicons/ri_verified-badge-fill.svg';
 const String reviewStar = '$_baseicons/Vectorstar.svg';
 const String bookings = '$_baseicons/uis_schedulebookings.svg';
 const String filter = '$_baseicons/Filter.svg';
+const String nails = '$_baseicons/Group (1).svg';
+const String hairStyle = '$_baseicons/Group (2).svg';
 const String notificationIcon = '$_baseicons/Frame 26notification bell.svg';
 //illustrations
 const String forgotPassword = '$_baseIll/7070628_3275432 1.svg';
