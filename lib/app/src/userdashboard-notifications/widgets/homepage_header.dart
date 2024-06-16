@@ -40,7 +40,7 @@ class HomepageHeaderSection extends StatelessWidget {
               children: [
                 AppTextBold(
                   text: '$greeting, Becca! ',
-                  fontSize: 18,
+                  fontSize: 16,
                   color: AppColors.white,
                 ),
                 Row(
@@ -69,7 +69,7 @@ class HomepageHeaderSection extends StatelessWidget {
                 horizontal: SizeConfig.fromDesignWidth(context, 24)),
             child: AppTextRegular(
               text: 'What are you looking for Today ?',
-              fontSize: 14,
+              fontSize: 12,
               color: AppColors.white,
             ),
           ),

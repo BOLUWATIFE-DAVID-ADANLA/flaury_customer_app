@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 const String _baseicons = 'assets/icons';
 const String _baseIll = 'assets/illustrations';
+const String _baseimg = 'assets/images';
 // const String _imagebase = 'assets/images';
 
 //icons
@@ -23,16 +24,24 @@ const String filter = '$_baseicons/Filter.svg';
 const String nails = '$_baseicons/Group (1).svg';
 const String hairStyle = '$_baseicons/Group (2).svg';
 const String notificationIcon = '$_baseicons/Frame 26notification bell.svg';
+const String facials = '$_baseicons/facial-massage 1.svg';
+const String massage = '$_baseicons/massage 1.svg';
+const String cupon = '$_baseicons/Vectorcupon.svg';
+const String spa = '$_baseicons/Spa.svg';
 //illustrations
 const String forgotPassword = '$_baseIll/7070628_3275432 1.svg';
 const String newpassword = '$_baseIll/14562381_5500659 1.svg';
 const String location = '$_baseIll/Ellipse 232.svg';
 const String newPasswordPop = '$_baseIll/Group 9015.svg';
+const String img = '$_baseimg/welcome1.jpg';
+const String catimg = '$_baseIll/Rectangle 64makinghair.png';
 
 //images
 
 //logo
 const String logo = '$_baseIll/logo.svg';
+const String img1 = '$_baseimg/welcome1.jpg';
+const String img2 = '$_baseimg/welcome2.jpg';
 
 //onboarding screen images
 

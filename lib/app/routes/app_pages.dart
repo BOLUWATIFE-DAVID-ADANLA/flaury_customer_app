@@ -10,7 +10,7 @@ import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage
 import 'package:flutter/material.dart';
 
 class AppPages {
-  static const initial = AppRoutes.dashboard;
+  static const initial = AppRoutes.onboardingView;
 
   static Route<dynamic> ongenerateRoute(RouteSettings settings) {
     //general routes....(this are the general routes pecuiar to both customers and service providers)

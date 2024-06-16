@@ -23,7 +23,9 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
     final TextEditingController newPasswordController = TextEditingController();
     final TextEditingController confirmNewPasswordController =
         TextEditingController();
-    final obscurePassword = ref.watch(passwordvisible);
+    final obscurePassword = ref.watch(passwordsvisible);
+    final obscurePasswords = ref.watch(confirmvisible);
+
     return Scaffold(
       body: SafeArea(
         child: SymetricPadding(
@@ -51,7 +53,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                     ), //ap
                     AppTextBold(
                       text: 'Create New Password',
-                      fontSize: 24,
+                      fontSize: 20,
                       color: AppColors.black,
                     )
                   ],
@@ -71,7 +73,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                   height: SizeConfig.fromDesignHeight(context, 40),
                 ), //ap
 
-                AppTextBold(text: 'Create Your New Password', fontSize: 20),
+                AppTextBold(text: 'Create Your New Password', fontSize: 18),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 20),
                 ), //ap
@@ -109,9 +111,9 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                   ),
                   suffixIcon: GestureDetector(
                     onTap: () {
-                      obscurePassword.visiblePassword();
+                      obscurePasswords.visiblePassword();
                     },
-                    child: Icon(obscurePassword.isPasswordVisible
+                    child: Icon(obscurePasswords.isPasswordVisible
                         ? Icons.visibility_off
                         : Icons.visibility),
                   ),
@@ -138,7 +140,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                                 Center(
                                   child: AppTextBold(
                                     text: 'Successful!',
-                                    fontSize: 24,
+                                    fontSize: 18,
                                     color: AppColors.primary,
                                   ),
                                 ),
@@ -151,7 +153,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                                     text:
                                         'Your password has been successfully updated.',
                                     textAlign: TextAlign.center,
-                                    fontSize: 16)
+                                    fontSize: 14)
                               ]));
                       //add email verification logic here
 

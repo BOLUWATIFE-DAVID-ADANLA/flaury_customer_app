@@ -3,7 +3,6 @@ import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
-import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/validator.dart';
 import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
@@ -36,14 +35,14 @@ class _SignInViewState extends ConsumerState<SignInView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: SizeConfig.fromDesignHeight(context, 20),
+                    height: SizeConfig.fromDesignHeight(context, 18),
                   ), //a
                   // header text
                   Row(
                     children: [
                       AppTextBold(
                         text: 'Hi, Welcome Back',
-                        fontSize: 24,
+                        fontSize: 20,
                       ),
                       Image.asset(hello),
                     ],
@@ -54,7 +53,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                   ), //a
 
                   AppTextBold(
-                      text: 'Connect with your glow with Flaury', fontSize: 14),
+                      text: 'Connect with your glow with Flaury', fontSize: 12),
 
                   SizedBox(
                     height: SizeConfig.fromDesignHeight(context, 24),
@@ -101,9 +100,10 @@ class _SignInViewState extends ConsumerState<SignInView> {
                     children: [
                       //checkbox
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           const Checkbox(value: false, onChanged: null),
-                          AppTextBold(text: 'Remember Me', fontSize: 14)
+                          AppTextBold(text: 'Remember Me', fontSize: 12)
                         ],
                       ),
 
@@ -113,7 +113,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                               context, AppRoutes.forgotPassword),
                           child: AppTextBold(
                             text: 'Forgot Password?',
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.primary,
                           ))
                     ],
@@ -135,8 +135,11 @@ class _SignInViewState extends ConsumerState<SignInView> {
                               label: 'Log in',
                               ontap: () {
                                 //implement sign in logic here
+                                Navigator.pushNamed(
+                                    context, AppRoutes.dashboard);
                               })
-                          : LargeButonDisabled(label: 'Log in', ontap: () {});
+                          : const LargeButonDisabled(
+                              label: 'Log in', ontap: null);
                     },
                   ),
 
@@ -151,11 +154,11 @@ class _SignInViewState extends ConsumerState<SignInView> {
                       children: [
                         AppTextBold(
                           text: 'Don’t have an account?',
-                          fontSize: 14,
+                          fontSize: 12,
                           color: AppColors.grey,
                         ),
-                        const AppSpacing(
-                          v: 6,
+                        SizedBox(
+                          width: SizeConfig.fromDesignWidth(context, 6),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -164,7 +167,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                           },
                           child: AppTextBold(
                             text: 'Sign Up',
-                            fontSize: 16,
+                            fontSize: 14,
                             color: AppColors.primary,
                           ),
                         ),

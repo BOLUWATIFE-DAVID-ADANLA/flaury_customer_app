@@ -47,7 +47,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
                   SizedBox(
                     width: SizeConfig.fromDesignWidth(context, 5),
                   ),
-                  AppTextBold(text: 'Forgot Password', fontSize: 24)
+                  AppTextBold(text: 'Forgot Password', fontSize: 20)
                 ],
               ),
 
@@ -67,7 +67,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
               ),
 
               AppTextSemiBold(
-                  text: 'Enter your registered email address', fontSize: 16),
+                  text: 'Enter your registered email address', fontSize: 14),
 
               SizedBox(
                 height: SizeConfig.fromDesignHeight(context, 30),
@@ -172,7 +172,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                       child: const ImageIcon(AssetImage(back), size: 20),
                     ),
                     const AppSpacing(v: 5),
-                    AppTextBold(text: 'Forgot Password', fontSize: 24),
+                    AppTextBold(text: 'Forgot Password', fontSize: 20),
                   ],
                 ),
                 SizedBox(
@@ -181,7 +181,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 Center(
                     child: AppTextSemiBold(
                         text: 'Code has been sent to flaury@mail.com',
-                        fontSize: 16)),
+                        fontSize: 14)),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
@@ -229,7 +229,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 //resend code
                 Center(
                   child:
-                      AppTextSemiBold(text: 'Resend code in 38s', fontSize: 16),
+                      AppTextSemiBold(text: 'Resend code in 38s', fontSize: 14),
                 ),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 427),

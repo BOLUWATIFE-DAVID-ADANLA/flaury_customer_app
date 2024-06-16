@@ -14,7 +14,7 @@ class AppTextBold extends StatelessWidget {
       this.color,
       this.textAlign}) {
     // Runtime check to ensure fontSize is within the range of 10 to 24.
-    if (fontSize < 10 || fontSize > 60) {
+    if (fontSize < 6 || fontSize > 60) {
       throw ArgumentError('Font size must be between 10 and 60');
     }
   }
@@ -48,8 +48,8 @@ class AppTextSemiBold extends StatelessWidget {
       this.color,
       this.textAlign}) {
     // Runtime check to ensure fontSize is within the range of 10 to 24.
-    if (fontSize < 10 || fontSize > 60) {
-      throw ArgumentError('Font size must be between 10 and 60');
+    if (fontSize < 6 || fontSize > 60) {
+      throw ArgumentError('Font size must be between 8 and 60');
     }
   }
 
@@ -81,8 +81,8 @@ class AppTextRegular extends StatelessWidget {
       this.textAlign,
       this.color}) {
     // Runtime check to ensure fontSize is within the range of 10 to 24.
-    if (fontSize < 10 || fontSize > 60) {
-      throw ArgumentError('Font size must be between 10 and 60');
+    if (fontSize < 6 || fontSize > 60) {
+      throw ArgumentError('Font size must be between 8 and 60');
     }
   }
 

@@ -40,7 +40,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
     final obscurePassword = ref.watch(passwordvisible);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.background,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -52,6 +51,9 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                 v: 0,
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 20),
+                    ),
                     // appbar
                     Row(
                       children: [
@@ -64,7 +66,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         SizedBox(
                           width: SizeConfig.fromDesignHeight(context, 4),
                         ),
-                        AppTextBold(text: 'Create your account', fontSize: 24)
+                        AppTextBold(text: 'Create your account', fontSize: 20)
                       ],
                     ),
 
@@ -182,8 +184,8 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AppTextSemiBold(
-                            text: "Don’t have an account?  ",
-                            fontSize: 14,
+                            text: "Already have an account?  ",
+                            fontSize: 12,
                             color: AppColors.grey,
                           ),
                           GestureDetector(
@@ -193,8 +195,8 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                                     context, AppRoutes.signupView);
                               },
                               child: AppTextBold(
-                                  text: 'Sign Up',
-                                  fontSize: 16,
+                                  text: 'Login',
+                                  fontSize: 14,
                                   color: AppColors.primary)),
                         ],
                       ),
