@@ -10,4 +10,6 @@ class AppRoutes {
   static const String changePassowrdView = '/changePasswordView';
   static const String homepage = '/hompage';
   static const String dashboard = '/dashboard';
+  static const String searchpage = '/searchpage';
+  static const String notification = '/notification';
 }

@@ -9,158 +9,217 @@ import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/servic
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HomepageView extends StatelessWidget {
+class HomepageView extends StatefulWidget {
   const HomepageView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-          statusBarColor: AppColors.primary,
-          statusBarIconBrightness: Brightness.light),
-    );
+  State<HomepageView> createState() => _HomepageViewState();
+}
 
+class _HomepageViewState extends State<HomepageView> {
+  @override
+  Widget build(BuildContext context) {
     //greeting
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //header
-            const HomepageHeaderSection(),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+          statusBarColor: AppColors.primary,
+          statusBarIconBrightness: Brightness.light),
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //header
+              const HomepageHeaderSection(),
 
-            Expanded(
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
-                  // categories
-                  SymetricPadding(
-                      h: 20,
-                      v: 0,
-                      child: AppTextBold(text: 'Categories', fontSize: 18)),
-                  SizedBox(height: SizeConfig.fromDesignHeight(context, 10)),
-                  CustomPaddingLeft(
-                    pad: 20,
-                    child: SizedBox(
-                      height: SizeConfig.fromDesignHeight(context, 113),
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
+              Expanded(
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  children: [
+                    SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
+
+                    // categories
+                    SymetricPadding(
+                        h: 20,
+                        v: 0,
+                        child: AppTextBold(text: 'Categories', fontSize: 18)),
+                    SizedBox(height: SizeConfig.fromDesignHeight(context, 10)),
+                    CustomPaddingLeft(
+                      pad: 20,
+                      child: SizedBox(
+                        height: SizeConfig.fromDesignHeight(context, 113),
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categoryitems.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                  right:
+                                      SizeConfig.fromDesignWidth(context, 10),
+                                  left: SizeConfig.fromDesignWidth(context, 0)),
+                              child: CategoriesIcons(
+                                label: categoryitems[index]['label'],
+                                svg: categoryitems[index]['icon'],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+
+                    //nearby salons
+
+                    SymetricPadding(
+                        h: 20,
+                        v: 0,
+                        child:
+                            AppTextBold(text: "Nearby Salon's", fontSize: 18)),
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 10),
+                    ),
+                    const CustomPaddingLeft(
+                      pad: 20,
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemCount: categoryitems.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                right: SizeConfig.fromDesignWidth(context, 10),
-                                left: SizeConfig.fromDesignWidth(context, 0)),
-                            child: CategoriesIcons(
-                              label: categoryitems[index]['label'],
-                              svg: categoryitems[index]['icon'],
+                        child: Wrap(
+                          spacing: 17,
+                          children: [
+                            ServiceCard(
+                              img: catimg,
+                              address: 'Adebayo, Ado-Ekiti',
+                              businessName: ' Davole spa',
+                              currentdistance: 20,
+                              rating: 2.3,
+                              totalReviews: 100,
                             ),
-                          );
-                        },
+                            ServiceCard(
+                              rating: 2.3,
+                              totalReviews: 100,
+                              currentdistance: 15,
+                              img: img2,
+                              address: 'Ajebandele, Ado-Ekiti',
+                              businessName: ' Dubai executive',
+                            ),
+                            ServiceCard(
+                              currentdistance: 10,
+                              rating: 2.3,
+                              totalReviews: 100,
+                              img: catimg,
+                              address: 'Bashiri, Ado-Ekiti',
+                              businessName: "Kemi beauty home",
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 30),
+                    ),
 
-                  //nearby salons
+                    //special offers
+                    SymetricPadding(
+                        h: 20,
+                        v: 0,
+                        child:
+                            AppTextBold(text: "Special Offers", fontSize: 18)),
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 10),
+                    ),
+                    const CustomPaddingLeft(
+                      pad: 20,
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: Wrap(
+                          spacing: 17,
+                          children: [
+                            SpecialOfferServiceCard(
+                              discount: 10,
+                              img: catimg,
+                              address: 'Adebayo, Ado-Ekiti',
+                              businessName: ' Davole spa',
+                              currentdistance: 22,
+                              rating: 4.7,
+                              totalReviews: 100000,
+                            ),
+                            SpecialOfferServiceCard(
+                              rating: 2.3,
+                              discount: 10,
+                              totalReviews: 130,
+                              img: img2,
+                              address: 'Ajebandele, Ado-Ekiti',
+                              businessName: ' Dubai executive',
+                            ),
+                            SpecialOfferServiceCard(
+                              discount: 10,
+                              currentdistance: 60,
+                              rating: 3.3,
+                              totalReviews: 1220,
+                              img: catimg,
+                              address: 'Bashiri, Ado-Ekiti',
+                              businessName: "Kemi beauty home",
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 30),
+                    ),
 
-                  SymetricPadding(
-                      h: 20,
-                      v: 0,
-                      child: AppTextBold(text: "Nearby Salon's", fontSize: 18)),
-                  SizedBox(
-                    height: SizeConfig.fromDesignHeight(context, 10),
-                  ),
-                  const CustomPaddingLeft(
-                    pad: 20,
-                    child: SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      child: Wrap(
-                        spacing: 17,
-                        children: [
-                          ServiceCard(
-                            img: catimg,
-                            address: 'Adebayo, Ado-Ekiti',
-                            businessName: ' Davole spa',
-                            currentdistance: 20,
-                            rating: 2.3,
-                            totalReviews: 100,
-                          ),
-                          ServiceCard(
-                            rating: 2.3,
-                            totalReviews: 100,
-                            currentdistance: 15.5,
-                            img: img2,
-                            address: 'Ajebandele, Ado-Ekiti',
-                            businessName: ' Dubai executive',
-                          ),
-                          ServiceCard(
-                            currentdistance: 10,
-                            rating: 2.3,
-                            totalReviews: 100,
-                            img: catimg,
-                            address: 'Bashiri, Ado-Ekiti',
-                            businessName: "Kemi beauty home",
-                          )
-                        ],
+                    //recommended
+                    SymetricPadding(
+                        h: 20,
+                        v: 0,
+                        child: AppTextBold(text: "Recommended", fontSize: 18)),
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 10),
+                    ),
+                    const CustomPaddingLeft(
+                      pad: 20,
+                      child: SingleChildScrollView(
+                        physics: ClampingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: Wrap(
+                          spacing: 17,
+                          children: [
+                            ServiceCard(
+                              img: catimg,
+                              address: 'Adebayo, Ado-Ekiti',
+                              businessName: ' Davole spa',
+                              currentdistance: 20,
+                              rating: 2.3,
+                              totalReviews: 100,
+                            ),
+                            ServiceCard(
+                              rating: 2.3,
+                              totalReviews: 100,
+                              currentdistance: 15,
+                              img: img2,
+                              address: 'Ajebandele, Ado-Ekiti',
+                              businessName: ' Dubai executive',
+                            ),
+                            ServiceCard(
+                              currentdistance: 10,
+                              rating: 2.3,
+                              totalReviews: 100,
+                              img: catimg,
+                              address: 'Bashiri, Ado-Ekiti',
+                              businessName: "Kemi beauty home",
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: SizeConfig.fromDesignHeight(context, 30),
-                  ),
-                  SymetricPadding(
-                      h: 20,
-                      v: 0,
-                      child: AppTextBold(text: "Special Offers", fontSize: 18)),
-                  SizedBox(
-                    height: SizeConfig.fromDesignHeight(context, 10),
-                  ),
-                  const CustomPaddingLeft(
-                    pad: 20,
-                    child: const SingleChildScrollView(
-                      physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      child: Wrap(
-                        spacing: 17,
-                        children: [
-                          SpecialOfferServiceCard(
-                            discount: 10,
-                            img: catimg,
-                            address: 'Adebayo, Ado-Ekiti',
-                            businessName: ' Davole spa',
-                            currentdistance: 22,
-                            rating: 4.7,
-                            totalReviews: 100000,
-                          ),
-                          SpecialOfferServiceCard(
-                            rating: 2.3,
-                            discount: 10,
-                            totalReviews: 130,
-                            img: img2,
-                            address: 'Ajebandele, Ado-Ekiti',
-                            businessName: ' Dubai executive',
-                          ),
-                          SpecialOfferServiceCard(
-                            discount: 10,
-                            currentdistance: 60,
-                            rating: 3.3,
-                            totalReviews: 1220,
-                            img: catimg,
-                            address: 'Bashiri, Ado-Ekiti',
-                            businessName: "Kemi beauty home",
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

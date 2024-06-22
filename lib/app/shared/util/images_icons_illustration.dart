@@ -52,12 +52,14 @@ const String onboard3 = '$_baseIll/onboard 3.svg';
 class SvgAssets extends StatelessWidget {
   final double? width, height;
   final String svg;
-  const SvgAssets({
-    super.key,
-    required this.svg,
-    this.height,
-    this.width,
-  });
+  final ColorFilter? colorFilter;
+
+  const SvgAssets(
+      {super.key,
+      required this.svg,
+      this.height,
+      this.width,
+      this.colorFilter});
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class SvgAssets extends StatelessWidget {
       svg,
       width: width,
       height: height,
+      colorFilter: colorFilter,
     );
   }
 }

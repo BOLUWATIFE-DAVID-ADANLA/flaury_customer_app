@@ -7,29 +7,34 @@ import 'package:flutter/material.dart';
 class CategoriesIcons extends StatelessWidget {
   final String label;
   final String svg;
-  const CategoriesIcons({super.key, required this.label, required this.svg});
+  final Function()? ontap;
+  const CategoriesIcons(
+      {super.key, required this.label, required this.svg, this.ontap});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(21),
-          height: SizeConfig.fromDesignHeight(context, 70),
-          width: SizeConfig.fromDesignWidth(context, 70),
-          decoration: BoxDecoration(
-              color: AppColors.category,
-              borderRadius: BorderRadius.circular(70)),
-          child: SvgAssets(
-            svg: svg,
-            height: SizeConfig.fromDesignHeight(context, 30),
+    return InkWell(
+      onTap: ontap,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(21),
+            height: SizeConfig.fromDesignHeight(context, 70),
+            width: SizeConfig.fromDesignWidth(context, 70),
+            decoration: BoxDecoration(
+                color: AppColors.category,
+                borderRadius: BorderRadius.circular(70)),
+            child: SvgAssets(
+              svg: svg,
+              height: SizeConfig.fromDesignHeight(context, 30),
+            ),
           ),
-        ),
-        SizedBox(
-          height: SizeConfig.fromDesignHeight(context, 3),
-        ),
-        AppTextSemiBold(text: label, fontSize: 12)
-      ],
+          SizedBox(
+            height: SizeConfig.fromDesignHeight(context, 3),
+          ),
+          AppTextSemiBold(text: label, fontSize: 12)
+        ],
+      ),
     );
   }
 }

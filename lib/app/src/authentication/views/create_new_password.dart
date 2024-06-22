@@ -18,11 +18,18 @@ class ChangePasswordView extends StatefulHookConsumerWidget {
 }
 
 class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
+      TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    newPasswordController.dispose();
+    confirmNewPasswordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController newPasswordController = TextEditingController();
-    final TextEditingController confirmNewPasswordController =
-        TextEditingController();
     final obscurePassword = ref.watch(passwordsvisible);
     final obscurePasswords = ref.watch(confirmvisible);
 
@@ -79,7 +86,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                 ), //ap
 
                 // password input texfield
-                NewTextfield(
+                CustomTextfield(
                     label: 'New Password',
                     hintext: 'Enter New Password ',
                     obscureText: obscurePassword.isPasswordVisible,
@@ -100,10 +107,10 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 16),
                 ), //ap
-                NewTextfield(
+                CustomTextfield(
                   label: 'Confirm Password',
                   hintext: 'Confirm New Password',
-                  obscureText: obscurePassword.isPasswordVisible,
+                  obscureText: obscurePasswords.isPasswordVisible,
                   controller: confirmNewPasswordController,
                   prefixIcon: const Icon(
                     Icons.lock_rounded,

@@ -131,7 +131,7 @@ class RegularTextField extends StatelessWidget {
   }
 }
 
-class NewTextfield extends StatelessWidget {
+class CustomTextfield extends StatelessWidget {
   final TextEditingController? controller;
 
   final bool obscureText;
@@ -140,7 +140,7 @@ class NewTextfield extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
-  const NewTextfield({
+  const CustomTextfield({
     super.key,
     required this.label,
     this.controller,
@@ -210,5 +210,80 @@ class NewTextfield extends StatelessWidget {
             ),
           ),
         ]);
+  }
+}
+
+class MainCustomTextfield extends StatelessWidget {
+  final TextEditingController? controller;
+
+  final bool obscureText;
+  final String hintext;
+  final TextInputType? keyboardType;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+
+  final Function(String)? onchanged;
+  const MainCustomTextfield({
+    super.key,
+    this.controller,
+    required this.hintext,
+    this.onchanged,
+    this.keyboardType,
+    required this.obscureText,
+    this.prefixIcon,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: const TextStyle(
+        decoration: TextDecoration.none,
+        decorationThickness: 0,
+      ),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      // obscuringCharacter: '.',
+      controller: controller,
+      obscureText: obscureText,
+      keyboardType: keyboardType,
+      onChanged: onchanged,
+
+      cursorColor: AppColors.primary,
+      decoration: InputDecoration(
+        constraints: BoxConstraints(
+            maxHeight: SizeConfig.fromDesignHeight(context, 70),
+            minHeight: SizeConfig.fromDesignHeight(context, 42)),
+        hintText: hintext,
+        suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
+        contentPadding: EdgeInsets.symmetric(
+            vertical: SizeConfig.fromDesignHeight(context, 2),
+            horizontal: SizeConfig.fromDesignWidth(context, 15)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.primary,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.primary,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.primary,
+          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.black,
+          ),
+        ),
+      ),
+    );
   }
 }

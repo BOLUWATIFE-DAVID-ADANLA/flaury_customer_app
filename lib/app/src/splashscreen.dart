@@ -15,7 +15,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.signupView);
+      Navigator.pushReplacementNamed(context, AppRoutes.onboardingView);
     });
   }
 

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 class ServiceCard extends StatelessWidget {
   final String address, businessName, img;
-  final double? rating, currentdistance, totalReviews;
+  final int? currentdistance, totalReviews;
+  final double? rating;
+
   const ServiceCard({
     super.key,
     required this.address,
@@ -95,7 +97,8 @@ class ServiceCard extends StatelessWidget {
 
 class SpecialOfferServiceCard extends StatelessWidget {
   final String address, businessName, img;
-  final double? rating, currentdistance, discount, totalReviews;
+  final int? currentdistance, discount, totalReviews;
+  final double? rating;
   const SpecialOfferServiceCard(
       {super.key,
       required this.address,

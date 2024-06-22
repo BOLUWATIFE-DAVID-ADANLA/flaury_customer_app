@@ -7,10 +7,12 @@ import 'package:flaury_mobile/app/src/splashscreen.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/dashboard.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/notification_page.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/search_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
-  static const initial = AppRoutes.onboardingView;
+  static const initial = AppRoutes.splashScreenView;
 
   static Route<dynamic> ongenerateRoute(RouteSettings settings) {
     //general routes....(this are the general routes pecuiar to both customers and service providers)
@@ -68,6 +70,17 @@ class AppPages {
           settings: settings,
         );
 
+      case AppRoutes.searchpage:
+        return MaterialPageRoute(
+          builder: (_) => const SearchPageView(),
+          settings: settings,
+        );
+
+      case AppRoutes.notification:
+        return MaterialPageRoute(
+          builder: (_) => const NotificationPageView(),
+          settings: settings,
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),
