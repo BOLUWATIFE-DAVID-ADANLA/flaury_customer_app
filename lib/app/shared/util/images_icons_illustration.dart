@@ -28,6 +28,8 @@ const String facials = '$_baseicons/facial-massage 1.svg';
 const String massage = '$_baseicons/massage 1.svg';
 const String cupon = '$_baseicons/Vectorcupon.svg';
 const String spa = '$_baseicons/Spa.svg';
+const String search = '$_baseicons/Groupsearch.svg';
+const String close = '$_baseicons/close_icon.svg';
 //illustrations
 const String forgotPassword = '$_baseIll/7070628_3275432 1.svg';
 const String newpassword = '$_baseIll/14562381_5500659 1.svg';

@@ -56,8 +56,11 @@ class LargeButon extends StatelessWidget {
 }
 
 class LargeButonDisabled extends StatelessWidget {
-  const LargeButonDisabled(
-      {super.key, required this.label, required this.ontap});
+  const LargeButonDisabled({
+    super.key,
+    required this.label,
+    required this.ontap,
+  });
   final String label;
   final Function()? ontap;
 
@@ -76,6 +79,39 @@ class LargeButonDisabled extends StatelessWidget {
           text: label,
           fontSize: 16,
           color: AppColors.white,
+        )),
+      ),
+    );
+  }
+}
+
+class FilterButton extends StatelessWidget {
+  const FilterButton(
+      {super.key,
+      required this.label,
+      required this.ontap,
+      this.textcolor,
+      this.color});
+  final String label;
+  final Function()? ontap;
+  final Color? textcolor;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        width: SizeConfig.fromDesignWidth(context, 111),
+        height: SizeConfig.fromDesignHeight(context, 33),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            color: color),
+        child: Center(
+            child: AppTextBold(
+          text: label,
+          fontSize: 16,
+          color: textcolor,
         )),
       ),
     );

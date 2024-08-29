@@ -3,7 +3,7 @@ import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/ctaegories_icons.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/categories_icons.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/homepage_header.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/service_card.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +91,7 @@ class _HomepageViewState extends State<HomepageView> {
                             ServiceCard(
                               img: catimg,
                               address: 'Adebayo, Ado-Ekiti',
-                              businessName: ' Davole spa',
+                              businessName: 'Davole spa',
                               currentdistance: 20,
                               rating: 2.3,
                               totalReviews: 100,
@@ -102,7 +102,7 @@ class _HomepageViewState extends State<HomepageView> {
                               currentdistance: 15,
                               img: img2,
                               address: 'Ajebandele, Ado-Ekiti',
-                              businessName: ' Dubai executive',
+                              businessName: 'Dubai executive',
                             ),
                             ServiceCard(
                               currentdistance: 10,
@@ -140,8 +140,8 @@ class _HomepageViewState extends State<HomepageView> {
                             SpecialOfferServiceCard(
                               discount: 10,
                               img: catimg,
-                              address: 'Adebayo, Ado-Ekiti',
-                              businessName: ' Davole spa',
+                              address: 'Bdebayo, Ado-Ekiti',
+                              businessName: 'Kavole spa',
                               currentdistance: 22,
                               rating: 4.7,
                               totalReviews: 100000,
@@ -152,7 +152,7 @@ class _HomepageViewState extends State<HomepageView> {
                               totalReviews: 130,
                               img: img2,
                               address: 'Ajebandele, Ado-Ekiti',
-                              businessName: ' Dubai executive',
+                              businessName: 'Dubai executive',
                             ),
                             SpecialOfferServiceCard(
                               discount: 10,

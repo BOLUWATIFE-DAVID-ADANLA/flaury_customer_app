@@ -4,8 +4,8 @@ import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/util/validator.dart';
-import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
-import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +66,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         SizedBox(
                           width: SizeConfig.fromDesignHeight(context, 4),
                         ),
-                        AppTextBold(text: 'Create your account', fontSize: 20)
+                        AppTextBold(text: 'Create your account', fontSize: 18)
                       ],
                     ),
 

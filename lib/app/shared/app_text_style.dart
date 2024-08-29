@@ -15,7 +15,7 @@ class AppTextBold extends StatelessWidget {
       this.textAlign}) {
     // Runtime check to ensure fontSize is within the range of 10 to 24.
     if (fontSize < 6 || fontSize > 60) {
-      throw ArgumentError('Font size must be between 10 and 60');
+      throw ArgumentError('Font size must be between 6 and 60');
     }
   }
 
@@ -28,7 +28,7 @@ class AppTextBold extends StatelessWidget {
         color: color,
         fontFamily: 'Figtree',
         fontSize: SizeConfig.fontSize(context, fontSize),
-        fontWeight: FontWeight.w700,
+        fontWeight: FontWeight.w800,
       ),
     );
   }

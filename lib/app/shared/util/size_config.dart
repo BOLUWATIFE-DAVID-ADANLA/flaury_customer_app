@@ -17,8 +17,8 @@ class SizeConfig {
   }
 
   static double fontSize(BuildContext context, double size) {
-    double phoneHeight = MediaQuery.of(context).size.height;
-    double phoneWidth = MediaQuery.of(context).size.width;
+    double phoneHeight = MediaQuery.sizeOf(context).height;
+    double phoneWidth = MediaQuery.sizeOf(context).width;
 
     // Reference dimensions for mobile and web
     double referenceWidth =

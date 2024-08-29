@@ -49,7 +49,7 @@ class ServiceCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      AppTextBold(text: businessName, fontSize: 14),
+                      AppTextBold(text: businessName, fontSize: 16),
                       SizedBox(
                         width: SizeConfig.fromDesignWidth(context, 5),
                       ),
@@ -139,7 +139,7 @@ class SpecialOfferServiceCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      AppTextBold(text: businessName, fontSize: 14),
+                      AppTextBold(text: businessName, fontSize: 16),
                       SizedBox(
                         width: SizeConfig.fromDesignWidth(context, 5),
                       ),
@@ -160,7 +160,7 @@ class SpecialOfferServiceCard extends StatelessWidget {
               Row(
                 children: [
                   //addresss
-                  AppTextSemiBold(text: 'Dome Hills, Idan ', fontSize: 10),
+                  AppTextSemiBold(text: address, fontSize: 10),
                   SizedBox(
                     width: SizeConfig.fromDesignWidth(context, 5),
                   ),

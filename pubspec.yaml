@@ -17,11 +17,11 @@ dependencies:
   cupertino_icons: ^1.0.6
   hooks_riverpod: ^2.4.9
   flutter_spinkit:
-  flutter_screenutil:
   smooth_page_indicator:
   flutter_svg: ^2.0.10+1
   flutter_animate:
   device_preview: ^1.1.0
+  dio: ^5.5.0+1
   
 
 dev_dependencies:
