@@ -12,4 +12,5 @@ class AppRoutes {
   static const String dashboard = '/dashboard';
   static const String searchpage = '/searchpage';
   static const String notification = '/notification';
+  static const String changeProfiledetails = '/chnageProfiledetails';
 }

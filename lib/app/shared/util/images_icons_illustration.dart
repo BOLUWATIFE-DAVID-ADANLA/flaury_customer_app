@@ -30,6 +30,16 @@ const String cupon = '$_baseicons/Vectorcupon.svg';
 const String spa = '$_baseicons/Spa.svg';
 const String search = '$_baseicons/Groupsearch.svg';
 const String close = '$_baseicons/close_icon.svg';
+const String rightArrow = '$_baseicons/Vectorright_arrow.svg';
+const String cuponROund = '$_baseicons/Vectorcupon_code.svg';
+const String info = '$_baseicons/ph_info-lightinfo.svg';
+const String wallet = '$_baseicons/iconoir_walletwallet.svg';
+const String logout = '$_baseicons/heroicons-outline_logout.svg';
+const String promotions = '$_baseicons/Grouppromotions.svg';
+const String chats = '$_baseicons/gridicons_chat.svg';
+const String profileOutline = '$_baseicons/Profile3.svg';
+const String rightarrow = '$_baseicons/rightVector.svg';
+
 //illustrations
 const String forgotPassword = '$_baseIll/7070628_3275432 1.svg';
 const String newpassword = '$_baseIll/14562381_5500659 1.svg';
@@ -37,6 +47,7 @@ const String location = '$_baseIll/Ellipse 232.svg';
 const String newPasswordPop = '$_baseIll/Group 9015.svg';
 const String img = '$_baseimg/welcome1.jpg';
 const String catimg = '$_baseIll/Rectangle 64makinghair.png';
+const String promotionsILL = '$_baseIll/31745690_7864148 2promo codes.svg';
 
 //images
 
@@ -45,8 +56,10 @@ const String logo = '$_baseIll/logo.svg';
 const String img1 = '$_baseimg/welcome1.jpg';
 const String img2 = '$_baseimg/welcome2.jpg';
 
-//onboarding screen images
+// palce holder images
+const String profilePlaceholder = '$_baseicons/Frame 40487profile_img.svg';
 
+//onboarding screen images
 const String onboard1 = '$_baseIll/onboard 1.svg';
 const String onboard2 = '$_baseIll/onboard 2.svg';
 const String onboard3 = '$_baseIll/onboard 3.svg';

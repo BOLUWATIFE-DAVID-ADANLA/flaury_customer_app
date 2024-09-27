@@ -30,7 +30,7 @@
 //         child: Column(
 //           children: [
 //             Expanded(
-//               flex: 2,
+//               flex: 2, 
 //               child: Container(
 //                 decoration: BoxDecoration(
 //                     borderRadius: const BorderRadius.only(
