@@ -1,4 +1,4 @@
-import 'package:flaury_mobile/app/models/service_model.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/models/service_model.dart';
 
 class ServiceProvider {
   String businessName;

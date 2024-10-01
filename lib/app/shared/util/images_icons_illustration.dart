@@ -8,7 +8,7 @@ const String _baseimg = 'assets/images';
 
 //icons
 const String hello = '$_baseicons/waving-hand (1) 1.png';
-const String back = '$_baseicons/backarrow.png';
+const String back = '$_baseicons/backarrow.svg';
 const String lock = '$_baseicons/lock.svg';
 const String makeup = '$_baseicons/brush 1makeup.svg';
 const String chaticon = '$_baseicons/Chat.svg';

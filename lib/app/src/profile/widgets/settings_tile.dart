@@ -85,9 +85,24 @@ class SettingsTileV2 extends StatelessWidget {
   }
 }
 
-// class AboutTile extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return 
-//   }
-// }
+class ChangeProfileSettingTile extends StatelessWidget {
+  const ChangeProfileSettingTile({super.key, required this.label, this.ontap});
+  final String label;
+  final Function()? ontap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: ontap,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.fromDesignHeight(context, 5)),
+        title: AppTextRegular(text: label, fontSize: 16),
+        trailing: SvgAssetsicons(
+          svg: rightarrow,
+          height: SizeConfig.fromDesignHeight(context, 17),
+        ),
+      ),
+    );
+  }
+}

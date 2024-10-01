@@ -1,5 +1,5 @@
-import 'package:flaury_mobile/app/models/service_model.dart';
-import 'package:flaury_mobile/app/models/service_provider_model.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/models/service_model.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/models/service_provider_model.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
