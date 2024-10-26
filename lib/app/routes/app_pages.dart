@@ -2,18 +2,19 @@ import 'package:flaury_mobile/app/src/authentication/views/create_new_password.d
 import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/sigin_in.dart';
-import 'package:flaury_mobile/app/src/onboarding_view.dart';
+import 'package:flaury_mobile/app/src/global_pages/onboarding_view.dart';
 import 'package:flaury_mobile/app/src/profile/views/change_profile_details_page.dart';
-import 'package:flaury_mobile/app/src/splashscreen.dart';
+import 'package:flaury_mobile/app/src/global_pages/splashscreen.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/dashboard.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/notification_page.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/product_service_view.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/search_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
-  static const initial = AppRoutes.dashboard;
+  static const initial = AppRoutes.productServiceview;
 
   static Route<dynamic> ongenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -29,7 +30,7 @@ class AppPages {
           settings: settings,
         );
 
-      case AppRoutes.signupView:
+      case AppRoutes.signInView:
         return MaterialPageRoute(
           builder: (_) => const SignInView(),
           settings: settings,
@@ -85,6 +86,9 @@ class AppPages {
         return MaterialPageRoute(
             builder: (_) => const ChangeProfileDetailsView(),
             settings: settings);
+      case AppRoutes.productServiceview:
+        return MaterialPageRoute(
+            builder: (_) => const ProductServiceView(), settings: settings);
       default:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),

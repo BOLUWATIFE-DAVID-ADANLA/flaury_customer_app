@@ -1,5 +1,3 @@
-import 'package:flaury_mobile/app/src/userdashboard-notifications/models/service_model.dart';
-import 'package:flaury_mobile/app/src/userdashboard-notifications/models/service_provider_model.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
@@ -35,12 +33,11 @@ class SearchPageView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const ImageIcon(AssetImage(back), size: 20),
-                  ),
+                  SvgAssetsicons(
+                      svg: back,
+                      ontap: () {
+                        Navigator.pop(context);
+                      }),
                   SizedBox(
                     width: SizeConfig.fromDesignWidth(context, 260),
                     child: MainCustomTextfield(
@@ -177,108 +174,3 @@ class SearchPageView extends StatelessWidget {
     );
   }
 }
-
-List<ServiceProvider> service = [
-  ServiceProvider(
-    "954 Cedar St",
-    [
-      Service(
-        "Facial",
-      ),
-      Service(
-        "Massage",
-      ),
-    ],
-    "Business 57",
-    "4.8",
-    "4.0 miles",
-    "assets/images/business_9.jpg",
-    "150",
-  ),
-  ServiceProvider(
-    "367 Maple St",
-    [
-      Service(
-        "Waxing",
-      ),
-      Service(
-        "Haircut",
-      ),
-    ],
-    "Business 21",
-    "4.1",
-    "2.5 miles",
-    "assets/images/business_2.jpg",
-    "190",
-  ),
-  ServiceProvider(
-    "759 Birch St",
-    [
-      Service(
-        "Hair Color",
-      ),
-      Service(
-        "Pedicure",
-      ),
-    ],
-    "Business 78",
-    "4.4",
-    "3.1 miles",
-    "assets/images/business_4.jpg",
-    "230",
-  ),
-  ServiceProvider(
-    "112 Ash St",
-    [
-      Service(
-        "Massage",
-      ),
-      Service(
-        "Facial",
-      ),
-      Service(
-        "Makeup",
-      ),
-    ],
-    "Business 45",
-    "4.5",
-    "2.0 miles",
-    "assets/images/business_6.jpg",
-    "170",
-  ),
-  ServiceProvider(
-    "673 Spruce St",
-    [
-      Service(
-        "Styling",
-      ),
-      Service(
-        "Manicure",
-      ),
-    ],
-    "Business 32",
-    "4.9",
-    "3.7 miles",
-    "assets/images/business_8.jpg",
-    "140",
-  ),
-  ServiceProvider(
-    "849 Willow St",
-    [
-      Service(
-        "Haircut",
-      ),
-      Service(
-        "Pedicure",
-      ),
-      Service(
-        "Hair Color",
-      ),
-    ],
-    "Business 90",
-    "4.2",
-    "1.5 miles",
-    "assets/images/business_0.jpg",
-    "210",
-  ),
-];

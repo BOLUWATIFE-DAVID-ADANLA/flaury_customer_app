@@ -38,3 +38,28 @@ class CategoriesIcons extends StatelessWidget {
     );
   }
 }
+
+class CategoriesServiceIcons extends StatelessWidget {
+  final String label;
+  final Function()? ontap;
+  const CategoriesServiceIcons({super.key, required this.label, this.ontap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        onTap: ontap,
+        child: Container(
+            padding: EdgeInsets.symmetric(
+                horizontal: SizeConfig.fromDesignWidth(context, 16),
+                vertical: SizeConfig.fromDesignHeight(context, 12)),
+            decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(20)),
+            child: Center(
+                child: AppTextSemiBold(
+              text: label,
+              fontSize: 12,
+              color: AppColors.white,
+            ))));
+  }
+}

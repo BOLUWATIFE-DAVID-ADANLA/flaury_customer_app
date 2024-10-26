@@ -44,7 +44,7 @@ class HomepageHeaderSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppTextBold(
-                  text: '$greeting, Becca! ',
+                  text: '$greeting, Adekunle! ',
                   fontSize: 16,
                   color: AppColors.white,
                 ),

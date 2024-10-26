@@ -39,6 +39,9 @@ const String promotions = '$_baseicons/Grouppromotions.svg';
 const String chats = '$_baseicons/gridicons_chat.svg';
 const String profileOutline = '$_baseicons/Profile3.svg';
 const String rightarrow = '$_baseicons/rightVector.svg';
+const String blackFave = '$_baseicons/favourites.svg';
+const String share = '$_baseicons/share.svg';
+const String mapPosition = '$_baseicons/mapPointer.svg';
 
 //illustrations
 const String forgotPassword = '$_baseIll/7070628_3275432 1.svg';

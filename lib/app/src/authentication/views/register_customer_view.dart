@@ -1,7 +1,6 @@
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/util/validator.dart';
 import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
@@ -57,12 +56,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                     // appbar
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const ImageIcon(AssetImage(back), size: 20),
-                        ),
                         SizedBox(
                           width: SizeConfig.fromDesignHeight(context, 4),
                         ),
@@ -192,7 +185,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                               onTap: () {
                                 //logic goes here
                                 Navigator.pushNamed(
-                                    context, AppRoutes.signupView);
+                                    context, AppRoutes.signInView);
                               },
                               child: AppTextBold(
                                   text: 'Login',
