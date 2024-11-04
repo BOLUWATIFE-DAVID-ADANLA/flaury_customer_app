@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
@@ -80,15 +81,19 @@ class _HomepageViewState extends State<HomepageView> {
                     SizedBox(
                       height: SizeConfig.fromDesignHeight(context, 10),
                     ),
-                    const CustomPaddingLeft(
+                    CustomPaddingLeft(
                       pad: 20,
                       child: SingleChildScrollView(
-                        physics: ClampingScrollPhysics(),
+                        physics: const ClampingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         child: Wrap(
                           spacing: 17,
                           children: [
                             ServiceCard(
+                              ontap: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.productServiceview);
+                              },
                               img: catimg,
                               address: 'Adebayo, Ado-Ekiti',
                               businessName: 'Davole spa',

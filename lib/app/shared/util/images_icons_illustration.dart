@@ -56,8 +56,8 @@ const String promotionsILL = '$_baseIll/31745690_7864148 2promo codes.svg';
 
 //logo
 const String logo = '$_baseIll/logo.svg';
-const String img1 = '$_baseimg/welcome1.jpg';
-const String img2 = '$_baseimg/welcome2.jpg';
+const String img1 = '$_baseimg/img2.jpg';
+const String img2 = '$_baseimg/img4.jpg';
 
 // palce holder images
 const String profilePlaceholder = '$_baseicons/Frame 40487profile_img.svg';

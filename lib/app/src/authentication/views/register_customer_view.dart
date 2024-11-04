@@ -129,13 +129,30 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                     ),
 
                     //terms and condition text
-                    AppTextBold(
-                      textAlign: TextAlign.center,
-                      text:
-                          'Clicking the “continue” button means I agree to the Terms & Conditions and Privacy Policy of FLAURY',
-                      fontSize: 10,
-                      color: AppColors.primary,
-                    ),
+                    RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text:
+                                'Clicking the “sign-up” button means I agree to the',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontFamily: 'Figtree',
+                              fontSize: SizeConfig.fontSize(context, 10),
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                ' Terms & Conditions and Privacy Policy of FLAURY',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontFamily: 'Figtree',
+                              fontSize: SizeConfig.fontSize(context, 10),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ])),
 
                     SizedBox(
                       height: SizeConfig.fromDesignHeight(context, 29),

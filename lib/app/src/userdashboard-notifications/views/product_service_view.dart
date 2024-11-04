@@ -2,11 +2,13 @@ import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/categories_icons.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/book_service_card.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/profile_service_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProductServiceView extends ConsumerStatefulWidget {
@@ -27,8 +29,8 @@ class _ProductServiceViewState extends ConsumerState<ProductServiceView> {
 
   List<Widget> tabs = const [
     ServiceTab(),
-    Center(child: Text('gallery')),
-    Center(child: Text('reviews')),
+    GalleryTab(),
+    ReviewsTab(),
     Center(child: Text('about')),
   ];
   @override
@@ -58,9 +60,7 @@ class _ProductServiceViewState extends ConsumerState<ProductServiceView> {
                     top: SizeConfig.fromDesignHeight(context, 20),
                     child: ProfileButtons(
                       icon: blackFave,
-                      ontap: () {
-                        Navigator.pop(context);
-                      },
+                      ontap: () {},
                     ),
                   ),
                   Positioned(
@@ -76,7 +76,9 @@ class _ProductServiceViewState extends ConsumerState<ProductServiceView> {
                     top: SizeConfig.fromDesignHeight(context, 20),
                     child: ProfileButtons(
                       icon: back,
-                      ontap: () {},
+                      ontap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   )
                 ]),
@@ -193,7 +195,7 @@ class _ProductServiceViewState extends ConsumerState<ProductServiceView> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: tabs[selectedindex])
+            SliverFillRemaining(child: tabs[selectedindex])
           ],
         ),
       ),
@@ -206,143 +208,189 @@ class ServiceTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const AppSpacing(v: 20),
-        //business name and rating
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                AppTextBold(text: 'Timeless Salon', fontSize: 20),
-                SizedBox(
-                  width: SizeConfig.fromDesignWidth(context, 5),
-                ),
-                const SvgAssets(svg: verifiedBadge),
-              ],
-            ),
-            Row(
-              children: [
-                AppTextBold(text: '40', fontSize: 16),
-                SizedBox(width: SizeConfig.fromDesignWidth(context, 5)),
-                SvgAssets(
-                  svg: reviewStar,
-                  height: SizeConfig.fromDesignHeight(context, 16),
-                ),
-                SizedBox(width: SizeConfig.fromDesignWidth(context, 5)),
-                AppTextBold(text: '(1200)', fontSize: 12),
-              ],
-            ),
-          ],
-        ),
-        //address , time open
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    int i;
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const AppSpacing(v: 20),
+          //business name and rating
+          SymetricPadding(
+            h: 20,
+            v: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    //addresss
-                    AppTextBold(text: 'Dome Hills, Idan', fontSize: 16),
+                    AppTextBold(text: 'Timeless Salon', fontSize: 20),
                     SizedBox(
                       width: SizeConfig.fromDesignWidth(context, 5),
                     ),
-                    const SvgAssets(
-                      svg: mapPosition,
-                    ),
-                    //diatance
-                    SizedBox(
-                      width: SizeConfig.fromDesignWidth(context, 5),
-                    ),
-                    AppTextSemiBold(text: '20 km', fontSize: 12),
+                    const SvgAssets(svg: verifiedBadge),
                   ],
                 ),
-                AppTextSemiBold(
-                    text: 'Open until 8:00pm',
-                    fontSize: 14,
-                    color: AppColors.grey),
+                Row(
+                  children: [
+                    AppTextBold(text: '40', fontSize: 16),
+                    SizedBox(width: SizeConfig.fromDesignWidth(context, 5)),
+                    SvgAssets(
+                      svg: reviewStar,
+                      height: SizeConfig.fromDesignHeight(context, 16),
+                    ),
+                    SizedBox(width: SizeConfig.fromDesignWidth(context, 5)),
+                    AppTextBold(text: '(1200)', fontSize: 12),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          //address , time open
+          SymetricPadding(
+            h: 20,
+            v: 0,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        //addresss
+                        AppTextBold(text: 'Dome Hills, Idan', fontSize: 16),
+                        SizedBox(
+                          width: SizeConfig.fromDesignWidth(context, 5),
+                        ),
+                        const SvgAssets(
+                          svg: mapPosition,
+                        ),
+                        //diatance
+                        SizedBox(
+                          width: SizeConfig.fromDesignWidth(context, 5),
+                        ),
+                        AppTextSemiBold(text: '20 km', fontSize: 12),
+                      ],
+                    ),
+                    AppTextSemiBold(
+                        text: 'Open until 8:00pm',
+                        fontSize: 14,
+                        color: AppColors.grey),
 
-                // cupon
-                Container(
-                  height: SizeConfig.fromDesignHeight(context, 18),
-                  width: SizeConfig.fromDesignWidth(context, 76),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: AppColors.category,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SvgAssets(svg: cupon),
-                      SizedBox(
-                        width: SizeConfig.fromDesignWidth(context, 2),
+                    // cupon
+                    Container(
+                      height: SizeConfig.fromDesignHeight(context, 18),
+                      width: SizeConfig.fromDesignWidth(context, 76),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: AppColors.category,
                       ),
-                      Center(
-                          child: AppTextSemiBold(
-                              text: 'SAVE UP TO 10%', fontSize: 6)),
-                    ],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SvgAssets(svg: cupon),
+                          SizedBox(
+                            width: SizeConfig.fromDesignWidth(context, 2),
+                          ),
+                          Center(
+                              child: AppTextSemiBold(
+                                  text: 'SAVE UP TO 10%', fontSize: 6)),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+
+                // chat with me button
+                Container(
+                  padding:
+                      EdgeInsets.all(SizeConfig.fromDesignHeight(context, 10)),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: AppColors.primary),
+                  child: AppTextBold(
+                    text: 'Chat with me',
+                    fontSize: 12,
+                    color: AppColors.white,
                   ),
                 )
               ],
             ),
-
-            // chat with me button
-            Container(
-              padding: EdgeInsets.all(SizeConfig.fromDesignHeight(context, 10)),
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: AppColors.primary),
-              child: AppTextBold(
-                text: 'Chat with me',
-                fontSize: 12,
-                color: AppColors.white,
-              ),
-            )
-          ],
-        ),
-        const AppSpacing(v: 20),
-
-        // service list
-        AppTextBold(text: 'Services', fontSize: 18),
-
-        SizedBox(
-          height: SizeConfig.fromDesignHeight(context, 39),
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: categoryitems.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(
-                    right: SizeConfig.fromDesignWidth(context, 10),
-                    left: SizeConfig.fromDesignWidth(context, 0)),
-                child: CategoriesServiceIcons(
-                  label: categoryitems[index],
-                ),
-              );
-            },
           ),
-        ),
+          const AppSpacing(v: 20),
 
-        //
-        const AppSpacing(v: 400)
-      ],
+          // service list
+          SymetricPadding(
+              v: 0, h: 20, child: AppTextBold(text: 'Services', fontSize: 18)),
+
+          for (i = 0; i < 4; i++)
+            const SymetricPadding(h: 20, v: 0, child: BookServiceCard()),
+
+          const AppSpacing(v: 35),
+
+          //see all button
+          SymetricPadding(
+              h: 20,
+              v: 0,
+              child: LargeButtoncustom(
+                label: 'See all',
+                ontap: () {},
+              )),
+
+          const AppSpacing(v: 35),
+        ],
+      ),
     );
   }
 }
 
-List<String> categoryitems = [
-  "Makeup service",
-  "Nail Services",
-  "Lashes & Brows",
-  "Hair Services",
-  "Basic Facials",
-  "Massage therapy",
-  "Gele (Hair-tie)",
-  "Body treatment",
+class GalleryTab extends StatelessWidget {
+  const GalleryTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MasonryGridView.builder(
+      gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2),
+      itemCount: 6,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(7)),
+            child: Image.asset(images[index]),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ReviewsTab extends StatelessWidget {
+  const ReviewsTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SymetricPadding(
+      h: 20,
+      v: 0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const AppSpacing(v: 10),
+          AppTextBold(text: 'Reviews', fontSize: 20),
+        ],
+      ),
+    );
+  }
+}
+
+List<String> images = [
+  "assets/images/img1.png",
+  "assets/images/img2.png",
+  "assets/images/img3.png",
+  "assets/images/img4.jpg",
+  "assets/images/img5.jpg",
+  "assets/images/img6.png",
 ];

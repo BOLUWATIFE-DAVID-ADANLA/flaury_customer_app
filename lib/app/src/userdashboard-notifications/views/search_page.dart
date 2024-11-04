@@ -96,7 +96,7 @@ class SearchPageView extends StatelessWidget {
 
                                     const AppSpacing(v: 20),
                                     CustomDropDown(
-                                      items: [],
+                                      items: const [],
                                       onChanged: (value) {},
                                       hint: 'Select category',
                                     ),
@@ -109,7 +109,7 @@ class SearchPageView extends StatelessWidget {
 
                                     const AppSpacing(v: 20),
                                     CustomDropDown(
-                                      items: [],
+                                      items: const [],
                                       onChanged: (value) {},
                                       hint: 'Enter Your Location',
                                     ),

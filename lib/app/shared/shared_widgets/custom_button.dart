@@ -117,3 +117,71 @@ class FilterButton extends StatelessWidget {
     );
   }
 }
+
+class BookNowButton extends StatelessWidget {
+  const BookNowButton(
+      {super.key,
+      required this.ontap,
+      this.textcolor = AppColors.white,
+      this.color = AppColors.primary});
+  final Function()? ontap;
+  final Color? textcolor;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: SizeConfig.fromDesignWidth(context, 20),
+            vertical: SizeConfig.fromDesignHeight(context, 7.5)),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            color: color),
+        child: Center(
+            child: AppTextBold(
+          text: 'Book',
+          fontSize: 12,
+          color: textcolor,
+        )),
+      ),
+    );
+  }
+}
+
+class LargeButtoncustom extends StatelessWidget {
+  const LargeButtoncustom(
+      {super.key,
+      required this.label,
+      required this.ontap,
+      this.bordercolor = AppColors.primary,
+      this.buttoncolor = AppColors.background,
+      this.textcolor = AppColors.grey});
+  final String label;
+  final Function()? ontap;
+  final Color? buttoncolor;
+  final Color? textcolor;
+  final Color bordercolor;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        width: SizeConfig.fromDesignWidth(context, 360),
+        height: SizeConfig.fromDesignHeight(context, 52),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            border: Border.all(color: bordercolor),
+            color: buttoncolor),
+        child: Center(
+            child: AppTextBold(
+          text: label,
+          fontSize: 16,
+          color: textcolor,
+        )),
+      ),
+    );
+  }
+}

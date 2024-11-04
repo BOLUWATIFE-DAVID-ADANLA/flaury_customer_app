@@ -1,6 +1,7 @@
 class Service {
   String serviceCategory;
-  Service(this.serviceCategory);
+  String price;
+  Service(this.serviceCategory, this.price);
 }
 
 class ServiceSubCategories {

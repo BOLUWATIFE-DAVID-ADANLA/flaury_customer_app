@@ -20,11 +20,11 @@ class ChatPage extends StatelessWidget {
             SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
             Row(
               children: [
-                GestureDetector(
-                  onTap: () {
+                SvgAssetsicons(
+                  svg: back,
+                  ontap: () {
                     Navigator.pop(context);
                   },
-                  child: const ImageIcon(AssetImage(back), size: 20),
                 ),
                 SizedBox(
                   width: SizeConfig.fromDesignHeight(context, 4),
