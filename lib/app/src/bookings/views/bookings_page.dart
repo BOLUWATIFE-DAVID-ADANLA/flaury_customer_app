@@ -125,9 +125,17 @@ class UpcomingBookings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      children: const [BookingCard(), AppSpacing(v: 10), BookingCard()],
-    );
+    return ListView.builder(
+        itemCount: 5, // Example number of completed bookings
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: SizeConfig.fromDesignHeight(context, 10)),
+            child: BookingCard(
+              index: index, // Pass the index to each BookingCard
+            ),
+          );
+        });
   }
 }
 
@@ -136,16 +144,17 @@ class CompletedBookings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      children: const [
-        BookingCard(
-          isBookingCompleted: true,
-        ),
-        AppSpacing(v: 10),
-        BookingCard(
-          isBookingCompleted: true,
-        )
-      ],
-    );
+    return ListView.builder(
+        itemCount: 5, // Example number of completed bookings
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: SizeConfig.fromDesignHeight(context, 10)),
+            child: BookingCard(
+              index: index, // Pass the index to each BookingCard
+              isBookingCompleted: true,
+            ),
+          );
+        });
   }
 }
