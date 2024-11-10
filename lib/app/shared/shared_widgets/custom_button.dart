@@ -185,3 +185,36 @@ class LargeButtoncustom extends StatelessWidget {
     );
   }
 }
+
+class CancelBooking extends StatelessWidget {
+  const CancelBooking(
+      {super.key,
+      required this.label,
+      required this.ontap,
+      this.isCancelButton = false});
+  final String label;
+  final bool isCancelButton;
+  final Function()? ontap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.fromDesignWidth(context, 15),
+          vertical: SizeConfig.fromDesignWidth(context, 7),
+        ),
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            color: isCancelButton ? AppColors.primarylight : AppColors.primary),
+        child: Center(
+            child: AppTextBold(
+          text: label,
+          fontSize: 16,
+          color: isCancelButton ? AppColors.primary : AppColors.white,
+        )),
+      ),
+    );
+  }
+}
