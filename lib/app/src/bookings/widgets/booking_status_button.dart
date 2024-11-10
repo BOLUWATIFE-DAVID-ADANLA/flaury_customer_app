@@ -7,9 +7,11 @@ class BookingButton extends StatelessWidget {
   final String label;
   final Color color, textcolor;
   final VoidCallback? ontap;
+  final bool isWhiteButton;
   const BookingButton(
       {super.key,
       this.label = '',
+      this.isWhiteButton = false,
       this.color = AppColors.primary,
       this.ontap,
       this.textcolor = AppColors.white});
@@ -24,14 +26,14 @@ class BookingButton extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
-            color: color),
+            color: isWhiteButton ? AppColors.white : AppColors.primary),
         padding: EdgeInsets.symmetric(
             vertical: SizeConfig.fromDesignHeight(context, 10),
             horizontal: SizeConfig.fromDesignWidth(context, 15)),
         child: AppTextSemiBold(
           text: label,
           fontSize: 14,
-          color: textcolor,
+          color: isWhiteButton ? AppColors.primary : AppColors.white,
         ),
       ),
     );

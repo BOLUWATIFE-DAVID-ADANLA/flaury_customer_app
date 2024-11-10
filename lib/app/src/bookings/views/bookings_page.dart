@@ -2,11 +2,15 @@ import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
+import 'package:flaury_mobile/app/src/bookings/widgets/booking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+List<Widget> tabs = [
+  const UpcomingBookings(),
+  const CompletedBookings(),
+];
 
 class BookingsPage extends ConsumerStatefulWidget {
   const BookingsPage({super.key});
@@ -33,63 +37,60 @@ class _BookingsPageState extends ConsumerState<BookingsPage> {
             v: 0,
             child: Column(
               children: [
-                //app bar
-                const AppSpacing(v: 20),
-
-                //status buttons
-                Row(
-                  children: [
-                    SvgAssetsicons(
-                      svg: back,
-                      height: SizeConfig.fromDesignHeight(context, 20),
-                      ontap: () => Navigator.pop(context),
-                    ),
-                    const AppSpacing(h: 6),
-                    AppTextBold(text: 'My Bookings', fontSize: 18),
-                    const AppSpacing(v: 20),
-                  ],
-                ),
                 const AppSpacing(v: 20),
 
                 // status row
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     //upcoming
-                    BookingButton(
-                      label: status[0],
-                      color: selectedIndex == 0
-                          ? AppColors.primary
-                          : AppColors.white,
-                      ontap: () => _selectTab(0),
-                      textcolor: selectedIndex == 0
-                          ? AppColors.white
-                          : AppColors.black,
-                    ),
+                    InkWell(
+                        onTap: () => _selectTab(0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            selectedIndex == 0
+                                ? AppTextBold(text: status[0], fontSize: 16)
+                                : AppTextRegular(text: status[0], fontSize: 16),
+                            const AppSpacing(v: 8),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              height: 3,
+                              width: selectedIndex == 0
+                                  ? SizeConfig.fromDesignWidth(context, 78)
+                                  : 0,
+                              color: selectedIndex == 0
+                                  ? AppColors.primary
+                                  : Colors.transparent,
+                            ),
+                          ],
+                        )),
+                    const AppSpacing(h: 20),
 
-                    //completed
-                    BookingButton(
-                      label: status[1],
-                      color: selectedIndex == 1
-                          ? AppColors.primary
-                          : AppColors.white,
-                      ontap: () => _selectTab(1),
-                      textcolor: selectedIndex == 1
-                          ? AppColors.white
-                          : AppColors.black,
-                    ),
-
-                    // cancelled
-                    BookingButton(
-                      label: status[2],
-                      color: selectedIndex == 2
-                          ? AppColors.primary
-                          : AppColors.white,
-                      ontap: () => _selectTab(2),
-                      textcolor: selectedIndex == 2
-                          ? AppColors.white
-                          : AppColors.black,
-                    ),
+                    // completed
+                    InkWell(
+                        onTap: () => _selectTab(1),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            selectedIndex == 1
+                                ? AppTextBold(text: status[1], fontSize: 16)
+                                : AppTextRegular(text: status[1], fontSize: 16),
+                            const AppSpacing(v: 8),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              height: 3,
+                              width: selectedIndex == 1
+                                  ? SizeConfig.fromDesignWidth(context, 88)
+                                  : 0,
+                              color: selectedIndex == 1
+                                  ? AppColors.primary
+                                  : Colors.transparent,
+                            ),
+                          ],
+                        )),
                   ],
                 ),
 
@@ -119,14 +120,32 @@ List<String> status = [
   BookingStatus.cancelled.status,
 ];
 
-List<Widget> tabs = [
-  Center(
-    child: Text('upcoming'),
-  ),
-  Center(
-    child: Text('Completed'),
-  ),
-  Center(
-    child: Text('Cancelled'),
-  ),
-];
+class UpcomingBookings extends ConsumerWidget {
+  const UpcomingBookings({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView(
+      children: const [BookingCard(), AppSpacing(v: 10), BookingCard()],
+    );
+  }
+}
+
+class CompletedBookings extends ConsumerWidget {
+  const CompletedBookings({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView(
+      children: const [
+        BookingCard(
+          isBookingCompleted: true,
+        ),
+        AppSpacing(v: 10),
+        BookingCard(
+          isBookingCompleted: true,
+        )
+      ],
+    );
+  }
+}

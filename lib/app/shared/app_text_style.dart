@@ -60,6 +60,7 @@ class AppTextSemiBold extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         color: color,
+        overflow: TextOverflow.clip,
         fontFamily: 'Figtree',
         fontSize: SizeConfig.fontSize(context, fontSize),
         fontWeight: FontWeight.w400,
