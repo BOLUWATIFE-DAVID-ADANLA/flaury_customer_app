@@ -6,34 +6,32 @@ import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/shared/shared_widgets/dialouges.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
+import 'package:flaury_mobile/app/src/bookings/providers/bookings_providers.dart';
 import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BookingCard extends StatefulWidget {
+class BookingCard extends ConsumerStatefulWidget {
   final bool isBookingCompleted;
+  final int index;
   const BookingCard({
+    required this.index,
     this.isBookingCompleted = false,
     super.key,
   });
 
   @override
-  State<BookingCard> createState() => _BookingCardState();
+  ConsumerState<BookingCard> createState() => _BookingCardState();
 }
 
-class _BookingCardState extends State<BookingCard> {
-  bool _isSwitched = false;
-
-  void toggleItem() {
-    setState(() {
-      if (_isSwitched) {
-        ///remind me logic
-        print('you have been reminded of your booking ');
-      }
-    });
-  }
-
+class _BookingCardState extends ConsumerState<BookingCard> {
   @override
   Widget build(BuildContext context) {
+    var bookingState = ref.watch(remindMeToggleProvider);
+    final isSwitched = (bookingState.length > widget.index)
+        ? bookingState[widget.index] // Get the toggle state for this index
+        : false;
+    var toggleNotifier = ref.read(remindMeToggleProvider.notifier);
     return Container(
       padding: EdgeInsets.all(SizeConfig.fromDesignHeight(context, 10)),
       decoration: BoxDecoration(
@@ -62,12 +60,21 @@ class _BookingCardState extends State<BookingCard> {
                 Switch(
                     activeColor: AppColors.primarylight,
                     activeTrackColor: AppColors.primary,
-                    value: _isSwitched,
+                    value: isSwitched,
                     onChanged: (bool value) {
-                      setState(() {
-                        _isSwitched = value;
-                      });
-                      toggleItem();
+                      final newState = List<bool>.from(bookingState);
+                      if (widget.index < newState.length) {
+                        newState[widget.index] = value;
+                      } else {
+                        newState
+                            .add(value); // Ensure the list grows as necessary
+                      }
+                      toggleNotifier.state = newState;
+
+                      if (value) {
+                        // "remind me" logic
+                        print('You have been reminded of your booking');
+                      }
                     })
             ],
           ),
