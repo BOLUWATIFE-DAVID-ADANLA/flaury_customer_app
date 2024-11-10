@@ -14,4 +14,6 @@ class AppColors {
   static const Color otpGrey = Color.fromRGBO(245, 246, 250, 1);
 
   static const Color category = Color.fromRGBO(255, 214, 179, 1);
+  static const Color grey30 = Color.fromRGBO(217, 217, 217, 0.3);
+  static const Color grey100 = Color.fromRGBO(185, 185, 185, 1);
 }
