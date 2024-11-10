@@ -3,9 +3,11 @@ import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart'
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/sigin_in.dart';
 import 'package:flaury_mobile/app/src/global_pages/onboarding_view.dart';
+import 'package:flaury_mobile/app/src/profile/views/about_page.dart';
 import 'package:flaury_mobile/app/src/profile/views/change_profile_details_page.dart';
 import 'package:flaury_mobile/app/src/global_pages/splashscreen.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
+import 'package:flaury_mobile/app/src/profile/views/faq_page.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/dashboard.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/notification_page.dart';
@@ -47,6 +49,7 @@ class AppPages {
           builder: (_) => const RegisterCustomerView(),
           settings: settings,
         );
+
       case AppRoutes.otpScreen:
         return MaterialPageRoute(
           builder: (_) => const OtpScreen(),
@@ -86,6 +89,14 @@ class AppPages {
         return MaterialPageRoute(
             builder: (_) => const ChangeProfileDetailsView(),
             settings: settings);
+
+      case AppRoutes.faqPage:
+        return MaterialPageRoute(
+            builder: (_) => const FaqPage(), settings: settings);
+      case AppRoutes.aboutPageView:
+        return MaterialPageRoute(
+            builder: (_) => const AboutPageView(), settings: settings);
+
       case AppRoutes.productServiceview:
         return MaterialPageRoute(
             builder: (_) => const ProductServiceView(), settings: settings);

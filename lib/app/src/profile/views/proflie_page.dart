@@ -56,7 +56,9 @@ class ProfilePage extends StatelessWidget {
                     svgAssets: wallet,
                   ),
                   SettingsTileV2(
-                    ontap: () {},
+                    ontap: () {
+                      Navigator.pushNamed(context, AppRoutes.aboutPageView);
+                    },
                     label: 'About',
                     svgAssets: info,
                     label2: ' FAQ, Privacy Policy, Terms & Conditions',
