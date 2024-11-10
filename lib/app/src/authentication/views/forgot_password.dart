@@ -2,10 +2,9 @@ import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/widgets/otp_textfield.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
-import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -47,7 +46,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
                   SizedBox(
                     width: SizeConfig.fromDesignWidth(context, 5),
                   ),
-                  AppTextBold(text: 'Forgot Password', fontSize: 24)
+                  AppTextBold(text: 'Forgot Password', fontSize: 20)
                 ],
               ),
 
@@ -67,7 +66,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
               ),
 
               AppTextSemiBold(
-                  text: 'Enter your registered email address', fontSize: 16),
+                  text: 'Enter your registered email address', fontSize: 14),
 
               SizedBox(
                 height: SizeConfig.fromDesignHeight(context, 30),
@@ -172,7 +171,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                       child: const ImageIcon(AssetImage(back), size: 20),
                     ),
                     const AppSpacing(v: 5),
-                    AppTextBold(text: 'Forgot Password', fontSize: 24),
+                    AppTextBold(text: 'Forgot Password', fontSize: 20),
                   ],
                 ),
                 SizedBox(
@@ -181,7 +180,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 Center(
                     child: AppTextSemiBold(
                         text: 'Code has been sent to flaury@mail.com',
-                        fontSize: 16)),
+                        fontSize: 14)),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
@@ -229,7 +228,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 //resend code
                 Center(
                   child:
-                      AppTextSemiBold(text: 'Resend code in 38s', fontSize: 16),
+                      AppTextSemiBold(text: 'Resend code in 38s', fontSize: 14),
                 ),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 427),

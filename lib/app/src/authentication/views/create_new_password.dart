@@ -3,9 +3,9 @@ import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
-import 'package:flaury_mobile/app/shared/widgets/dialouges.dart';
-import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/dialouges.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,12 +18,21 @@ class ChangePasswordView extends StatefulHookConsumerWidget {
 }
 
 class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
+      TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    newPasswordController.dispose();
+    confirmNewPasswordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController newPasswordController = TextEditingController();
-    final TextEditingController confirmNewPasswordController =
-        TextEditingController();
-    final obscurePassword = ref.watch(passwordvisible);
+    final obscurePassword = ref.watch(passwordsvisible);
+    final obscurePasswords = ref.watch(confirmvisible);
+
     return Scaffold(
       body: SafeArea(
         child: SymetricPadding(
@@ -51,7 +60,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                     ), //ap
                     AppTextBold(
                       text: 'Create New Password',
-                      fontSize: 24,
+                      fontSize: 20,
                       color: AppColors.black,
                     )
                   ],
@@ -71,13 +80,13 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                   height: SizeConfig.fromDesignHeight(context, 40),
                 ), //ap
 
-                AppTextBold(text: 'Create Your New Password', fontSize: 20),
+                AppTextBold(text: 'Create Your New Password', fontSize: 18),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 20),
                 ), //ap
 
                 // password input texfield
-                NewTextfield(
+                CustomTextfield(
                     label: 'New Password',
                     hintext: 'Enter New Password ',
                     obscureText: obscurePassword.isPasswordVisible,
@@ -98,10 +107,10 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 16),
                 ), //ap
-                NewTextfield(
+                CustomTextfield(
                   label: 'Confirm Password',
                   hintext: 'Confirm New Password',
-                  obscureText: obscurePassword.isPasswordVisible,
+                  obscureText: obscurePasswords.isPasswordVisible,
                   controller: confirmNewPasswordController,
                   prefixIcon: const Icon(
                     Icons.lock_rounded,
@@ -109,9 +118,9 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                   ),
                   suffixIcon: GestureDetector(
                     onTap: () {
-                      obscurePassword.visiblePassword();
+                      obscurePasswords.visiblePassword();
                     },
-                    child: Icon(obscurePassword.isPasswordVisible
+                    child: Icon(obscurePasswords.isPasswordVisible
                         ? Icons.visibility_off
                         : Icons.visibility),
                   ),
@@ -138,7 +147,7 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                                 Center(
                                   child: AppTextBold(
                                     text: 'Successful!',
-                                    fontSize: 24,
+                                    fontSize: 18,
                                     color: AppColors.primary,
                                   ),
                                 ),
@@ -146,12 +155,12 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                                   height:
                                       SizeConfig.fromDesignHeight(context, 18),
                                 ), //ap
-                                Flexible(
-                                    child: AppTextRegular(
-                                        text:
-                                            'Your password has been successfully updated.',
-                                        textAlign: TextAlign.center,
-                                        fontSize: 16))
+
+                                AppTextRegular(
+                                    text:
+                                        'Your password has been successfully updated.',
+                                    textAlign: TextAlign.center,
+                                    fontSize: 14)
                               ]));
                       //add email verification logic here
 

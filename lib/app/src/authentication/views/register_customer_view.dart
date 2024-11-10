@@ -1,11 +1,10 @@
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/util/validator.dart';
-import 'package:flaury_mobile/app/shared/widgets/textfield.dart';
-import 'package:flaury_mobile/app/shared/widgets/custom_button.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
     final obscurePassword = ref.watch(passwordvisible);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.background,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -52,19 +50,16 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                 v: 0,
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 20),
+                    ),
                     // appbar
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: const ImageIcon(AssetImage(back), size: 20),
-                        ),
                         SizedBox(
                           width: SizeConfig.fromDesignHeight(context, 4),
                         ),
-                        AppTextBold(text: 'Create your account', fontSize: 24)
+                        AppTextBold(text: 'Create your account', fontSize: 18)
                       ],
                     ),
 
@@ -134,13 +129,30 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                     ),
 
                     //terms and condition text
-                    AppTextBold(
-                      textAlign: TextAlign.center,
-                      text:
-                          'Clicking the “continue” button means I agree to the Terms & Conditions and Privacy Policy of FLAURY',
-                      fontSize: 10,
-                      color: AppColors.primary,
-                    ),
+                    RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text:
+                                'Clicking the “sign-up” button means I agree to the',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontFamily: 'Figtree',
+                              fontSize: SizeConfig.fontSize(context, 10),
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                ' Terms & Conditions and Privacy Policy of FLAURY',
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontFamily: 'Figtree',
+                              fontSize: SizeConfig.fontSize(context, 10),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ])),
 
                     SizedBox(
                       height: SizeConfig.fromDesignHeight(context, 29),
@@ -182,19 +194,19 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AppTextSemiBold(
-                            text: "Don’t have an account?  ",
-                            fontSize: 14,
+                            text: "Already have an account?  ",
+                            fontSize: 12,
                             color: AppColors.grey,
                           ),
                           GestureDetector(
                               onTap: () {
                                 //logic goes here
                                 Navigator.pushNamed(
-                                    context, AppRoutes.signupView);
+                                    context, AppRoutes.signInView);
                               },
                               child: AppTextBold(
-                                  text: 'Sign Up',
-                                  fontSize: 16,
+                                  text: 'Login',
+                                  fontSize: 14,
                                   color: AppColors.primary)),
                         ],
                       ),

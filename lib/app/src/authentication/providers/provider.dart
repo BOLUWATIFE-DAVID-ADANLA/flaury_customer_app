@@ -1,14 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/password_visiblity_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final passwordvisible = ChangeNotifierProvider((ref) => Passwordvisible());
-
-class Passwordvisible extends ChangeNotifier {
-  bool _isPasswordVisible = true;
-  bool get isPasswordVisible => _isPasswordVisible;
-
-  void visiblePassword() {
-    _isPasswordVisible = !_isPasswordVisible;
-    notifyListeners();
-  }
-}
+final passwordsvisible = ChangeNotifierProvider((ref) => Visibilitynew());
+final confirmvisible = ChangeNotifierProvider((ref) => Visibilityconfirm());

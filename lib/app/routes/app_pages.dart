@@ -2,19 +2,21 @@ import 'package:flaury_mobile/app/src/authentication/views/create_new_password.d
 import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/sigin_in.dart';
-import 'package:flaury_mobile/app/src/onboarding_view.dart';
-import 'package:flaury_mobile/app/src/splashscreen.dart';
+import 'package:flaury_mobile/app/src/global_pages/onboarding_view.dart';
+import 'package:flaury_mobile/app/src/profile/views/change_profile_details_page.dart';
+import 'package:flaury_mobile/app/src/global_pages/splashscreen.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/dashboard.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/notification_page.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/product_service_view.dart';
+import 'package:flaury_mobile/app/src/userdashboard-notifications/views/search_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
-  static const initial = AppRoutes.forgotPassword;
+  static const initial = AppRoutes.splashScreenView;
 
   static Route<dynamic> ongenerateRoute(RouteSettings settings) {
-    //general routes....(this are the general routes pecuiar to both customers and service providers)
-    //
     switch (settings.name) {
       case AppRoutes.splashScreenView:
         return MaterialPageRoute(
@@ -28,7 +30,7 @@ class AppPages {
           settings: settings,
         );
 
-      case AppRoutes.signupView:
+      case AppRoutes.signInView:
         return MaterialPageRoute(
           builder: (_) => const SignInView(),
           settings: settings,
@@ -39,7 +41,7 @@ class AppPages {
           builder: (_) => const ForgotPasswordView(),
           settings: settings,
         );
-      //customer routes (all the routes that define customers view of the application )
+
       case AppRoutes.registerCustomerView:
         return MaterialPageRoute(
           builder: (_) => const RegisterCustomerView(),
@@ -68,6 +70,25 @@ class AppPages {
           settings: settings,
         );
 
+      case AppRoutes.searchpage:
+        return MaterialPageRoute(
+          builder: (_) => const SearchPageView(),
+          settings: settings,
+        );
+
+      case AppRoutes.notification:
+        return MaterialPageRoute(
+          builder: (_) => const NotificationPageView(),
+          settings: settings,
+        );
+
+      case AppRoutes.changeProfiledetails:
+        return MaterialPageRoute(
+            builder: (_) => const ChangeProfileDetailsView(),
+            settings: settings);
+      case AppRoutes.productServiceview:
+        return MaterialPageRoute(
+            builder: (_) => const ProductServiceView(), settings: settings);
       default:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),

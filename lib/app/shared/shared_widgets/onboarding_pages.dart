@@ -1,4 +1,3 @@
-import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
@@ -19,7 +18,9 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppSpacing(h: 193),
+              SizedBox(
+                height: SizeConfig.fromDesignHeight(context, 150),
+              ),
               Container(
                 alignment: Alignment.center,
                 child: SvgAssets(

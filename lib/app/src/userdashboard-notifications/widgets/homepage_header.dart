@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
@@ -32,6 +33,10 @@ class HomepageHeaderSection extends StatelessWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: SizeConfig.fromDesignHeight(context, 10),
+          ),
+
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.fromDesignHeight(context, 24)),
@@ -39,15 +44,17 @@ class HomepageHeaderSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppTextBold(
-                  text: '$greeting, Becca! ',
-                  fontSize: 18,
+                  text: '$greeting, Adekunle! ',
+                  fontSize: 16,
                   color: AppColors.white,
                 ),
                 Row(
                   children: [
                     SvgAssetsicons(
                       svg: notificationIcon,
-                      ontap: () {},
+                      ontap: () {
+                        Navigator.pushNamed(context, AppRoutes.notification);
+                      },
                     ),
                     SizedBox(
                       width: SizeConfig.fromDesignWidth(context, 10),
@@ -69,7 +76,7 @@ class HomepageHeaderSection extends StatelessWidget {
                 horizontal: SizeConfig.fromDesignWidth(context, 24)),
             child: AppTextRegular(
               text: 'What are you looking for Today ?',
-              fontSize: 14,
+              fontSize: 12,
               color: AppColors.white,
             ),
           ),
@@ -78,7 +85,9 @@ class HomepageHeaderSection extends StatelessWidget {
           ),
           //home page search box
           HomeSearchBox(
-            ontap: () {},
+            ontap: () {
+              Navigator.pushNamed(context, AppRoutes.searchpage);
+            },
           )
         ],
       )

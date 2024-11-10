@@ -1,6 +1,5 @@
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SymetricPadding extends StatelessWidget {
   final double h;
@@ -121,7 +120,24 @@ class CustomPaddingTBRL extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: r.w, left: l.w, top: t.h, bottom: b.h),
+      padding: EdgeInsets.only(
+        right: SizeConfig.fromDesignWidth(
+          context,
+          r,
+        ),
+        left: SizeConfig.fromDesignWidth(
+          context,
+          l,
+        ),
+        top: SizeConfig.fromDesignWidth(
+          context,
+          t,
+        ),
+        bottom: SizeConfig.fromDesignWidth(
+          context,
+          b,
+        ),
+      ),
       child: child,
     );
   }

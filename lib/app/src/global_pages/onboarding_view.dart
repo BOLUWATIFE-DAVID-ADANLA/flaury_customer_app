@@ -1,25 +1,28 @@
 import 'dart:async';
 
+import 'package:flaury_mobile/app/services/secure_storage.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/widgets/onboarding_pages.dart';
+import 'package:flaury_mobile/app/shared/shared_widgets/onboarding_pages.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnboardingView extends StatefulWidget {
+class OnboardingView extends ConsumerStatefulWidget {
   const OnboardingView({super.key});
 
   @override
-  State<OnboardingView> createState() => _OnboardingViewState();
+  ConsumerState<OnboardingView> createState() => _OnboardingViewState();
 }
 
-class _OnboardingViewState extends State<OnboardingView> {
+class _OnboardingViewState extends ConsumerState<OnboardingView> {
   late PageController controller;
   int _currentPage = 0;
   bool end = false;
+
   @override
   void initState() {
     super.initState();
@@ -54,7 +57,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           PageView(
@@ -63,7 +66,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             children: const [
               OnboardingPage(
                   image: onboard1,
-                  title: "Great Look Isn’t By Accident But by Appointment"),
+                  title: "Great Look Isn't By Accident But by Appointment"),
               OnboardingPage(
                 image: onboard2,
                 title:
@@ -102,6 +105,9 @@ class _OnboardingViewState extends State<OnboardingView> {
             child: GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.registerCustomerView);
+                ref
+                    .read(sharedprefrenceProvider)
+                    .setBool('hasViewdOnboarding', true);
               },
               child: Container(
                 width: SizeConfig.fromDesignWidth(context, 320),
