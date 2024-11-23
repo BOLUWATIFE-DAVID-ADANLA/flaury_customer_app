@@ -25,6 +25,7 @@ dependencies:
   dio: ^5.5.0+1
   flutter_secure_storage: ^9.2.2
   shared_preferences: ^2.3.2
+  google_fonts: ^6.2.1
   
 
 dev_dependencies:
@@ -39,11 +40,11 @@ flutter:
     - assets/illustrations/
     - assets/images/
   fonts:
-    - family: Figtree
+    - family: Montserrat
       fonts:
-        - asset: font/Figtree-Medium.ttf
+        - asset: font/Montserrat-VariableFont_wght.ttf
           weight: 700
-        - asset: font/Figtree-Regular.ttf
+        - asset: font/Montserrat-VariableFont_wght.ttf
           weight: 500
-        - asset: font/Figtree-SemiBold.ttf
+        - asset: font/Montserrat-VariableFont_wght.ttf
           weight: 400

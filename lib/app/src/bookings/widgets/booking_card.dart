@@ -8,6 +8,7 @@ import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/src/bookings/providers/bookings_providers.dart';
 import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,7 +28,7 @@ class BookingCard extends ConsumerStatefulWidget {
 class _BookingCardState extends ConsumerState<BookingCard> {
   @override
   Widget build(BuildContext context) {
-    var bookingState = ref.watch(remindMeToggleProvider);
+    var bookingState = ref.watch(remindMeToggleProvider).toggleStates;
     final isSwitched = (bookingState.length > widget.index)
         ? bookingState[widget.index] // Get the toggle state for this index
         : false;
@@ -57,25 +58,21 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                   text: 'Remind me',
                 ),
               if (!widget.isBookingCompleted)
-                Switch(
-                    activeColor: AppColors.primarylight,
-                    activeTrackColor: AppColors.primary,
-                    value: isSwitched,
-                    onChanged: (bool value) {
-                      final newState = List<bool>.from(bookingState);
-                      if (widget.index < newState.length) {
-                        newState[widget.index] = value;
-                      } else {
-                        newState
-                            .add(value); // Ensure the list grows as necessary
-                      }
-                      toggleNotifier.state = newState;
+                Transform.scale(
+                  scale: 0.7,
+                  child: CupertinoSwitch(
+                      activeColor: AppColors.primary,
+                      trackColor: const Color.fromRGBO(152, 163, 169, 1),
+                      value: isSwitched,
+                      onChanged: (bool value) {
+                        toggleNotifier.toggleSwitch(widget.index, value);
 
-                      if (value) {
-                        // "remind me" logic
-                        print('You have been reminded of your booking');
-                      }
-                    })
+                        if (value) {
+                          // "remind me" logic
+                          debugPrint('You have been reminded of your booking');
+                        }
+                      }),
+                )
             ],
           ),
 

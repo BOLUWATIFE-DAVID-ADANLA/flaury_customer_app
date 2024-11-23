@@ -120,11 +120,18 @@ List<String> status = [
   BookingStatus.cancelled.status,
 ];
 
-class UpcomingBookings extends ConsumerWidget {
+class UpcomingBookings extends ConsumerStatefulWidget {
   const UpcomingBookings({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<UpcomingBookings> createState() => _UpcomingBookingsState();
+}
+
+class _UpcomingBookingsState extends ConsumerState<UpcomingBookings> {
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     return ListView.builder(
         itemCount: 5, // Example number of completed bookings
         itemBuilder: (context, index) {

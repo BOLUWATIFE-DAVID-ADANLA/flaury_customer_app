@@ -1,5 +1,6 @@
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTextBold extends StatelessWidget {
   final String text;
@@ -21,16 +22,13 @@ class AppTextBold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      style: TextStyle(
-        color: color,
-        fontFamily: 'Figtree',
-        fontSize: SizeConfig.fontSize(context, fontSize),
-        fontWeight: FontWeight.w800,
-      ),
-    );
+    return Text(text,
+        textAlign: textAlign,
+        style: GoogleFonts.montserrat(
+          color: color,
+          fontSize: SizeConfig.fontSize(context, fontSize),
+          fontWeight: FontWeight.w700,
+        ));
   }
 }
 
@@ -58,10 +56,8 @@ class AppTextSemiBold extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(
+      style: GoogleFonts.montserrat(
         color: color,
-        overflow: TextOverflow.clip,
-        fontFamily: 'Figtree',
         fontSize: SizeConfig.fontSize(context, fontSize),
         fontWeight: FontWeight.w400,
       ),
@@ -92,9 +88,8 @@ class AppTextRegular extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(
+      style: GoogleFonts.montserrat(
         color: color,
-        fontFamily: 'Figtree',
         fontSize: SizeConfig.fontSize(context, fontSize),
         fontWeight: FontWeight.normal,
       ),

@@ -1,4 +1,5 @@
 import 'package:flaury_mobile/app/shared/app_colors.dart';
+import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
@@ -23,7 +24,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
   final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final Visible = ref.watch(passwordvisible);
+    final visible = ref.watch(passwordvisible);
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -76,15 +77,15 @@ class _SignInViewState extends ConsumerState<SignInView> {
                   //password field
                   AuthTextfield(
                     hintext: 'Enter your password',
-                    obscureText: Visible.isPasswordVisible,
+                    obscureText: visible.isPasswordVisible,
                     controller: _passwordController,
                     label: 'Password',
                     validator: Validator.passwordValidator,
                     suffixIcon: GestureDetector(
                       onTap: () {
-                        Visible.visiblePassword();
+                        visible.visiblePassword();
                       },
-                      child: Icon(Visible.isPasswordVisible
+                      child: Icon(visible.isPasswordVisible
                           ? Icons.visibility_off
                           : Icons.visibility),
                     ),
@@ -96,17 +97,27 @@ class _SignInViewState extends ConsumerState<SignInView> {
                   // remember me & forgot password
 
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       //checkbox
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Checkbox(value: false, onChanged: null),
+                          SizedBox(
+                            height: SizeConfig.fromDesignHeight(context, 24),
+                            width: SizeConfig.fromDesignWidth(context, 24),
+                            child: const Checkbox(
+                              value: false,
+                              onChanged: null,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                            ),
+                          ),
+                          const AppSpacing(h: 10),
                           AppTextBold(text: 'Remember Me', fontSize: 12)
                         ],
                       ),
-
+                      const Spacer(),
                       //forgot password text
                       InkWell(
                           onTap: () => Navigator.pushNamed(

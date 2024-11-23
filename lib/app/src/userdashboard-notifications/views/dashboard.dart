@@ -7,6 +7,7 @@ import 'package:flaury_mobile/app/src/profile/views/proflie_page.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/providers/providers.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DashboardView extends ConsumerWidget {
@@ -23,17 +24,17 @@ class DashboardView extends ConsumerWidget {
             labelTextStyle: WidgetStateProperty.resolveWith(
               (states) {
                 if (states.contains(WidgetState.selected)) {
-                  return TextStyle(
-                      fontFamily: 'Figtree',
-                      fontSize: SizeConfig.fontSize(context, 12),
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary);
-                }
-                return TextStyle(
-                    fontFamily: 'Figtree',
+                  return GoogleFonts.montserrat(
+                    color: AppColors.primary,
                     fontSize: SizeConfig.fontSize(context, 12),
                     fontWeight: FontWeight.w700,
-                    color: AppColors.black);
+                  );
+                }
+                return GoogleFonts.montserrat(
+                  color: AppColors.black,
+                  fontSize: SizeConfig.fontSize(context, 12),
+                  fontWeight: FontWeight.w700,
+                );
               },
             ),
             indicatorColor: Colors.transparent),
