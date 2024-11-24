@@ -61,6 +61,7 @@ const String img2 = '$_baseimg/img4.jpg';
 
 // palce holder images
 const String profilePlaceholder = '$_baseicons/Frame 40487profile_img.svg';
+const String personImg = '$_baseimg/personImage.png';
 
 //onboarding screen images
 const String onboard1 = '$_baseIll/onboard 1.svg';

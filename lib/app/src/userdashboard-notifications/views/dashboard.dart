@@ -18,6 +18,7 @@ class DashboardView extends ConsumerWidget {
     final navstate = ref.watch(bottomNavProvider);
     final index = navstate.currentindex;
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: _Pages[index],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
@@ -43,7 +44,7 @@ class DashboardView extends ConsumerWidget {
             ref.read(bottomNavProvider.notifier).updatePage(index);
           },
           selectedIndex: index,
-          backgroundColor: AppColors.white,
+          backgroundColor: AppColors.background,
           destinations: const [
             NavigationDestination(
               icon: SvgAssets(svg: home),

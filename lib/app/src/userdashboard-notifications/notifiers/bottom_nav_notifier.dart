@@ -6,8 +6,8 @@ class BottomNavState {
   BottomNavState({required this.currentindex});
 }
 
-class BottomNavController extends StateNotifier<BottomNavState> {
-  BottomNavController() : super(BottomNavState(currentindex: 0));
+class BottomNavNotifier extends StateNotifier<BottomNavState> {
+  BottomNavNotifier() : super(BottomNavState(currentindex: 0));
 
   void updatePage(int index) {
     state = BottomNavState(currentindex: index);

@@ -70,12 +70,14 @@ class AppTextRegular extends StatelessWidget {
   final double fontSize;
   final Color? color;
   final TextAlign? textAlign;
+  final TextOverflow? overflow;
 
   AppTextRegular(
       {super.key,
       required this.text,
       required this.fontSize,
       this.textAlign,
+      this.overflow = TextOverflow.ellipsis,
       this.color}) {
     // Runtime check to ensure fontSize is within the range of 10 to 24.
     if (fontSize < 6 || fontSize > 60) {
@@ -87,6 +89,7 @@ class AppTextRegular extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: overflow,
       textAlign: textAlign,
       style: GoogleFonts.montserrat(
         color: color,

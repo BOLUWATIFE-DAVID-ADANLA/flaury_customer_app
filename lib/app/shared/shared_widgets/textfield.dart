@@ -3,6 +3,7 @@ import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AuthTextfield extends StatelessWidget {
   const AuthTextfield(
@@ -417,6 +418,63 @@ class RangeTextfield extends StatelessWidget {
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(color: Color(0xAAD9D9D9)))),
+    );
+  }
+}
+
+class ChatTextField extends StatelessWidget {
+  const ChatTextField(
+      {super.key, required this.hintText, this.controller, this.keyboardtype});
+  final String? hintText;
+  final TextEditingController? controller;
+  final TextInputType? keyboardtype;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      cursorColor: AppColors.primary,
+      controller: controller,
+      keyboardType: keyboardtype,
+      style: GoogleFonts.montserrat(
+        color: AppColors.black,
+        fontSize: SizeConfig.fontSize(context, 12),
+        fontWeight: FontWeight.normal,
+      ),
+      decoration: InputDecoration(
+        suffixIcon: const Icon(Icons.image_outlined),
+        suffixIconColor: AppColors.grey100,
+        filled: true,
+        fillColor: AppColors.greychattextfield,
+        hintText: hintText,
+        hintStyle: GoogleFonts.montserrat(
+          color: AppColors.black,
+          fontSize: SizeConfig.fontSize(context, 12),
+          fontWeight: FontWeight.normal,
+        ),
+        constraints: BoxConstraints(
+            maxHeight: SizeConfig.fromDesignHeight(context, 70),
+            minHeight: SizeConfig.fromDesignHeight(context, 40)),
+        contentPadding: EdgeInsets.symmetric(
+            vertical: SizeConfig.fromDesignHeight(context, 2),
+            horizontal: SizeConfig.fromDesignWidth(context, 15)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            color: AppColors.greychattextfield,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            color: AppColors.greychattextfield,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            color: AppColors.greychattextfield,
+          ),
+        ),
+      ),
     );
   }
 }

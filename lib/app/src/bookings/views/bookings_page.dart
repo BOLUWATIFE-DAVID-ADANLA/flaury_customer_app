@@ -30,7 +30,7 @@ class _BookingsPageState extends ConsumerState<BookingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         body: SafeArea(
           child: SymetricPadding(
             h: 20,

@@ -69,7 +69,8 @@ class _BookingCardState extends ConsumerState<BookingCard> {
 
                         if (value) {
                           // "remind me" logic
-                          debugPrint('You have been reminded of your booking');
+                          debugPrint(
+                              'You have been reminded of your booking ${widget.index}');
                         }
                       }),
                 )

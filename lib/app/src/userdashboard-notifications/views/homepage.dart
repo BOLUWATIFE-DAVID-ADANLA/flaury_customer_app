@@ -27,7 +27,7 @@ class _HomepageViewState extends State<HomepageView> {
           statusBarColor: AppColors.primary,
           statusBarIconBrightness: Brightness.light),
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
