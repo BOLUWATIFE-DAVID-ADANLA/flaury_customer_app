@@ -134,7 +134,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         text: TextSpan(children: [
                           TextSpan(
                             text:
-                                'Clicking the “sign-up” button means I agree to the',
+                                'Clicking the “Continue” button means I agree to the',
                             style: TextStyle(
                               color: AppColors.primary,
                               fontFamily: 'Figtree',

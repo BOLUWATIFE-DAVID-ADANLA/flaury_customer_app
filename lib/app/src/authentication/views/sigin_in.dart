@@ -20,8 +20,16 @@ class SignInView extends StatefulHookConsumerWidget {
 }
 
 class _SignInViewState extends ConsumerState<SignInView> {
+  bool doYouWantToRemember = false;
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  void toggleCheckbox() {
+    setState(() {
+      doYouWantToRemember = !doYouWantToRemember;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final visible = ref.watch(passwordvisible);
@@ -106,9 +114,16 @@ class _SignInViewState extends ConsumerState<SignInView> {
                           SizedBox(
                             height: SizeConfig.fromDesignHeight(context, 24),
                             width: SizeConfig.fromDesignWidth(context, 24),
-                            child: const Checkbox(
-                              value: false,
-                              onChanged: null,
+                            child: Checkbox(
+                              value: doYouWantToRemember,
+                              onChanged: (value) {
+                                toggleCheckbox();
+
+                                if (value == true) {
+                                  debugPrint(
+                                      'you have indicated to remember sigin in info');
+                                }
+                              },
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
                             ),
