@@ -31,7 +31,11 @@ class FaqTiles extends ConsumerWidget {
       children: [
         const Divider(color: AppColors.grey100),
         const AppSpacing(v: 5),
-        AppTextRegular(text: label, fontSize: 14),
+        AppTextRegular(
+          text: label,
+          fontSize: 14,
+          overflow: TextOverflow.clip,
+        ),
       ],
     );
   }

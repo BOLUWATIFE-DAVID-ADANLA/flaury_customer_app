@@ -8,6 +8,7 @@ import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RegisterCustomerView extends StatefulHookConsumerWidget {
@@ -38,6 +39,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   Widget build(BuildContext context) {
     final obscurePassword = ref.watch(passwordvisible);
     return Scaffold(
+      backgroundColor: AppColors.background,
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -134,20 +136,18 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                         text: TextSpan(children: [
                           TextSpan(
                             text:
-                                'Clicking the “sign-up” button means I agree to the',
-                            style: TextStyle(
+                                'Clicking the “Continue” button means I agree to the',
+                            style: GoogleFonts.montserrat(
                               color: AppColors.primary,
-                              fontFamily: 'Figtree',
                               fontSize: SizeConfig.fontSize(context, 10),
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                           TextSpan(
                             text:
                                 ' Terms & Conditions and Privacy Policy of FLAURY',
-                            style: TextStyle(
+                            style: GoogleFonts.montserrat(
                               color: AppColors.primary,
-                              fontFamily: 'Figtree',
                               fontSize: SizeConfig.fontSize(context, 10),
                               fontWeight: FontWeight.bold,
                             ),

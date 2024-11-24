@@ -53,7 +53,7 @@ class ServiceCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        AppTextBold(text: businessName, fontSize: 16),
+                        AppTextBold(text: businessName, fontSize: 14),
                         SizedBox(
                           width: SizeConfig.fromDesignWidth(context, 5),
                         ),
@@ -149,7 +149,7 @@ class SpecialOfferServiceCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        AppTextBold(text: businessName, fontSize: 16),
+                        AppTextBold(text: businessName, fontSize: 14),
                         SizedBox(
                           width: SizeConfig.fromDesignWidth(context, 5),
                         ),

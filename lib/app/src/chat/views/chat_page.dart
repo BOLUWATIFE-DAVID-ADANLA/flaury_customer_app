@@ -1,9 +1,11 @@
+import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flaury_mobile/app/shared/app_colors.dart';
+import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
+import 'package:flaury_mobile/app/src/chat/widgets/chat_tiles.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
@@ -13,32 +15,35 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.background,
         body: SymetricPadding(
           v: 0,
           h: 20,
-          child: Column(children: [
-            SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
-            Row(
-              children: [
-                SvgAssetsicons(
-                  svg: back,
-                  ontap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                SizedBox(
-                  width: SizeConfig.fromDesignHeight(context, 4),
-                ),
-                AppTextBold(text: 'Inbox', fontSize: 20)
-              ],
-            ),
-            SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
-            MainCustomTextfield(
-              hintext: 'Serach',
-              obscureText: false,
-              onchanged: (String value) {},
-            ),
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AppSpacing(v: 20),
+              AppTextBold(text: 'Inbox', fontSize: 20),
+              SizedBox(height: SizeConfig.fromDesignHeight(context, 20)),
+              MainCustomTextfield(
+                  hintext: 'Search',
+                  obscureText: false,
+                  onchanged: (String value) {},
+                  prefixIcon: const Icon(Icons.search_rounded)),
+              const AppSpacing(v: 20),
+              // expanded to fit all of the chat tiles
+              Expanded(
+                child: ListView.builder(
+                    itemCount: 7,
+                    itemBuilder: (_, index) {
+                      return ChatTiles(
+                        ontap: () =>
+                            Navigator.pushNamed(context, AppRoutes.chatdetails),
+                      );
+                    }),
+              )
+            ],
+          ),
         ),
       ),
     );
