@@ -34,6 +34,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
   Widget build(BuildContext context) {
     final visible = ref.watch(passwordvisible);
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         child: SafeArea(
           child: SymetricPadding(
@@ -115,6 +116,14 @@ class _SignInViewState extends ConsumerState<SignInView> {
                             height: SizeConfig.fromDesignHeight(context, 24),
                             width: SizeConfig.fromDesignWidth(context, 24),
                             child: Checkbox(
+                              checkColor: AppColors.white,
+                              fillColor: WidgetStateProperty.resolveWith<Color>(
+                                  (Set<WidgetState> states) {
+                                if (states.contains(WidgetState.selected)) {
+                                  return AppColors.primary;
+                                }
+                                return Colors.transparent;
+                              }),
                               value: doYouWantToRemember,
                               onChanged: (value) {
                                 toggleCheckbox();

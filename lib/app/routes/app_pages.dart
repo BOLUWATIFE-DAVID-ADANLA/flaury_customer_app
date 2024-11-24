@@ -17,7 +17,7 @@ import 'package:flaury_mobile/app/src/userdashboard-notifications/views/search_p
 import 'package:flutter/material.dart';
 
 class AppPages {
-  static const initial = AppRoutes.dashboard;
+  static const initial = AppRoutes.splashScreenView;
 
   static Route<dynamic> ongenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -110,7 +110,7 @@ class AppPages {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => const DashboardView(),
+          builder: (_) => const SplashScreenView(),
           settings: settings,
         );
     }
