@@ -19,7 +19,7 @@ class DashboardView extends ConsumerWidget {
     final index = navstate.currentindex;
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: _Pages[index],
+      body: _pages[index],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
             labelTextStyle: WidgetStateProperty.resolveWith(
@@ -89,7 +89,7 @@ class DashboardView extends ConsumerWidget {
   }
 }
 
-final List<Widget> _Pages = [
+final List<Widget> _pages = [
   const HomepageView(),
   const BookingsPage(),
   const ChatPage(),
