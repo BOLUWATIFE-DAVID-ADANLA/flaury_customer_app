@@ -4,6 +4,7 @@ import 'package:flaury_mobile/app/config/appconfig.dart';
 import 'package:flaury_mobile/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void maincommon(Appconfig config) async {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           statusBarColor: color, statusBarIconBrightness: Brightness.light),
     );
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Figtree'),
+      theme: ThemeData(textTheme: GoogleFonts.montserratTextTheme()),
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initial,
       onGenerateRoute: AppPages.ongenerateRoute,

@@ -23,7 +23,7 @@ class AppPages {
     switch (settings.name) {
       case AppRoutes.splashScreenView:
         return MaterialPageRoute(
-          builder: (_) => const DashboardView(),
+          builder: (_) => const SplashScreenView(),
           settings: settings,
         );
 
