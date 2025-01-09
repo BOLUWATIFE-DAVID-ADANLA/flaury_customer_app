@@ -324,6 +324,16 @@ class CustomDropDown extends StatelessWidget {
           filled: true,
           fillColor: const Color(0xAAD9D9D9),
         ),
+        hint: hint != null
+            ? Text(
+                hint!,
+                textAlign: TextAlign.center, // Center the hint text
+                style: GoogleFonts.montserrat(
+                  color: AppColors.grey,
+                  fontSize: SizeConfig.fontSize(context, 12),
+                ),
+              )
+            : null,
         items: items,
         onChanged: onChanged);
   }
