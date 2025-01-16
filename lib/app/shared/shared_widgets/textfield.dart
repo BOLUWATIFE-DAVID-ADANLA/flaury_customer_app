@@ -1,6 +1,6 @@
 import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,9 +38,10 @@ class AuthTextfield extends StatelessWidget {
             height: SizeConfig.fromDesignHeight(context, 5),
           ),
           TextFormField(
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               decoration: TextDecoration.none,
               decorationThickness: 0,
+              fontSize: 12,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             // obscuringCharacter: '.',
@@ -100,6 +101,11 @@ class RegularTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: GoogleFonts.montserrat(
+        decoration: TextDecoration.none,
+        decorationThickness: 0,
+        fontSize: SizeConfig.fontSize(context, 12),
+      ),
       controller: controller,
       keyboardType: keyboardtype,
       decoration: InputDecoration(
@@ -293,36 +299,31 @@ class MainCustomTextfield extends StatelessWidget {
 
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown({super.key, this.items, this.onChanged, this.hint});
-  final List<DropdownMenuItem>? items;
+  final List<DropdownMenuItem<String>>? items;
   final Function(dynamic)? onChanged;
   final String? hint;
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField(
+    return DropdownButtonFormField<String>(
+        icon: const Icon(Icons.keyboard_arrow_down_rounded),
+        iconEnabledColor: AppColors.black,
+        iconDisabledColor: AppColors.black,
         decoration: InputDecoration(
-          hintText: hint,
+          isDense: true,
           iconColor: AppColors.black,
-          hintStyle: TextStyle(
-            color: AppColors.grey,
-            fontFamily: 'Figtree',
-            fontSize: SizeConfig.fontSize(context, 14),
-            fontWeight: FontWeight.w800,
-          ),
           border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xAAD9D9D9)),
+              borderSide: BorderSide(color: AppColors.grey),
               borderRadius: BorderRadius.all(Radius.circular(10))),
           constraints: BoxConstraints(
             maxHeight: SizeConfig.fromDesignHeight(context, 100),
-            minHeight: SizeConfig.fromDesignHeight(context, 40),
+            minHeight: SizeConfig.fromDesignHeight(context, 42),
           ),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xAAD9D9D9)),
+              borderSide: BorderSide(color: AppColors.grey),
               borderRadius: BorderRadius.all(Radius.circular(10))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xAAD9D9D9)),
+              borderSide: BorderSide(color: AppColors.grey),
               borderRadius: BorderRadius.all(Radius.circular(10))),
-          filled: true,
-          fillColor: const Color(0xAAD9D9D9),
         ),
         hint: hint != null
             ? Text(

@@ -1,8 +1,8 @@
 import 'package:flaury_mobile/app/shared/app_spacing.dart';
 import 'package:flaury_mobile/app/shared/app_text_style.dart';
 import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
+import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
 import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';

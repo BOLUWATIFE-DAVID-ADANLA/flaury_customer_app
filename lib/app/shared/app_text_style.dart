@@ -1,4 +1,4 @@
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
