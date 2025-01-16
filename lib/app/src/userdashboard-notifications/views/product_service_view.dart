@@ -36,7 +36,6 @@ class _ProductServiceViewState extends ConsumerState<ProductServiceView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [

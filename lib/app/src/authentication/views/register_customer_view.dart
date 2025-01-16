@@ -39,7 +39,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   Widget build(BuildContext context) {
     final obscurePassword = ref.watch(passwordvisible);
     return Scaffold(
-      backgroundColor: AppColors.background,
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

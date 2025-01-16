@@ -20,7 +20,6 @@ class SearchPageView extends StatelessWidget {
           statusBarColor: AppColors.white,
           statusBarIconBrightness: Brightness.dark),
       child: Scaffold(
-        backgroundColor: AppColors.background,
         body: SafeArea(
             child: SymetricPadding(
           h: 20,

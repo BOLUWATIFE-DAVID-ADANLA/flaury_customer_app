@@ -34,7 +34,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
   Widget build(BuildContext context) {
     final visible = ref.watch(passwordvisible);
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         child: SafeArea(
           child: SymetricPadding(

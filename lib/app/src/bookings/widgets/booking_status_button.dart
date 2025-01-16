@@ -26,7 +26,7 @@ class BookingButton extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
-            color: isWhiteButton ? AppColors.white : AppColors.primary),
+            color: isWhiteButton ? AppColors.background : AppColors.primary),
         padding: EdgeInsets.symmetric(
             vertical: SizeConfig.fromDesignHeight(context, 10),
             horizontal: SizeConfig.fromDesignWidth(context, 15)),

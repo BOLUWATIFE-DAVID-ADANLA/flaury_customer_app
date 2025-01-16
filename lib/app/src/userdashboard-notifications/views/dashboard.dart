@@ -18,7 +18,6 @@ class DashboardView extends ConsumerWidget {
     final navstate = ref.watch(bottomNavProvider);
     final index = navstate.currentindex;
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: _pages[index],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
