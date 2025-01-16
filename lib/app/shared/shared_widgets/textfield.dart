@@ -309,6 +309,8 @@ class CustomDropDown extends StatelessWidget {
         iconEnabledColor: AppColors.black,
         iconDisabledColor: AppColors.black,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color(0xAAD9D9D9),
           isDense: true,
           iconColor: AppColors.black,
           border: const OutlineInputBorder(
@@ -319,10 +321,10 @@ class CustomDropDown extends StatelessWidget {
             minHeight: SizeConfig.fromDesignHeight(context, 42),
           ),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.grey),
+              borderSide: BorderSide(color: Color(0xAAD9D9D9)),
               borderRadius: BorderRadius.all(Radius.circular(10))),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.grey),
+              borderSide: BorderSide(color: Color(0xAAD9D9D9)),
               borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
         hint: hint != null
