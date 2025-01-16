@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flaury_mobile/app/services/secure_storage.dart';
-import 'package:flaury_mobile/app/shared/app_colors.dart';
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/shared_widgets/onboarding_pages.dart';
+import 'package:flaury_mobile/app/shared/onboarding_pages.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

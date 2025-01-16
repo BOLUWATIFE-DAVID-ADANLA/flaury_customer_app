@@ -1,4 +1,4 @@
-import 'package:flaury_mobile/app/shared/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/bookings/views/bookings_page.dart';

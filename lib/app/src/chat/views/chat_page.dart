@@ -1,10 +1,10 @@
 import 'package:flaury_mobile/app/routes/app_routes.dart';
-import 'package:flaury_mobile/app/shared/app_colors.dart';
-import 'package:flaury_mobile/app/shared/app_spacing.dart';
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
-import 'package:flaury_mobile/app/shared/custom_padding.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_spacing.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
+import 'package:flaury_mobile/app/util/custom_padding.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
+import 'package:flaury_mobile/app/shared/textfield.dart';
 import 'package:flaury_mobile/app/src/chat/widgets/chat_tiles.dart';
 import 'package:flutter/material.dart';
 

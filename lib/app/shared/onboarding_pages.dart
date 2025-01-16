@@ -1,4 +1,4 @@
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:flaury_mobile/app/shared/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
