@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 
 import 'package:flaury_mobile/app/config/appconfig.dart';
 import 'package:flaury_mobile/app/routes/app_pages.dart';
+import 'package:flaury_mobile/app/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,7 +40,10 @@ class MyApp extends StatelessWidget {
           statusBarColor: color, statusBarIconBrightness: Brightness.light),
     );
     return MaterialApp(
-      theme: ThemeData(textTheme: GoogleFonts.montserratTextTheme()),
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(),
+        scaffoldBackgroundColor: AppColors.background,
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.initial,
       onGenerateRoute: AppPages.ongenerateRoute,
