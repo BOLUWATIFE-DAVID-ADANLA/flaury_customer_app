@@ -1,10 +1,10 @@
-import 'package:flaury_mobile/app/shared/app_colors.dart';
-import 'package:flaury_mobile/app/shared/app_spacing.dart';
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
-import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/faqs_text.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_spacing.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
+import 'package:flaury_mobile/app/util/custom_padding.dart';
+import 'package:flaury_mobile/app/util/faqs_text.dart';
+import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/faq_tiles.dart';
 import 'package:flutter/material.dart';

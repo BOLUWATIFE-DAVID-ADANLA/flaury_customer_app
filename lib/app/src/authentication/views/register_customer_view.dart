@@ -1,10 +1,10 @@
-import 'package:flaury_mobile/app/shared/app_colors.dart';
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
-import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
-import 'package:flaury_mobile/app/shared/util/validator.dart';
-import 'package:flaury_mobile/app/shared/shared_widgets/textfield.dart';
-import 'package:flaury_mobile/app/shared/shared_widgets/custom_button.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
+import 'package:flaury_mobile/app/util/custom_padding.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
+import 'package:flaury_mobile/app/util/validator.dart';
+import 'package:flaury_mobile/app/shared/textfield.dart';
+import 'package:flaury_mobile/app/shared/custom_button.dart';
 import 'package:flaury_mobile/app/src/authentication/providers/provider.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   Widget build(BuildContext context) {
     final obscurePassword = ref.watch(passwordvisible);
     return Scaffold(
-      backgroundColor: AppColors.background,
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

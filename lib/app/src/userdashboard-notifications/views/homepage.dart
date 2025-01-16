@@ -1,9 +1,9 @@
 import 'package:flaury_mobile/app/routes/app_routes.dart';
-import 'package:flaury_mobile/app/shared/app_colors.dart';
-import 'package:flaury_mobile/app/shared/app_text_style.dart';
-import 'package:flaury_mobile/app/shared/custom_padding.dart';
-import 'package:flaury_mobile/app/shared/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/app/shared/util/size_config.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flaury_mobile/app/util/app_text_style.dart';
+import 'package:flaury_mobile/app/util/custom_padding.dart';
+import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
+import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/categories_icons.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/homepage_header.dart';
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/service_card.dart';
@@ -27,7 +27,6 @@ class _HomepageViewState extends State<HomepageView> {
           statusBarColor: AppColors.primary,
           statusBarIconBrightness: Brightness.light),
       child: Scaffold(
-        backgroundColor: AppColors.background,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
