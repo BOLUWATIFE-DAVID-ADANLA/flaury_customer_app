@@ -107,9 +107,8 @@ class ProfilePage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(
                               SizeConfig.fromDesignHeight(context, 15)),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(300),
-                              color: AppColors.white),
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: AppColors.white),
                           child: SvgAssets(
                             svg: rightArrow,
                             height: SizeConfig.fromDesignHeight(context, 15),
@@ -117,7 +116,8 @@ class ProfilePage extends StatelessWidget {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  const AppSpacing(v: 10),
                 ],
               ),
             ),
