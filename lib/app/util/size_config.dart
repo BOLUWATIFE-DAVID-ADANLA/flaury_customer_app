@@ -4,17 +4,7 @@ const double designScreenHeight = 812;
 const double designScreenWidth = 375;
 
 class SizeConfig {
-  // this takes the height of the phone divides it by 100, and mutiplies it by the designheight in percentages, but you have to calculate percentages
-  static double fromHeight(BuildContext context, double height) {
-    double phoneHeight = MediaQuery.of(context).size.height;
-    return (phoneHeight / 100) * height;
-  }
   // this takes the width of the phone divides it by 100, and mutiplies it by the designWidth in percentages, but you have to calculate percentages
-
-  static double fromWidth(BuildContext context, double width) {
-    double phoneWidth = MediaQuery.of(context).size.width;
-    return (phoneWidth / 100) * width;
-  }
 
   static double fontSize(BuildContext context, double size) {
     double phoneHeight = MediaQuery.sizeOf(context).height;
