@@ -1,4 +1,3 @@
-import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_spacing.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/custom_padding.dart';
@@ -35,73 +34,72 @@ class _FaqPageState extends ConsumerState<FaqPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
         body: SafeArea(
-          child: SymetricPadding(
-            h: 20,
-            v: 0,
-            child: Column(
+      child: SymetricPadding(
+        h: 20,
+        v: 0,
+        child: Column(
+          children: [
+            const AppSpacing(v: 20),
+
+            // appbar
+            Row(
               children: [
-                const AppSpacing(v: 20),
-
-                // appbar
-                Row(
-                  children: [
-                    SvgAssetsicons(
-                      svg: back,
-                      height: SizeConfig.fromDesignHeight(context, 20),
-                      ontap: () => Navigator.pop(context),
-                    ),
-                    const AppSpacing(h: 6),
-                    AppTextBold(text: 'FAQ', fontSize: 18),
-                    const AppSpacing(v: 20),
-                  ],
+                SvgAssetsicons(
+                  svg: back,
+                  height: SizeConfig.fromDesignHeight(context, 20),
+                  ontap: () => Navigator.pop(context),
                 ),
+                const AppSpacing(h: 6),
+                AppTextBold(text: 'FAQ', fontSize: 18),
                 const AppSpacing(v: 20),
-
-                AppTextRegular(
-                    text: 'Discover Your Beauty & Wellness Solutions',
-                    fontSize: 16),
-                const AppSpacing(v: 20),
-                // status row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    //Payment
-                    InkWell(
-                        onTap: () => _selectTab(0),
-                        child: BookingButton(
-                          label: status[0],
-                          isWhiteButton: selectedIndex != 0,
-                        )),
-
-                    // Coupons
-
-                    InkWell(
-                        onTap: () => _selectTab(1),
-                        child: BookingButton(
-                          label: status[1],
-                          isWhiteButton: selectedIndex != 1,
-                        )),
-
-                    // Bookings
-                    InkWell(
-                        onTap: () => _selectTab(2),
-                        child: BookingButton(
-                          label: status[2],
-                          isWhiteButton: selectedIndex != 2,
-                        )),
-                  ],
-                ),
-
-                const AppSpacing(v: 32),
-
-                // status body
-                Expanded(child: tabs[selectedIndex])
               ],
             ),
-          ),
-        ));
+            const AppSpacing(v: 20),
+
+            AppTextRegular(
+                text: 'Discover Your Beauty & Wellness Solutions',
+                fontSize: 16),
+            const AppSpacing(v: 20),
+            // status row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //Payment
+                InkWell(
+                    onTap: () => _selectTab(0),
+                    child: BookingButton(
+                      label: status[0],
+                      isWhiteButton: selectedIndex != 0,
+                    )),
+
+                // Coupons
+
+                InkWell(
+                    onTap: () => _selectTab(1),
+                    child: BookingButton(
+                      label: status[1],
+                      isWhiteButton: selectedIndex != 1,
+                    )),
+
+                // Bookings
+                InkWell(
+                    onTap: () => _selectTab(2),
+                    child: BookingButton(
+                      label: status[2],
+                      isWhiteButton: selectedIndex != 2,
+                    )),
+              ],
+            ),
+
+            const AppSpacing(v: 32),
+
+            // status body
+            Expanded(child: tabs[selectedIndex])
+          ],
+        ),
+      ),
+    ));
   }
 }
 
