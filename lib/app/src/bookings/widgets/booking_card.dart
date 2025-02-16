@@ -61,8 +61,9 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                 Transform.scale(
                   scale: 0.7,
                   child: CupertinoSwitch(
-                      activeColor: AppColors.primary,
-                      trackColor: const Color.fromRGBO(152, 163, 169, 1),
+                      activeTrackColor: AppColors.primary,
+                      inactiveTrackColor:
+                          const Color.fromRGBO(152, 163, 169, 1),
                       value: isSwitched,
                       onChanged: (bool value) {
                         toggleNotifier.toggleSwitch(widget.index, value);
@@ -127,7 +128,7 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
-                        color: AppColors.white),
+                        color: AppColors.background),
                     padding: EdgeInsets.symmetric(
                         vertical: SizeConfig.fromDesignHeight(context, 10),
                         horizontal: SizeConfig.fromDesignWidth(context, 100)),

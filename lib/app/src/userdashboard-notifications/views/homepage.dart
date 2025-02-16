@@ -25,7 +25,7 @@ class _HomepageViewState extends State<HomepageView> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
           statusBarColor: AppColors.primary,
-          statusBarIconBrightness: Brightness.light),
+          statusBarIconBrightness: Brightness.dark),
       child: Scaffold(
         body: SafeArea(
           child: Column(
