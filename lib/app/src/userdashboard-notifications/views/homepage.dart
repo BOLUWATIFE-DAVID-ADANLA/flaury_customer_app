@@ -100,7 +100,7 @@ class _HomepageViewState extends State<HomepageView> {
                               rating: 2.3,
                               totalReviews: 100,
                             ),
-                            ServiceCard(
+                            const ServiceCard(
                               rating: 2.3,
                               totalReviews: 100,
                               currentdistance: 15,
@@ -108,7 +108,7 @@ class _HomepageViewState extends State<HomepageView> {
                               address: 'Ajebandele, Ado-Ekiti',
                               businessName: 'Dubai executive',
                             ),
-                            ServiceCard(
+                            const ServiceCard(
                               currentdistance: 10,
                               rating: 2.3,
                               totalReviews: 100,

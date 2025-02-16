@@ -28,11 +28,10 @@ class BookingCard extends ConsumerStatefulWidget {
 class _BookingCardState extends ConsumerState<BookingCard> {
   @override
   Widget build(BuildContext context) {
-    var bookingState = ref.watch(remindMeToggleProvider).toggleStates;
-    final isSwitched = (bookingState.length > widget.index)
-        ? bookingState[widget.index] // Get the toggle state for this index
-        : false;
-    var toggleNotifier = ref.read(remindMeToggleProvider.notifier);
+    final toggleState = ref.watch(remindMeToggleProvider);
+    final notifier = ref.read(remindMeToggleProvider.notifier);
+    bool isToggled = widget.index < toggleState.toggleStates.length &&
+        toggleState.toggleStates[widget.index];
     return Container(
       padding: EdgeInsets.all(SizeConfig.fromDesignHeight(context, 10)),
       decoration: BoxDecoration(
@@ -64,10 +63,9 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                       activeTrackColor: AppColors.primary,
                       inactiveTrackColor:
                           const Color.fromRGBO(152, 163, 169, 1),
-                      value: isSwitched,
+                      value: isToggled,
                       onChanged: (bool value) {
-                        toggleNotifier.toggleSwitch(widget.index, value);
-
+                        notifier.toggleSwitch(widget.index, value);
                         if (value) {
                           // "remind me" logic
                           debugPrint(
