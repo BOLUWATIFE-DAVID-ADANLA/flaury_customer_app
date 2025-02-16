@@ -55,9 +55,6 @@ Permission getPermissionFromType(PermissionType permissionType) {
 
     case PermissionType.whenInUseLocation:
       return Permission.locationWhenInUse;
-
-    default:
-      throw Exception('Unknown permission type: $permissionType');
   }
 }
 
