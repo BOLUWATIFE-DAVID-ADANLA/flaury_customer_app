@@ -54,9 +54,3 @@ class RemindMeToggleNotifier extends StateNotifier<RemindMeToggleState> {
     await _saveToggleStates();
   }
 }
-
-// Riverpod provider
-final remindMeToggleProvider =
-    StateNotifierProvider<RemindMeToggleNotifier, RemindMeToggleState>(
-  (ref) => RemindMeToggleNotifier(),
-);
