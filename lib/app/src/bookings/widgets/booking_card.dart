@@ -28,11 +28,10 @@ class BookingCard extends ConsumerStatefulWidget {
 class _BookingCardState extends ConsumerState<BookingCard> {
   @override
   Widget build(BuildContext context) {
-    var bookingState = ref.watch(remindMeToggleProvider).toggleStates;
-    final isSwitched = (bookingState.length > widget.index)
-        ? bookingState[widget.index] // Get the toggle state for this index
-        : false;
-    var toggleNotifier = ref.read(remindMeToggleProvider.notifier);
+    final toggleState = ref.watch(remindMeToggleProvider);
+    final notifier = ref.read(remindMeToggleProvider.notifier);
+    bool isToggled = widget.index < toggleState.toggleStates.length &&
+        toggleState.toggleStates[widget.index];
     return Container(
       padding: EdgeInsets.all(SizeConfig.fromDesignHeight(context, 10)),
       decoration: BoxDecoration(
@@ -61,12 +60,12 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                 Transform.scale(
                   scale: 0.7,
                   child: CupertinoSwitch(
-                      activeColor: AppColors.primary,
-                      trackColor: const Color.fromRGBO(152, 163, 169, 1),
-                      value: isSwitched,
+                      activeTrackColor: AppColors.primary,
+                      inactiveTrackColor:
+                          const Color.fromRGBO(152, 163, 169, 1),
+                      value: isToggled,
                       onChanged: (bool value) {
-                        toggleNotifier.toggleSwitch(widget.index, value);
-
+                        notifier.toggleSwitch(widget.index, value);
                         if (value) {
                           // "remind me" logic
                           debugPrint(
@@ -127,7 +126,7 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
-                        color: AppColors.white),
+                        color: AppColors.background),
                     padding: EdgeInsets.symmetric(
                         vertical: SizeConfig.fromDesignHeight(context, 10),
                         horizontal: SizeConfig.fromDesignWidth(context, 100)),
