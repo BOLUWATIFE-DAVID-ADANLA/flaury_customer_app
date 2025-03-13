@@ -1,0 +1,2 @@
+/home/boluwatife/code/flaury_customer_app/android/app/.cxx/RelWithDebInfo/3e37n1d3/x86_64/CMakeFiles/edit_cache.dir
+/home/boluwatife/code/flaury_customer_app/android/app/.cxx/RelWithDebInfo/3e37n1d3/x86_64/CMakeFiles/rebuild_cache.dir

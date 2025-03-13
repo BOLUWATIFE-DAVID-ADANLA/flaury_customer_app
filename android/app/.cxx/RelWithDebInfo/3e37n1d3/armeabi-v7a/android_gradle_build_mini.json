@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/boluwatife/Development/flutter_linux_3.29.0-stable/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/boluwatife/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/boluwatife/code/flaury_customer_app/android/app/.cxx/RelWithDebInfo/3e37n1d3/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/boluwatife/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/boluwatife/code/flaury_customer_app/android/app/.cxx/RelWithDebInfo/3e37n1d3/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
