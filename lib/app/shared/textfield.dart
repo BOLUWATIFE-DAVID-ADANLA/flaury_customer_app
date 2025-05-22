@@ -298,10 +298,12 @@ class MainCustomTextfield extends StatelessWidget {
 }
 
 class CustomDropDown extends StatelessWidget {
-  const CustomDropDown({super.key, this.items, this.onChanged, this.hint});
+  const CustomDropDown(
+      {super.key, this.items, this.onChanged, this.hint, this.isfilled = true});
   final List<DropdownMenuItem<String>>? items;
   final Function(dynamic)? onChanged;
   final String? hint;
+  final bool isfilled;
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
@@ -309,8 +311,8 @@ class CustomDropDown extends StatelessWidget {
         iconEnabledColor: AppColors.black,
         iconDisabledColor: AppColors.black,
         decoration: InputDecoration(
-          filled: true,
-          fillColor: const Color(0xAAD9D9D9),
+          filled: isfilled,
+          fillColor: isfilled ? null : const Color(0xAAD9D9D9),
           isDense: true,
           iconColor: AppColors.black,
           border: const OutlineInputBorder(
@@ -322,10 +324,10 @@ class CustomDropDown extends StatelessWidget {
           ),
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xAAD9D9D9)),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xAAD9D9D9)),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: BorderRadius.all(Radius.circular(5))),
         ),
         hint: hint != null
             ? Text(

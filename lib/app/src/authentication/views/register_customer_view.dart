@@ -1,3 +1,5 @@
+import 'package:flaury_mobile/app/services/navigation_service.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/auth_controller.dart';
 import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/custom_padding.dart';
@@ -11,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../util/app_spacing.dart';
+
 class RegisterCustomerView extends StatefulHookConsumerWidget {
   const RegisterCustomerView({super.key});
 
@@ -20,11 +24,13 @@ class RegisterCustomerView extends StatefulHookConsumerWidget {
 }
 
 class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
-  final GlobalKey _formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
   final TextEditingController _phonecontroller = TextEditingController();
+  final TextEditingController _usernamecontroller = TextEditingController();
+  String? _selectedValue;
 
   @override
   void dispose() {
@@ -38,6 +44,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   @override
   Widget build(BuildContext context) {
     final obscurePassword = ref.watch(passwordvisible);
+    final navigation = ref.watch(navigationServiceProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
@@ -50,6 +57,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                 h: 20,
                 v: 0,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: SizeConfig.fromDesignHeight(context, 20),
@@ -75,6 +83,18 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                       validator: Validator.nameValidator,
                       controller: _namecontroller,
                       label: 'Name',
+                    ),
+
+                    SizedBox(
+                      height: SizeConfig.fromDesignHeight(context, 20),
+                    ),
+
+                    AuthTextfield(
+                      hintext: 'Beccy_Braunch',
+                      obscureText: false,
+                      validator: Validator.nameValidator,
+                      controller: _usernamecontroller,
+                      label: 'Username ',
                     ),
 
                     SizedBox(
@@ -107,7 +127,26 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                     SizedBox(
                       height: SizeConfig.fromDesignHeight(context, 20),
                     ),
+                    AppTextBold(text: 'Gender', fontSize: 14),
+                    const AppSpacing(v: 5),
 
+                    CustomDropDown(
+                      isfilled: false,
+                      hint: 'select category',
+                      items: acceptableGender.map((item) {
+                        return DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(item),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedValue =
+                              value; // Correctly update the selected value
+                        });
+                      },
+                    ),
+                    const AppSpacing(v: 20),
                     //password field
 
                     AuthTextfield(
@@ -174,8 +213,29 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                           return enable
                               ? LargeButon(
                                   label: "Sign up",
+                                  isloading: ref
+                                          .watch(authControllerProvider)
+                                          .status ==
+                                      AuthStatus.loading,
                                   ontap: () {
-                                    // sign in logic
+                                    if (_formkey.currentState!.validate()) {
+                                      ref
+                                          .read(authControllerProvider.notifier)
+                                          .signUp(
+                                              email: _emailcontroller.text,
+                                              password:
+                                                  _passwordcontroller.text,
+                                              userName:
+                                                  _usernamecontroller.text,
+                                              gender: _selectedValue.toString(),
+                                              name: _namecontroller.text,
+                                              phoneNumber:
+                                                  _phonecontroller.text)
+                                          .then((value) {
+                                        navigation.pushTo(
+                                            route: AppRoutes.otpScreen);
+                                      });
+                                    }
                                   },
                                 )
                               : const LargeButonDisabled(
@@ -220,3 +280,5 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
     );
   }
 }
+
+final List<String> acceptableGender = ['male', 'female'];
