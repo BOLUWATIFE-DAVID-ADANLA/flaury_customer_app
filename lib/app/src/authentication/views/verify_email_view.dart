@@ -1,113 +1,22 @@
-import 'package:flaury_mobile/app/util/app_spacing.dart';
-import 'package:flaury_mobile/app/util/app_text_style.dart';
-import 'package:flaury_mobile/app/util/custom_padding.dart';
-import 'package:flaury_mobile/app/util/size_config.dart';
-import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
-import 'package:flaury_mobile/app/shared/custom_button.dart';
-import 'package:flaury_mobile/app/shared/textfield.dart';
-import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ForgotPasswordView extends StatefulHookConsumerWidget {
-  const ForgotPasswordView({super.key});
+import '../../../shared/custom_button.dart';
+import '../../../shared/textfield.dart';
+import '../../../util/app_spacing.dart';
+import '../../../util/app_text_style.dart';
+import '../../../util/custom_padding.dart';
+import '../../../util/size_config.dart';
+
+class VerifyEmailView extends ConsumerStatefulWidget {
+  final String email;
+  const VerifyEmailView({super.key, required this.email});
 
   @override
-  ConsumerState<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+  ConsumerState<VerifyEmailView> createState() => _OtpScreenState();
 }
 
-class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController emailController =
-        TextEditingController(text: '');
-    return Scaffold(
-        body: SafeArea(
-      child: SymetricPadding(
-        h: 20,
-        v: 0,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: SizeConfig.fromDesignHeight(context, 20),
-              ),
-              //app bar
-              Row(
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(Icons.arrow_back_ios_new_outlined)),
-                  SizedBox(
-                    width: SizeConfig.fromDesignWidth(context, 5),
-                  ),
-                  AppTextBold(text: 'Forgot Password', fontSize: 20)
-                ],
-              ),
-
-              SizedBox(
-                height: SizeConfig.fromDesignHeight(context, 45),
-              ),
-
-              //image
-              const Center(
-                  child: SvgAssets(
-                svg: forgotPassword,
-                height: 200,
-              )),
-
-              SizedBox(
-                height: SizeConfig.fromDesignHeight(context, 70),
-              ),
-
-              AppTextSemiBold(
-                  text: 'Enter your registered email address', fontSize: 14),
-
-              SizedBox(
-                height: SizeConfig.fromDesignHeight(context, 30),
-              ),
-              RegularTextField(
-                keyboardtype: TextInputType.emailAddress,
-                controller: emailController,
-                hintText: 'Email address',
-              ),
-
-              SizedBox(
-                height: SizeConfig.fromDesignHeight(context, 217),
-              ),
-
-              LargeButon(
-                  label: 'Continue',
-                  ontap: () {
-                    //add email verification logic here
-
-                    // then navigate to otp screen
-
-                    Navigator.pushNamed(context, AppRoutes.otpScreen);
-                  }),
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
-}
-
-//
-//
-
-class OtpScreen extends ConsumerStatefulWidget {
-  const OtpScreen({super.key});
-
-  @override
-  ConsumerState<OtpScreen> createState() => _OtpScreenState();
-}
-
-class _OtpScreenState extends ConsumerState<OtpScreen> {
+class _OtpScreenState extends ConsumerState<VerifyEmailView> {
   late TextEditingController pIn1controller;
   late TextEditingController pIn2controller;
   late TextEditingController pIn3controller;
@@ -178,7 +87,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 ),
                 Center(
                     child: AppTextSemiBold(
-                        text: 'Code has been sent to flaury@mail.com',
+                        text: 'Code has been sent to ${widget.email}',
                         fontSize: 14)),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
@@ -247,8 +156,6 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                       print(pin);
 
                       //
-                      Navigator.pushNamed(
-                          context, AppRoutes.changePassowrdView);
                     })
               ],
             ),

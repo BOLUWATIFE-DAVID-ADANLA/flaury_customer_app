@@ -125,49 +125,50 @@ class _ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                         : Icons.visibility),
                   ),
                 ),
-                SizedBox(
-                  height: SizeConfig.fromDesignHeight(context, 105),
-                ), //ap
+                //ap
 
                 //ap
-                LargeButon(
-                    label: 'Continue',
-                    ontap: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => CustomAlertDialouge(children: [
-                                const SvgAssets(
-                                  svg: newPasswordPop,
-                                  height: 115,
-                                ),
-                                SizedBox(
-                                  height:
-                                      SizeConfig.fromDesignHeight(context, 24),
-                                ), //ap
-                                Center(
-                                  child: AppTextBold(
-                                    text: 'Successful!',
-                                    fontSize: 18,
-                                    color: AppColors.primary,
+                Expanded(
+                  child: LargeButon(
+                      label: 'Continue',
+                      ontap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) =>
+                                CustomAlertDialouge(children: [
+                                  const SvgAssets(
+                                    svg: newPasswordPop,
+                                    height: 115,
                                   ),
-                                ),
-                                SizedBox(
-                                  height:
-                                      SizeConfig.fromDesignHeight(context, 18),
-                                ), //ap
+                                  SizedBox(
+                                    height: SizeConfig.fromDesignHeight(
+                                        context, 24),
+                                  ), //ap
+                                  Center(
+                                    child: AppTextBold(
+                                      text: 'Successful!',
+                                      fontSize: 18,
+                                      color: AppColors.primary,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: SizeConfig.fromDesignHeight(
+                                        context, 18),
+                                  ), //ap
 
-                                AppTextRegular(
-                                    text:
-                                        'Your password has been successfully updated.',
-                                    textAlign: TextAlign.center,
-                                    fontSize: 14)
-                              ]));
-                      //add email verification logic here
+                                  AppTextRegular(
+                                      text:
+                                          'Your password has been successfully updated.',
+                                      textAlign: TextAlign.center,
+                                      fontSize: 14)
+                                ]));
+                        //add email verification logic here
 
-                      // then navigate to otp screen
+                        // then navigate to otp screen
 
-                      // Navigator.pushNamed(context, '/otpscreen');
-                    }),
+                        // Navigator.pushNamed(context, '/otpscreen');
+                      }),
+                ),
               ],
             ),
           ),

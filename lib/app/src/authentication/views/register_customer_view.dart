@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../util/app_spacing.dart';
+import 'verify_email_view.dart';
 
 class RegisterCustomerView extends StatefulHookConsumerWidget {
   const RegisterCustomerView({super.key});
@@ -233,7 +234,9 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                                                   _phonecontroller.text)
                                           .then((value) {
                                         navigation.pushTo(
-                                            route: AppRoutes.otpScreen);
+                                            page: VerifyEmailView(
+                                          email: _emailcontroller.text,
+                                        ));
                                       });
                                     }
                                   },

@@ -1,24 +1,18 @@
 class RegisterResponse {
-  final String accessToken;
-  final String refreshToken;
-  final String userId;
   final String message;
+  final int description;
   final String status;
 
   RegisterResponse({
-    required this.accessToken,
-    required this.refreshToken,
-    required this.userId,
     required this.message,
+    required this.description,
     required this.status,
   });
 
   factory RegisterResponse.fromJson(Map<String, dynamic> json) {
     return RegisterResponse(
-      accessToken: json['response data']['access_token'],
-      refreshToken: json['response data']['refresh_token'],
-      userId: json['response data']['user_id'],
-      message: json['response description'],
+      message: json['response data'],
+      description: json['response description'],
       status: json['response status'],
     );
   }

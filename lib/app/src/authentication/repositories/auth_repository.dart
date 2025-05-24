@@ -27,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
         "email": email,
         "name": name,
         "password": password,
-        'phone_number': "+234$phonenumber",
+        'phone_number': phonenumber,
         "role": "client",
         "type_of_service": "basic",
         'username': userName,

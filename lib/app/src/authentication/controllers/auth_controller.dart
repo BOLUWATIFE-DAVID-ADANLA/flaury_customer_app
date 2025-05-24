@@ -79,8 +79,8 @@ class AuthController extends StateNotifier<AuthState> {
           gender: gender,
           email: email);
       // save tokens to secure storage
-      await _authTokenManager.saveAuthToken(response.accessToken);
-      await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
+      // await _authTokenManager.saveAuthToken(response);
+      // await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
       state = AuthState.success(response.message);
     } catch (e) {
       state = AuthState.error(e.toString());
@@ -92,6 +92,73 @@ class AuthController extends StateNotifier<AuthState> {
     try {
       final response = await authRepository.login(email, password);
       state = AuthState.success(response.responseDescription);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  // logout
+  Future<void> logout() async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.logout();
+      await _authTokenManager.deleteAuthToken();
+      await _authTokenManager.deleteRefreshAuthToken();
+      state = AuthState.success(response.message);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  // forgot password
+  Future<void> forgotPassword(String email) async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.forgotPassword(email);
+      state = AuthState.success(response.message);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  // verify email
+  Future<void> verifyEmail(String email, String code) async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.verifyEmail(email, code);
+      state = AuthState.success(response.message);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  Future<void> resetPassword(
+      String email, String newPassword, String verificationCode) async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.resetPassword(
+          email, newPassword, verificationCode);
+      state = AuthState.success(response.message);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  Future<void> resendVerifcationCode(String email) async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.resendVerifcationCode(email);
+      state = AuthState.success(response.message);
+    } catch (e) {
+      state = AuthState.error(e.toString());
+    }
+  }
+
+  Future<void> refreshAccessToken() async {
+    state = AuthState.loading();
+    try {
+      final response = await authRepository.refreshAccessToken();
+      state = AuthState.success(response.message);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
