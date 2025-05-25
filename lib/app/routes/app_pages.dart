@@ -2,6 +2,7 @@ import 'package:flaury_mobile/app/src/authentication/views/create_new_password.d
 import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/sigin_in.dart';
+import 'package:flaury_mobile/app/src/authentication/views/verify_email_view.dart';
 import 'package:flaury_mobile/app/src/chat/views/chat_details_screen.dart';
 import 'package:flaury_mobile/app/src/global_pages/onboarding_view.dart';
 import 'package:flaury_mobile/app/src/profile/views/about_page.dart';
@@ -26,7 +27,14 @@ class AppPages {
           builder: (_) => const SplashScreenView(),
           settings: settings,
         );
-
+      case AppRoutes.verifyemail:
+        final email = settings.arguments as String? ?? '';
+        return MaterialPageRoute(
+          builder: (_) => VerifyEmailView(
+            email: email,
+          ),
+          settings: settings,
+        );
       case AppRoutes.onboardingView:
         return MaterialPageRoute(
           builder: (_) => const OnboardingView(),

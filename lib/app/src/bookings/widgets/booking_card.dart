@@ -174,7 +174,7 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      CancelBooking(
+                                      SmallButton(
                                           isCancelButton: true,
                                           label: 'Cancel',
                                           ontap: () {
@@ -219,7 +219,7 @@ class _BookingCardState extends ConsumerState<BookingCard> {
                                                               fontSize: 14)
                                                         ]));
                                           }),
-                                      CancelBooking(
+                                      SmallButton(
                                           label: 'Continue Booking',
                                           ontap: () {
                                             Navigator.pop(context);

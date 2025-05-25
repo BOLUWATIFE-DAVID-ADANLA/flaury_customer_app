@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/services/secure_storage.dart';
 import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_spacing.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
@@ -12,6 +13,8 @@ import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../controllers/auth_controller.dart';
+
 class SignInView extends StatefulHookConsumerWidget {
   const SignInView({super.key});
 
@@ -23,6 +26,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
   bool doYouWantToRemember = false;
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _fomKey = GlobalKey<FormState>();
 
   void toggleCheckbox() {
     setState(() {
@@ -31,8 +35,46 @@ class _SignInViewState extends ConsumerState<SignInView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadRememberedEmail();
+    });
+  }
+
+  Future<void> loadRememberedEmail() async {
+    final shouldRemember =
+        await ref.read(sharedprefrenceProvider).getBool('rememberMe') ?? false;
+
+    if (shouldRemember) {
+      final storedEmail =
+          await ref.read(secureStorageProvider).read('storedUserEmail');
+      if (storedEmail != null) {
+        setState(() {
+          _emailcontroller.text = storedEmail;
+          doYouWantToRemember = true;
+        });
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final visible = ref.watch(passwordvisible);
+    // manges the authentication state of the app
+    ref.listen<AuthState>(authControllerProvider, (prev, next) {
+      if (next.status == AuthStatus.success) {
+        Navigator.pushReplacementNamed(
+          context,
+          AppRoutes.dashboard,
+        );
+      } else if (next.status == AuthStatus.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.message)),
+        );
+      }
+    });
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -40,6 +82,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
             h: 24,
             v: 0,
             child: Form(
+              key: _fomKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,6 +119,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                     label: 'Email Address',
                     validator: Validator.emailValidator,
                     keyboardType: TextInputType.emailAddress,
+                    onChanged: (v) {},
                   ),
 
                   SizedBox(
@@ -124,12 +168,22 @@ class _SignInViewState extends ConsumerState<SignInView> {
                                 return Colors.transparent;
                               }),
                               value: doYouWantToRemember,
-                              onChanged: (value) {
-                                toggleCheckbox();
+                              onChanged: (value) async {
+                                setState(() {
+                                  doYouWantToRemember = value!;
+                                });
+
+                                final prefs = ref.read(sharedprefrenceProvider);
+                                final secureStorage =
+                                    ref.read(secureStorageProvider);
 
                                 if (value == true) {
-                                  debugPrint(
-                                      'you have indicated to remember sigin in info');
+                                  await prefs.setBool('rememberMe', true);
+                                  await secureStorage.write(
+                                      'storedUserEmail', _emailcontroller.text);
+                                } else {
+                                  await prefs.setBool('rememberMe', false);
+                                  await secureStorage.delete('storedUserEmail');
                                 }
                               },
                               materialTapTargetSize:
@@ -166,11 +220,18 @@ class _SignInViewState extends ConsumerState<SignInView> {
                           _passwordController.text.isNotEmpty;
                       return enable
                           ? LargeButon(
+                              isloading:
+                                  ref.watch(authControllerProvider).status ==
+                                      AuthStatus.loading,
                               label: 'Log in',
                               ontap: () {
-                                //implement sign in logic here
-                                Navigator.pushNamed(
-                                    context, AppRoutes.dashboard);
+                                if (_fomKey.currentState!.validate()) {
+                                  ref
+                                      .read(authControllerProvider.notifier)
+                                      .login(
+                                          email: _emailcontroller.text,
+                                          password: _passwordController.text);
+                                }
                               })
                           : const LargeButonDisabled(
                               label: 'Log in', ontap: null);

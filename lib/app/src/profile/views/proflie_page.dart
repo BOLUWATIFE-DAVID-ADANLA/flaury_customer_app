@@ -1,4 +1,6 @@
 import 'package:flaury_mobile/app/routes/app_routes.dart';
+import 'package:flaury_mobile/app/shared/bottom_modal.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/auth_controller.dart';
 import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_spacing.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
@@ -8,12 +10,27 @@ import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/log_out_button.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../../shared/custom_button.dart';
+
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<AuthState>(authControllerProvider, (prev, next) {
+      if (next.status == AuthStatus.success) {
+        Navigator.pushReplacementNamed(
+          context,
+          AppRoutes.signInView,
+        );
+      } else if (next.status == AuthStatus.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.message)),
+        );
+      }
+    });
     return Scaffold(
         backgroundColor: AppColors.background,
         body: SingleChildScrollView(
@@ -74,7 +91,45 @@ class ProfilePage extends StatelessWidget {
                   const AppSpacing(v: 101),
 
                   LogOutButton(
-                    ontap: () {},
+                    ontap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (_) => CustomModal(
+                                  height:
+                                      SizeConfig.fromDesignHeight(context, 150),
+                                  size: 'small',
+                                  children: [
+                                    const AppSpacing(v: 20),
+                                    AppTextBold(
+                                        text:
+                                            'Are you sure you want to log out?',
+                                        fontSize: 16),
+                                    const AppSpacing(v: 40),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SmallButton(
+                                          buttonColor: Colors.red,
+                                          label: 'Cancel',
+                                          ontap: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        const AppSpacing(h: 30),
+                                        SmallButton(
+                                          label: 'Log out',
+                                          ontap: () {
+                                            ref
+                                                .read(authControllerProvider
+                                                    .notifier)
+                                                .logout();
+                                          },
+                                        )
+                                      ],
+                                    )
+                                  ]));
+                    },
                   ),
                   const AppSpacing(v: 38),
 

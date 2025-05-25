@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/services/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../services/secure_storage.dart';
@@ -81,16 +82,22 @@ class AuthController extends StateNotifier<AuthState> {
       // save tokens to secure storage
       // await _authTokenManager.saveAuthToken(response);
       // await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.message ?? 'Sign up Succesful ');
+    } on CustomException catch (e) {
+      state = AuthState.error(e.message);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login({required String email, required String password}) async {
     state = AuthState.loading();
     try {
-      final response = await authRepository.login(email, password);
+      final response =
+          await authRepository.login(email: email, password: password);
+      // save tokens to secure storage
+      await _authTokenManager.saveAuthToken(response.accessToken);
+      await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
       state = AuthState.success(response.responseDescription);
     } catch (e) {
       state = AuthState.error(e.toString());
@@ -104,7 +111,7 @@ class AuthController extends StateNotifier<AuthState> {
       final response = await authRepository.logout();
       await _authTokenManager.deleteAuthToken();
       await _authTokenManager.deleteRefreshAuthToken();
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.responseDescription);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -115,7 +122,7 @@ class AuthController extends StateNotifier<AuthState> {
     state = AuthState.loading();
     try {
       final response = await authRepository.forgotPassword(email);
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -126,7 +133,7 @@ class AuthController extends StateNotifier<AuthState> {
     state = AuthState.loading();
     try {
       final response = await authRepository.verifyEmail(email, code);
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -138,7 +145,7 @@ class AuthController extends StateNotifier<AuthState> {
     try {
       final response = await authRepository.resetPassword(
           email, newPassword, verificationCode);
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -148,7 +155,7 @@ class AuthController extends StateNotifier<AuthState> {
     state = AuthState.loading();
     try {
       final response = await authRepository.resendVerifcationCode(email);
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -158,7 +165,7 @@ class AuthController extends StateNotifier<AuthState> {
     state = AuthState.loading();
     try {
       final response = await authRepository.refreshAccessToken();
-      state = AuthState.success(response.message);
+      state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
     }

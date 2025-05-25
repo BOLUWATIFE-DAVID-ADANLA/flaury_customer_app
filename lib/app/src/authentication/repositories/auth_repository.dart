@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flaury_mobile/app/src/authentication/models/login_response_model.dart';
 import 'package:flaury_mobile/app/src/authentication/models/register_user_model.dart';
 import 'package:flaury_mobile/app/src/authentication/models/user_model.dart';
@@ -15,13 +16,14 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._dioService);
 
   @override
-  Future<RegisterResponse> signUp(
-      {required String email,
-      required String password,
-      required String name,
-      required String userName,
-      required String phonenumber,
-      required String gender}) async {
+  Future<RegisterResponse> signUp({
+    required String email,
+    required String password,
+    required String name,
+    required String userName,
+    required String phonenumber,
+    required String gender,
+  }) async {
     try {
       Map<String, dynamic> data = {
         "email": email,
@@ -33,20 +35,38 @@ class AuthRepositoryImpl implements AuthRepository {
         'username': userName,
         "gender": gender
       };
+
       final response = await _dioService.post(ApiRoutes.signUp, data: data);
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "Signup failed");
+      print(response);
+      print(response['response data']);
+
+      if (response.isEmpty ||
+          response['response status'] == null ||
+          response['response description'] == null) {
+        throw CustomException("Invalid server response format");
+      }
+      // Handle error response
+      if (response["response status"] == "error") {
+        final errorMessage = response["error details"] ?? "Registration failed";
+        print(errorMessage);
+        throw CustomException(_getUserFriendlyError(errorMessage));
       }
 
       return RegisterResponse.fromJson(response);
+    } on DioException catch (e) {
+      debugPrint("Network error: $e");
+      throw CustomException(_getNetworkError(e));
+    } on CustomException {
+      rethrow;
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException("An unexpected error occurred during registration");
     }
   }
+
+// Helper method to handle Dio network errors
 
   @override
   Future<ApiResponseModel> forgotPassword(String email) async {
@@ -72,7 +92,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginResponse> login(String email, String password) async {
+  Future<LoginResponse> login(
+      {required String email, required String password}) async {
     try {
       Map<String, dynamic> data = {
         "email": email,
@@ -95,7 +116,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<ApiResponseModel> logout() async {
+  Future<LogoutResponseModel> logout() async {
     try {
       final response = await _dioService.post(
         ApiRoutes.logout,
@@ -106,7 +127,7 @@ class AuthRepositoryImpl implements AuthRepository {
             response["response description"] ?? "logout failed");
       }
 
-      return ApiResponseModel.fromJson(response);
+      return LogoutResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
@@ -233,6 +254,31 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 }
 
+String _getNetworkError(DioException e) {
+  if (e.type == DioExceptionType.connectionTimeout ||
+      e.type == DioExceptionType.receiveTimeout ||
+      e.type == DioExceptionType.sendTimeout) {
+    return "Connection timeout. Please check your internet and try again";
+  } else if (e.type == DioExceptionType.connectionError) {
+    return "No internet connection. Please check your network";
+  } else if (e.response?.statusCode == 500) {
+    return "Server error. Please try again later";
+  }
+  return "Network error occurred. Please try again";
+}
+
+// Helper method to translate server errors to user-friendly messages
+String _getUserFriendlyError(String serverError) {
+  const errorMap = {
+    "Email already registered": "This email is already in use",
+    "Invalid email format": "Please enter a valid email address",
+    "Password too weak": "Password must be at least 8 characters long",
+    // Add more mappings as needed
+  };
+
+  return errorMap[serverError] ?? serverError;
+}
+
 abstract class AuthRepository {
   Future<RegisterResponse> signUp(
       {required String email,
@@ -241,8 +287,9 @@ abstract class AuthRepository {
       required String userName,
       required String phonenumber,
       required String gender});
-  Future<ApiResponseModel> logout();
-  Future<LoginResponse> login(String email, String password);
+  Future<LogoutResponseModel> logout();
+  Future<LoginResponse> login(
+      {required String email, required String password});
 
   Future<ApiResponseModel> refreshAccessToken();
   Future<ApiResponseModel> forgotPassword(String email);

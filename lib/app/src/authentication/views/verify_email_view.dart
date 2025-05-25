@@ -1,4 +1,11 @@
+import 'package:flaury_mobile/app/routes/app_routes.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/auth_controller.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/resend_otp_timer_controller.dart';
+import 'package:flaury_mobile/app/src/authentication/controllers/resend_verification_controller.dart';
+import 'package:flaury_mobile/app/util/app_colors.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../shared/custom_button.dart';
@@ -17,45 +24,39 @@ class VerifyEmailView extends ConsumerStatefulWidget {
 }
 
 class _OtpScreenState extends ConsumerState<VerifyEmailView> {
-  late TextEditingController pIn1controller;
-  late TextEditingController pIn2controller;
-  late TextEditingController pIn3controller;
-  late TextEditingController pIn4controller;
+  final List<TextEditingController> _otpControllers =
+      List.generate(6, (_) => TextEditingController());
 
   @override
   void initState() {
     super.initState();
-    pIn1controller = TextEditingController();
-    pIn2controller = TextEditingController();
-    pIn3controller = TextEditingController();
-    pIn4controller = TextEditingController();
   }
 
   @override
   void dispose() {
     super.dispose();
-    pIn1controller.dispose();
-    pIn2controller.dispose();
-    pIn3controller.dispose();
-    pIn4controller.dispose();
+    for (var controller in _otpControllers) {
+      controller.dispose();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    String getPinFromControllers(
-      TextEditingController controller1,
-      TextEditingController controller2,
-      TextEditingController controller3,
-      TextEditingController controller4,
-    ) {
-      // Concatenate text from each controller
-      String pin = '';
-      pin += controller1.text;
-      pin += controller2.text;
-      pin += controller3.text;
-      pin += controller4.text;
-      return pin;
-    }
+    final timer = ref.watch(resendTimerProvider);
+    final resendTimer = ref.read(resendTimerProvider.notifier);
+
+    ref.listen<AuthState>(authControllerProvider, (prev, next) {
+      if (next.status == AuthStatus.success) {
+        Navigator.pushReplacementNamed(
+          context,
+          AppRoutes.signInView,
+        );
+      } else if (next.status == AuthStatus.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.message)),
+        );
+      }
+    });
 
     return Scaffold(
       body: SafeArea(
@@ -87,6 +88,7 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                 ),
                 Center(
                     child: AppTextSemiBold(
+                        textAlign: TextAlign.center,
                         text: 'Code has been sent to ${widget.email}',
                         fontSize: 14)),
                 SizedBox(
@@ -95,49 +97,64 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                 //otp digit boxes
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    OtpTextfield(
-                      controller: pIn1controller,
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                    ),
-                    OtpTextfield(
-                      controller: pIn2controller,
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                    ),
-                    OtpTextfield(
-                      controller: pIn3controller,
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                      },
-                    ),
-                    OtpTextfield(
-                      controller: pIn4controller,
-                      onChanged: (value) {
-                        if (value.length == 1) {
-                          FocusScope.of(context).unfocus();
-                        }
-                      },
-                    )
-                  ],
+                  children: List.generate(
+                      6,
+                      (index) => OtpTextfield(
+                            controller: _otpControllers[index],
+                            onChanged: (value) {
+                              if (value.isEmpty && index > 0) {
+                                FocusScope.of(context).previousFocus();
+                              } else if (value.isNotEmpty &&
+                                  index < _otpControllers.length - 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
+                          )),
                 ),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
                 //resend code
-                Center(
-                  child:
-                      AppTextSemiBold(text: 'Resend code in 38s', fontSize: 14),
-                ),
+                timer.canResend
+                    ? Center(
+                        child: RichText(
+                          text: TextSpan(
+                            text: "Didn't get a code? ",
+                            style: GoogleFonts.montserrat(
+                              color: AppColors.black,
+                              fontSize: SizeConfig.fontSize(context, 16),
+                              fontWeight: FontWeight.w500,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: 'Resend',
+                                style: GoogleFonts.montserrat(
+                                  color: AppColors.primary,
+                                  fontSize: SizeConfig.fontSize(context, 16),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = timer.canResend
+                                      ? () {
+                                          ref
+                                              .read(resendverificationProvider
+                                                  .notifier)
+                                              .resendVerificationOtp(
+                                                  widget.email);
+
+                                          resendTimer.start();
+                                        }
+                                      : null,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: AppTextSemiBold(
+                            text: 'Resend code in ${timer.secondsLeft}s',
+                            fontSize: 14),
+                      ),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 427),
                 ),
@@ -145,16 +162,16 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
 
                 LargeButon(
                     label: 'verify',
+                    isloading: ref.watch(authControllerProvider).status ==
+                        AuthStatus.loading,
                     ontap: () {
-                      String pin = getPinFromControllers(
-                        pIn1controller,
-                        pIn2controller,
-                        pIn3controller,
-                        pIn4controller,
-                      );
+                      String otp = _otpControllers.map((e) => e.text).join();
 
-                      print(pin);
-
+                      if (otp.length == 6) {
+                        ref
+                            .read(authControllerProvider.notifier)
+                            .verifyEmail(widget.email, otp);
+                      }
                       //
                     })
               ],

@@ -203,15 +203,17 @@ class LargeButtoncustom extends StatelessWidget {
   }
 }
 
-class CancelBooking extends StatelessWidget {
-  const CancelBooking(
+class SmallButton extends StatelessWidget {
+  const SmallButton(
       {super.key,
       required this.label,
       required this.ontap,
+      this.buttonColor = AppColors.primary,
       this.isCancelButton = false});
   final String label;
   final bool isCancelButton;
   final Function()? ontap;
+  final Color? buttonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +226,7 @@ class CancelBooking extends StatelessWidget {
         ),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(5)),
-            color: isCancelButton ? AppColors.primarylight : AppColors.primary),
+            color: isCancelButton ? AppColors.primarylight : buttonColor),
         child: Center(
             child: AppTextBold(
           text: label,

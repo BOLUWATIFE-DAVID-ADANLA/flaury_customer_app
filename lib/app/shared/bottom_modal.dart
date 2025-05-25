@@ -2,52 +2,47 @@ import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flutter/material.dart';
 
-class CustomModal extends StatefulWidget {
+class CustomModal extends StatelessWidget {
   final List<Widget> children;
-  final String size;
+  final double? height;
+  final String size; // still optional, for backward compatibility
   final CrossAxisAlignment crossAxisAlignment;
 
   const CustomModal({
     super.key,
     required this.children,
-    required this.size,
+    this.height,
+    this.size = 'small',
     this.crossAxisAlignment = CrossAxisAlignment.center,
   });
 
-  @override
-  State<CustomModal> createState() => _CustomModalState();
-}
-
-class _CustomModalState extends State<CustomModal> {
   static const double bigHeight = 550;
   static const double mediumHeight = 450;
   static const double smallHeight = 355;
   static const double ultraSmallHeight = 245;
 
-  double getHeight() {
-    switch (widget.size.toLowerCase()) {
+  double getHeight(BuildContext context) {
+    if (height != null) {
+      return height!;
+    }
+
+    switch (size.toLowerCase()) {
       case 'big':
-        return MediaQuery.of(context).viewInsets.bottom +
-            SizeConfig.fromDesignHeight(context, bigHeight);
+        return SizeConfig.fromDesignHeight(context, bigHeight);
       case 'medium':
-        return MediaQuery.of(context).viewInsets.bottom +
-            SizeConfig.fromDesignHeight(context, mediumHeight);
-      case 'small':
-        return MediaQuery.of(context).viewInsets.bottom +
-            SizeConfig.fromDesignHeight(context, smallHeight);
+        return SizeConfig.fromDesignHeight(context, mediumHeight);
       case 'ultra small':
-        return MediaQuery.of(context).viewInsets.bottom +
-            SizeConfig.fromDesignHeight(context, ultraSmallHeight);
+        return SizeConfig.fromDesignHeight(context, ultraSmallHeight);
+      case 'small':
       default:
-        return MediaQuery.of(context).viewInsets.bottom +
-            SizeConfig.fromDesignHeight(context, smallHeight);
+        return SizeConfig.fromDesignHeight(context, smallHeight);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: getHeight(),
+      height: getHeight(context),
       width: double.infinity,
       decoration: const BoxDecoration(
         color: AppColors.white,
@@ -61,8 +56,8 @@ class _CustomModalState extends State<CustomModal> {
           horizontal: SizeConfig.fromDesignWidth(context, 20),
         ),
         child: Column(
-          crossAxisAlignment: widget.crossAxisAlignment,
-          children: widget.children,
+          crossAxisAlignment: crossAxisAlignment,
+          children: children,
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Passwordvisible extends ChangeNotifier {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
   bool get isPasswordVisible => _isPasswordVisible;
 
   void visiblePassword() {
@@ -11,7 +11,7 @@ class Passwordvisible extends ChangeNotifier {
 }
 
 class Visibilitynew extends ChangeNotifier {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
   bool get isPasswordVisible => _isPasswordVisible;
 
   void visiblePassword() {
@@ -21,7 +21,7 @@ class Visibilitynew extends ChangeNotifier {
 }
 
 class Visibilityconfirm extends ChangeNotifier {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
   bool get isPasswordVisible => _isPasswordVisible;
 
   void visiblePassword() {

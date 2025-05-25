@@ -17,4 +17,5 @@ class AppRoutes {
   static const String aboutPageView = '/aboutView';
   static const String faqPage = '/faqpage';
   static const String chatdetails = '/chatdetails';
+  static const String verifyemail = '/verifyemail';
 }

@@ -370,24 +370,23 @@ class OtpTextfield extends StatelessWidget {
       onTap: onTap,
       showCursor: false,
       style: const TextStyle(
-          fontFamily: 'Figtree', fontWeight: FontWeight.w700, fontSize: 24),
+          fontFamily: 'Figtree', fontWeight: FontWeight.w900, fontSize: 12),
 
       onChanged: onChanged,
       inputFormatters: [
         LengthLimitingTextInputFormatter(1),
-        FilteringTextInputFormatter.digitsOnly
       ],
       onSaved: onSaved,
       textAlign: TextAlign.center,
       controller: controller,
       // showCursor: false,
       focusNode: focusNode,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
           hintText: hintText,
           constraints: BoxConstraints(
-            maxHeight: SizeConfig.fromDesignHeight(context, 70),
-            maxWidth: SizeConfig.fromDesignHeight(context, 71),
+            maxHeight: SizeConfig.fromDesignHeight(context, 50),
+            maxWidth: SizeConfig.fromDesignHeight(context, 50),
           ),
           fillColor: fillColor,
           filled: true,

@@ -1,4 +1,3 @@
-import 'package:flaury_mobile/app/services/navigation_service.dart';
 import 'package:flaury_mobile/app/src/authentication/controllers/auth_controller.dart';
 import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
@@ -14,7 +13,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../util/app_spacing.dart';
-import 'verify_email_view.dart';
 
 class RegisterCustomerView extends StatefulHookConsumerWidget {
   const RegisterCustomerView({super.key});
@@ -34,9 +32,13 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   String? _selectedValue;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     super.dispose();
-    _emailcontroller.dispose();
     _namecontroller.dispose();
     _passwordcontroller.dispose();
     _phonecontroller.dispose();
@@ -45,7 +47,22 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   @override
   Widget build(BuildContext context) {
     final obscurePassword = ref.watch(passwordvisible);
-    final navigation = ref.watch(navigationServiceProvider);
+    // final navigation = ref.watch(navigationServiceProvider);
+
+    ref.listen<AuthState>(authControllerProvider, (prev, next) {
+      if (next.status == AuthStatus.success) {
+        // navigation.pushTo(
+        //   page: VerifyEmailView(email: _emailcontroller.text),
+        // );
+
+        Navigator.pushReplacementNamed(context, AppRoutes.verifyemail,
+            arguments: _emailcontroller.text);
+      } else if (next.status == AuthStatus.error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(next.message)),
+        );
+      }
+    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
@@ -231,13 +248,7 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                                               gender: _selectedValue.toString(),
                                               name: _namecontroller.text,
                                               phoneNumber:
-                                                  _phonecontroller.text)
-                                          .then((value) {
-                                        navigation.pushTo(
-                                            page: VerifyEmailView(
-                                          email: _emailcontroller.text,
-                                        ));
-                                      });
+                                                  _phonecontroller.text);
                                     }
                                   },
                                 )

@@ -1,12 +1,14 @@
 class RegisterResponse {
-  final String message;
+  final String? message; // Nullable for error case
   final int description;
   final String status;
+  final String? errorDetails; // Only present in error case
 
   RegisterResponse({
-    required this.message,
+    this.message,
     required this.description,
     required this.status,
+    this.errorDetails,
   });
 
   factory RegisterResponse.fromJson(Map<String, dynamic> json) {
@@ -14,25 +16,35 @@ class RegisterResponse {
       message: json['response data'],
       description: json['response description'],
       status: json['response status'],
+      errorDetails: json['error details'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (message != null) 'response data': message,
+      'response description': description,
+      'response status': status,
+      if (errorDetails != null) 'error details': errorDetails,
+    };
   }
 }
 
 class ApiResponseModel {
   final dynamic data;
-  final String message;
+  final int description;
   final String status;
 
   ApiResponseModel({
     required this.data,
-    required this.message,
+    required this.description,
     required this.status,
   });
 
   factory ApiResponseModel.fromJson(Map<String, dynamic> json) {
     return ApiResponseModel(
       data: json['response data'],
-      message: json['response description'],
+      description: json['response description'],
       status: json['response status'],
     );
   }
@@ -40,8 +52,36 @@ class ApiResponseModel {
   Map<String, dynamic> toJson() {
     return {
       'response data': data,
-      'response description': message,
+      'response description': description,
       'response status': status,
+    };
+  }
+}
+
+class LogoutResponseModel {
+  final String responseDescription;
+  final String responseStatus;
+  final dynamic responseData;
+
+  LogoutResponseModel({
+    required this.responseDescription,
+    required this.responseStatus,
+    this.responseData,
+  });
+
+  factory LogoutResponseModel.fromJson(Map<String, dynamic> json) {
+    return LogoutResponseModel(
+      responseDescription: json['response description'] ?? '',
+      responseStatus: json['response status'] ?? '',
+      responseData: json['rsponse data'], // dynamic to accept any type or null
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'response description': responseDescription,
+      'response status': responseStatus,
+      'rsponse data': responseData,
     };
   }
 }
