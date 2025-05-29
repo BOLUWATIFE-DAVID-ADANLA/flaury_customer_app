@@ -33,12 +33,20 @@ dependencies:
   connectivity_plus: ^6.1.2
   cached_network_image: ^3.4.1
   logger: ^2.5.0
+
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/customer_icon.jpg"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 flutter:
   uses-material-design: true

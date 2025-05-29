@@ -171,6 +171,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                               onChanged: (value) async {
                                 setState(() {
                                   doYouWantToRemember = value!;
+                                  // print('value $doYouWantToRemember');
                                 });
 
                                 final prefs = ref.read(sharedprefrenceProvider);
@@ -181,9 +182,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
                                   await prefs.setBool('rememberMe', true);
                                   await secureStorage.write(
                                       'storedUserEmail', _emailcontroller.text);
-                                } else {
-                                  await prefs.setBool('rememberMe', false);
-                                  await secureStorage.delete('storedUserEmail');
                                 }
                               },
                               materialTapTargetSize:

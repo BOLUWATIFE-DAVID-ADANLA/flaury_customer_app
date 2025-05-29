@@ -183,7 +183,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<ApiResponseModel> resetPassword(
-      String email, String newPassword, String verificationCode) async {
+      {required String email,
+      required String newPassword,
+      required String verificationCode}) async {
     try {
       Map<String, dynamic> data = {
         "email": email,
@@ -295,7 +297,9 @@ abstract class AuthRepository {
   Future<ApiResponseModel> forgotPassword(String email);
   Future<ApiResponseModel> resendVerifcationCode(String email);
   Future<ApiResponseModel> resetPassword(
-      String email, String newPassword, String verificationCode);
+      {required String email,
+      required String newPassword,
+      required String verificationCode});
   Future<ApiResponseModel> verifyEmail(String email, String code);
   Future<UserModel> verifyUserIsAuthenticated();
 }

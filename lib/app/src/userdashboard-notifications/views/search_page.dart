@@ -125,14 +125,14 @@ class SearchPageView extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        RangeTextfield(
+                                        const RangeTextfield(
                                           hinttext: 'Min',
                                         ),
                                         AppTextBold(
                                           text: '---',
                                           fontSize: 20,
                                         ),
-                                        RangeTextfield(
+                                        const RangeTextfield(
                                           hinttext: 'Max',
                                         )
                                       ],

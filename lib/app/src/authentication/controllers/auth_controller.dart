@@ -140,11 +140,15 @@ class AuthController extends StateNotifier<AuthState> {
   }
 
   Future<void> resetPassword(
-      String email, String newPassword, String verificationCode) async {
+      {required String email,
+      required String newPassword,
+      required String verificationCode}) async {
     state = AuthState.loading();
     try {
       final response = await authRepository.resetPassword(
-          email, newPassword, verificationCode);
+          email: email,
+          newPassword: newPassword,
+          verificationCode: verificationCode);
       state = AuthState.success(response.data);
     } catch (e) {
       state = AuthState.error(e.toString());
