@@ -351,6 +351,8 @@ class OtpTextfield extends StatelessWidget {
   final Color fillColor, activeFillColor;
   final TextEditingController? controller;
   final Function(String)? onChanged;
+  final FocusNode focusNode;
+  final VoidCallback? onBackspace;
 
   const OtpTextfield({
     super.key,
@@ -359,30 +361,40 @@ class OtpTextfield extends StatelessWidget {
     this.onChanged,
     this.onSaved,
     this.controller,
+    required this.focusNode,
+    this.onBackspace,
     this.activeFillColor = AppColors.secondary,
     this.fillColor = AppColors.otpGrey,
   });
 
   @override
   Widget build(BuildContext context) {
-    FocusNode focusNode = FocusNode();
-    return TextFormField(
-      onTap: onTap,
-      showCursor: false,
-      style: const TextStyle(
-          fontFamily: 'Figtree', fontWeight: FontWeight.w900, fontSize: 12),
-
-      onChanged: onChanged,
-      inputFormatters: [
-        LengthLimitingTextInputFormatter(1),
-      ],
-      onSaved: onSaved,
-      textAlign: TextAlign.center,
-      controller: controller,
-      // showCursor: false,
+    return RawKeyboardListener(
       focusNode: focusNode,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
+      onKey: (event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.backspace) &&
+            controller?.text.isEmpty == true &&
+            onBackspace != null) {
+          onBackspace!();
+        }
+      },
+      child: TextFormField(
+        onTap: onTap,
+        showCursor: false,
+        style: const TextStyle(
+          fontFamily: 'Figtree',
+          fontWeight: FontWeight.w900,
+          fontSize: 12,
+        ),
+        onChanged: onChanged,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(1),
+        ],
+        onSaved: onSaved,
+        textAlign: TextAlign.center,
+        controller: controller,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
           hintText: hintText,
           constraints: BoxConstraints(
             maxHeight: SizeConfig.fromDesignHeight(context, 50),
@@ -395,8 +407,11 @@ class OtpTextfield extends StatelessWidget {
             borderRadius: BorderRadius.circular(17),
           ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(17),
-              borderSide: BorderSide(color: activeFillColor))),
+            borderRadius: BorderRadius.circular(17),
+            borderSide: BorderSide(color: activeFillColor),
+          ),
+        ),
+      ),
     );
   }
 }

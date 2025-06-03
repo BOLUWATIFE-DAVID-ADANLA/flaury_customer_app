@@ -118,6 +118,7 @@ class OtpScreen extends ConsumerStatefulWidget {
 
 class _OtpScreenState extends ConsumerState<OtpScreen> {
   final controllers = List.generate(6, (index) => TextEditingController());
+  final _focusNodes = List.generate(6, (_) => FocusNode());
 
   @override
   void initState() {
@@ -180,12 +181,18 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                   children: List.generate(6, (index) {
                     return OtpTextfield(
                       controller: controllers[index],
+                      focusNode: _focusNodes[index],
                       onChanged: (value) {
-                        if (value.isEmpty && index > 0) {
-                          FocusScope.of(context).previousFocus();
-                        } else if (value.isNotEmpty &&
+                        if (value.isNotEmpty &&
                             index < controllers.length - 1) {
-                          FocusScope.of(context).nextFocus();
+                          FocusScope.of(context)
+                              .requestFocus(_focusNodes[index + 1]);
+                        }
+                      },
+                      onBackspace: () {
+                        if (index > 0) {
+                          FocusScope.of(context)
+                              .requestFocus(_focusNodes[index - 1]);
                         }
                       },
                     );

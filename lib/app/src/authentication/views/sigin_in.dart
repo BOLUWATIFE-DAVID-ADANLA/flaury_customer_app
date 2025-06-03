@@ -28,12 +28,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
   final TextEditingController _passwordController = TextEditingController();
   final _fomKey = GlobalKey<FormState>();
 
-  void toggleCheckbox() {
-    setState(() {
-      doYouWantToRemember = !doYouWantToRemember;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -46,14 +40,12 @@ class _SignInViewState extends ConsumerState<SignInView> {
     final shouldRemember =
         await ref.read(sharedprefrenceProvider).getBool('rememberMe') ?? false;
 
-    if (shouldRemember) {
+    if (shouldRemember == true) {
       final storedEmail =
           await ref.read(secureStorageProvider).read('storedUserEmail');
       if (storedEmail != null) {
-        setState(() {
-          _emailcontroller.text = storedEmail;
-          doYouWantToRemember = true;
-        });
+        print(storedEmail);
+        _emailcontroller.text = storedEmail;
       }
     }
   }
@@ -171,18 +163,8 @@ class _SignInViewState extends ConsumerState<SignInView> {
                               onChanged: (value) async {
                                 setState(() {
                                   doYouWantToRemember = value!;
-                                  // print('value $doYouWantToRemember');
+                                  print('value $doYouWantToRemember');
                                 });
-
-                                final prefs = ref.read(sharedprefrenceProvider);
-                                final secureStorage =
-                                    ref.read(secureStorageProvider);
-
-                                if (value == true) {
-                                  await prefs.setBool('rememberMe', true);
-                                  await secureStorage.write(
-                                      'storedUserEmail', _emailcontroller.text);
-                                }
                               },
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
@@ -229,6 +211,11 @@ class _SignInViewState extends ConsumerState<SignInView> {
                                       .login(
                                           email: _emailcontroller.text,
                                           password: _passwordController.text);
+
+                                  ref.read(sharedprefrenceProvider).setBool(
+                                      'rememberMe', doYouWantToRemember);
+                                  ref.read(secureStorageProvider).write(
+                                      'storedUserEmail', _emailcontroller.text);
                                 }
                               })
                           : const LargeButonDisabled(

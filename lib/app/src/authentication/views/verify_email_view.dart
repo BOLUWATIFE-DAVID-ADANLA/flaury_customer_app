@@ -26,7 +26,7 @@ class VerifyEmailView extends ConsumerStatefulWidget {
 class _OtpScreenState extends ConsumerState<VerifyEmailView> {
   final List<TextEditingController> _otpControllers =
       List.generate(6, (_) => TextEditingController());
-
+  final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
   @override
   void initState() {
     super.initState();
@@ -80,7 +80,7 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                       child: const Icon(Icons.arrow_back_ios_new_outlined),
                     ),
                     const AppSpacing(v: 5),
-                    AppTextBold(text: 'Forgot Password', fontSize: 20),
+                    AppTextBold(text: 'Verify Email', fontSize: 20),
                   ],
                 ),
                 SizedBox(
@@ -97,19 +97,25 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                 //otp digit boxes
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                      6,
-                      (index) => OtpTextfield(
-                            controller: _otpControllers[index],
-                            onChanged: (value) {
-                              if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).previousFocus();
-                              } else if (value.isNotEmpty &&
-                                  index < _otpControllers.length - 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                            },
-                          )),
+                  children: List.generate(6, (index) {
+                    return OtpTextfield(
+                      controller: _otpControllers[index],
+                      focusNode: _focusNodes[index],
+                      onChanged: (value) {
+                        if (value.isNotEmpty &&
+                            index < _otpControllers.length - 1) {
+                          FocusScope.of(context)
+                              .requestFocus(_focusNodes[index + 1]);
+                        }
+                      },
+                      onBackspace: () {
+                        if (index > 0) {
+                          FocusScope.of(context)
+                              .requestFocus(_focusNodes[index - 1]);
+                        }
+                      },
+                    );
+                  }),
                 ),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
