@@ -87,7 +87,7 @@ class _ForgotPasswordViewState extends ConsumerState<ForgotPasswordView> {
                   label: 'Continue',
                   ontap: () {
                     ref.read(authControllerProvider.notifier).forgotPassword(
-                          emailController.text.trim(),
+                          emailController.text,
                         );
                     Navigator.pushNamed(
                       context,
@@ -118,7 +118,6 @@ class OtpScreen extends ConsumerStatefulWidget {
 
 class _OtpScreenState extends ConsumerState<OtpScreen> {
   final controllers = List.generate(6, (index) => TextEditingController());
-  final _focusNodes = List.generate(6, (_) => FocusNode());
 
   @override
   void initState() {
@@ -176,28 +175,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
                 //otp digit boxes
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(6, (index) {
-                    return OtpTextfield(
-                      controller: controllers[index],
-                      focusNode: _focusNodes[index],
-                      onChanged: (value) {
-                        if (value.isNotEmpty &&
-                            index < controllers.length - 1) {
-                          FocusScope.of(context)
-                              .requestFocus(_focusNodes[index + 1]);
-                        }
-                      },
-                      onBackspace: () {
-                        if (index > 0) {
-                          FocusScope.of(context)
-                              .requestFocus(_focusNodes[index - 1]);
-                        }
-                      },
-                    );
-                  }),
-                ),
+                OtpInputField(controllers: controllers),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),

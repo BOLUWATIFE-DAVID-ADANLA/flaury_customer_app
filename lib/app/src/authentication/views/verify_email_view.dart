@@ -26,7 +26,6 @@ class VerifyEmailView extends ConsumerStatefulWidget {
 class _OtpScreenState extends ConsumerState<VerifyEmailView> {
   final List<TextEditingController> _otpControllers =
       List.generate(6, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
   @override
   void initState() {
     super.initState();
@@ -47,6 +46,9 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
 
     ref.listen<AuthState>(authControllerProvider, (prev, next) {
       if (next.status == AuthStatus.success) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Email verified successfully")),
+        );
         Navigator.pushReplacementNamed(
           context,
           AppRoutes.signInView,
@@ -83,6 +85,9 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                     AppTextBold(text: 'Verify Email', fontSize: 20),
                   ],
                 ),
+                const AppSpacing(v: 16),
+
+                const Divider(color: AppColors.grey100),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
@@ -95,28 +100,30 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),
                 //otp digit boxes
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(6, (index) {
-                    return OtpTextfield(
-                      controller: _otpControllers[index],
-                      focusNode: _focusNodes[index],
-                      onChanged: (value) {
-                        if (value.isNotEmpty &&
-                            index < _otpControllers.length - 1) {
-                          FocusScope.of(context)
-                              .requestFocus(_focusNodes[index + 1]);
-                        }
-                      },
-                      onBackspace: () {
-                        if (index > 0) {
-                          FocusScope.of(context)
-                              .requestFocus(_focusNodes[index - 1]);
-                        }
-                      },
-                    );
-                  }),
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: List.generate(6, (index) {
+                //     return OtpTextfield(
+                //       controller: _otpControllers[index],
+                //       focusNode: _focusNodes[index],
+                //       onChanged: (value) {
+                //         if (value.isNotEmpty &&
+                //             index < _otpControllers.length - 1) {
+                //           FocusScope.of(context)
+                //               .requestFocus(_focusNodes[index + 1]);
+                //         }
+                //       },
+                //       onBackspace: () {
+                //         if (index > 0) {
+                //           FocusScope.of(context)
+                //               .requestFocus(_focusNodes[index - 1]);
+                //         }
+                //       },
+                //     );
+                //   }),
+                // ),
+
+                OtpInputField(controllers: _otpControllers),
                 SizedBox(
                   height: SizeConfig.fromDesignHeight(context, 30),
                 ),

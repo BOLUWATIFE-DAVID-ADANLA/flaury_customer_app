@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/shared/new_drop_down.dart';
 import 'package:flaury_mobile/app/src/authentication/controllers/auth_controller.dart';
 import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
@@ -42,6 +43,8 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
     _namecontroller.dispose();
     _passwordcontroller.dispose();
     _phonecontroller.dispose();
+    _emailcontroller.dispose();
+    _usernamecontroller.dispose();
   }
 
   @override
@@ -148,22 +151,75 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                     AppTextBold(text: 'Gender', fontSize: 14),
                     const AppSpacing(v: 5),
 
-                    CustomDropDown(
-                      isfilled: false,
-                      hint: 'select category',
-                      items: acceptableGender.map((item) {
-                        return DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(item),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
+                    // CustomDropDown(
+                    //   isfilled: false,
+                    //   hint: 'select category',
+                    //   items: acceptableGender.map((item) {
+                    //     return DropdownMenuItem<String>(
+                    //       value: item,
+                    //       child: Text(item),
+                    //     );
+                    //   }).toList(),
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       _selectedValue =
+                    //           value; // Correctly update the selected value
+                    //     });
+                    //   },
+                    // ),
+
+                    NewCustomDropdown<String>(
+                      showBoxShadow: false,
+                      value: _selectedValue,
+                      items: acceptableGender,
+                      menuItemBuilder: (val) => Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: SizeConfig.fromDesignHeight(context, 8)),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: AppColors.background,
+                            border: Border.all(
+                                color: const Color.fromRGBO(173, 173, 173, 1)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: AppTextRegular(
+                                  text: val,
+                                  fontSize: 12,
+                                  color: AppColors.grey,
+                                ),
+                              ),
+                              Radio<String>(
+                                activeColor: AppColors.primary,
+                                value: val,
+                                groupValue: _selectedValue,
+                                onChanged: (value) {},
+                                visualDensity: VisualDensity.compact,
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      selectedBuilder: (val) => Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 5,
+                            vertical: SizeConfig.fromDesignHeight(context, 12)),
+                        child: Text(val ?? "select your gender"),
+                      ),
+                      onChanged: (val) {
                         setState(() {
-                          _selectedValue =
-                              value; // Correctly update the selected value
+                          _selectedValue = val!;
                         });
                       },
                     ),
+
                     const AppSpacing(v: 20),
                     //password field
 
@@ -295,4 +351,4 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
   }
 }
 
-final List<String> acceptableGender = ['male', 'female'];
+final List<String> acceptableGender = ['Male', 'Female'];

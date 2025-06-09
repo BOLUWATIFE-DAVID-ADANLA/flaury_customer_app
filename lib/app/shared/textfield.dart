@@ -393,7 +393,7 @@ class OtpTextfield extends StatelessWidget {
         onSaved: onSaved,
         textAlign: TextAlign.center,
         controller: controller,
-        keyboardType: TextInputType.text,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           hintText: hintText,
           constraints: BoxConstraints(
@@ -412,6 +412,124 @@ class OtpTextfield extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class OtpInputField extends StatefulWidget {
+  final int otpLength;
+  final String label;
+  final bool autoFocus;
+  final void Function(String)? onCompleted;
+
+  // New optional styling parameters
+  final Color? fillColor;
+  final Color? borderColor;
+  final Color? focusedBorderColor;
+  final double borderRadius;
+  final TextStyle? textStyle;
+  final EdgeInsetsGeometry contentPadding;
+  final List<TextEditingController> controllers;
+  const OtpInputField({
+    super.key,
+    this.otpLength = 6,
+    this.controllers = const [],
+    this.label = "",
+    this.autoFocus = false,
+    this.onCompleted,
+    this.fillColor,
+    this.borderColor,
+    this.focusedBorderColor,
+    this.borderRadius = 12.0,
+    this.textStyle,
+    this.contentPadding = const EdgeInsets.symmetric(vertical: 14),
+  });
+
+  @override
+  State<OtpInputField> createState() => _OtpInputFieldState();
+}
+
+class _OtpInputFieldState extends State<OtpInputField> {
+  late List<FocusNode> _focusNodes;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _focusNodes = List.generate(widget.otpLength, (_) => FocusNode());
+    if (widget.autoFocus) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _focusNodes.first.requestFocus();
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final node in _focusNodes) {
+      node.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onInputChanged(int index, String value) {
+    if (value.isNotEmpty && index < widget.otpLength - 1) {
+      _focusNodes[index + 1].requestFocus();
+    } else if (value.isEmpty && index > 0) {
+      _focusNodes[index - 1].requestFocus();
+    }
+  }
+
+  OutlineInputBorder _border(Color color) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(widget.borderRadius),
+      borderSide: BorderSide(color: color),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_focusNodes.length != widget.otpLength) {
+      return const SizedBox();
+    }
+
+    final borderColor = widget.borderColor ?? AppColors.otpGrey;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: List.generate(widget.otpLength, (index) {
+        return SizedBox(
+          height: SizeConfig.fromDesignHeight(context, 60),
+          width: SizeConfig.fromDesignHeight(context, 50),
+          child: TextField(
+            controller: widget.controllers[index],
+            focusNode: _focusNodes[index],
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            maxLength: 1,
+            style: TextStyle(
+              fontSize: SizeConfig.fontSize(context, 16),
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            decoration: InputDecoration(
+              constraints: BoxConstraints(
+                maxHeight: SizeConfig.fromDesignHeight(context, 60),
+                maxWidth: SizeConfig.fromDesignHeight(context, 50),
+              ),
+              fillColor: widget.fillColor,
+              filled: true,
+              contentPadding: widget.contentPadding,
+              border: _border(borderColor),
+              focusedBorder: _border(AppColors.secondary),
+              enabledBorder: _border(AppColors.otpGrey),
+              counterText: '',
+            ),
+            onChanged: (value) => _onInputChanged(index, value),
+          ),
+        );
+      }),
     );
   }
 }

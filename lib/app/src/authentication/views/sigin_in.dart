@@ -36,17 +36,42 @@ class _SignInViewState extends ConsumerState<SignInView> {
     });
   }
 
-  Future<void> loadRememberedEmail() async {
-    final shouldRemember =
-        await ref.read(sharedprefrenceProvider).getBool('rememberMe') ?? false;
+  @override
+  void dispose() {
+    _emailcontroller.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
-    if (shouldRemember == true) {
+  Future<void> loadRememberedEmail() async {
+    try {
+      // 1. Check if we should remember
+      final shouldRemember =
+          await ref.read(sharedprefrenceProvider).getBool('rememberMe') ??
+              false;
+      debugPrint('Remember me flag: $shouldRemember');
+
+      if (!shouldRemember) return;
+
+      // 2. Get stored email
       final storedEmail =
-          await ref.read(secureStorageProvider).read('storedUserEmail');
-      if (storedEmail != null) {
-        print(storedEmail);
-        _emailcontroller.text = storedEmail;
+          await ref.read(sharedprefrenceProvider).getString('storedUserEmail');
+      debugPrint('Retrieved stored email: $storedEmail');
+
+      // 3. Update UI if widget is still mounted
+      if (storedEmail != null && mounted) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            setState(() {
+              _emailcontroller.text = storedEmail;
+              // Also update the checkbox state
+              doYouWantToRemember = true;
+            });
+          }
+        });
       }
+    } catch (e) {
+      debugPrint('Error loading remembered email: $e');
     }
   }
 
@@ -204,7 +229,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
                                   ref.watch(authControllerProvider).status ==
                                       AuthStatus.loading,
                               label: 'Log in',
-                              ontap: () {
+                              ontap: () async {
                                 if (_fomKey.currentState!.validate()) {
                                   ref
                                       .read(authControllerProvider.notifier)
@@ -214,8 +239,14 @@ class _SignInViewState extends ConsumerState<SignInView> {
 
                                   ref.read(sharedprefrenceProvider).setBool(
                                       'rememberMe', doYouWantToRemember);
-                                  ref.read(secureStorageProvider).write(
-                                      'storedUserEmail', _emailcontroller.text);
+                                  if (doYouWantToRemember) {
+                                    await ref
+                                        .read(sharedprefrenceProvider)
+                                        .setString('storedUserEmail',
+                                            _emailcontroller.text);
+
+                                    // Verify it was saved
+                                  }
                                 }
                               })
                           : const LargeButonDisabled(

@@ -46,7 +46,7 @@ class SearchPageView extends StatelessWidget {
                       ),
                       hintext: 'search',
                       obscureText: false,
-                      onchanged: (String value) {},
+                      onchanged: (value) {},
                     ),
                   ),
                   SizedBox(

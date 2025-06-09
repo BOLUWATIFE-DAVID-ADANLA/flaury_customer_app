@@ -4,7 +4,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final secureStorageProvider = Provider<SecureStorage>((ref) {
-  return SecureStorage(strorage: const FlutterSecureStorage());
+  return SecureStorage(
+      strorage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+    iOptions: IOSOptions(
+      accessibility: KeychainAccessibility.first_unlock,
+    ),
+  ));
 });
 
 final sharedprefrenceProvider =
@@ -55,6 +63,16 @@ class SharedPreferenceHelper {
   Future<bool?> getBool(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key);
+  }
+
+  Future<void> setString(String key, String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
+  }
+
+  Future<String?> getString(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(key);
   }
 }
 

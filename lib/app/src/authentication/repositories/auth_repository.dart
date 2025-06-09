@@ -33,34 +33,56 @@ class AuthRepositoryImpl implements AuthRepository {
         "role": "client",
         "type_of_service": "basic",
         'username': userName,
-        "gender": gender
+        "gender": gender,
       };
 
       final response = await _dioService.post(ApiRoutes.signUp, data: data);
 
-      print(response);
-      print(response['response data']);
+      // Print the full response for debugging
+      debugPrint("🚀 Response: $response");
 
+      // Check required fields
       if (response.isEmpty ||
           response['response status'] == null ||
           response['response description'] == null) {
         throw CustomException("Invalid server response format");
       }
-      // Handle error response
-      if (response["response status"] == "error") {
-        final errorMessage = response["error details"] ?? "Registration failed";
-        print(errorMessage);
+
+      // Parse the response into your model
+      final registerResponse = RegisterResponse.fromJson(response);
+
+      // If API returned an error status, throw a custom exception
+      if (registerResponse.status.toLowerCase() == "error") {
+        final errorMessage = registerResponse.errorDetails ??
+            registerResponse.message ??
+            "Registration failed";
         throw CustomException(_getUserFriendlyError(errorMessage));
       }
 
-      return RegisterResponse.fromJson(response);
+      // ✅ All good, return the successful response
+      return registerResponse;
     } on DioException catch (e) {
-      debugPrint("Network error: $e");
-      throw CustomException(_getNetworkError(e));
-    } on CustomException {
-      rethrow;
+      debugPrint("⛔ Dio error: ${e.response?.data ?? e.message}");
+
+      // Attempt to parse the error body from Dio
+      if (e.response?.data != null) {
+        try {
+          final errorResponse = RegisterResponse.fromJson(e.response!.data);
+          final errorMessage = errorResponse.errorDetails ??
+              errorResponse.message ??
+              "Registration failed";
+          throw CustomException(_getUserFriendlyError(errorMessage));
+        } catch (_) {
+          // Parsing failed, fallback to generic error
+          throw CustomException(_getNetworkError(e));
+        }
+      } else {
+        throw CustomException(_getNetworkError(e));
+      }
+    } on CustomException catch (e) {
+      throw Exception(e.message);
     } catch (e, s) {
-      debugPrint("Unexpected error: $e");
+      debugPrint("❗ Unexpected error: $e");
       debugPrint(s.toString());
       throw CustomException("An unexpected error occurred during registration");
     }
