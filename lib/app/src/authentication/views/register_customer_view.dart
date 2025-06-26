@@ -54,10 +54,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
 
     ref.listen<AuthState>(authControllerProvider, (prev, next) {
       if (next.status == AuthStatus.success) {
-        // navigation.pushTo(
-        //   page: VerifyEmailView(email: _emailcontroller.text),
-        // );
-
         Navigator.pushReplacementNamed(context, AppRoutes.verifyemail,
             arguments: _emailcontroller.text);
       } else if (next.status == AuthStatus.error) {

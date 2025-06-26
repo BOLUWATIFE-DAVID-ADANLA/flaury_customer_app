@@ -46,12 +46,12 @@ class _OtpScreenState extends ConsumerState<VerifyEmailView> {
 
     ref.listen<AuthState>(authControllerProvider, (prev, next) {
       if (next.status == AuthStatus.success) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Email verified successfully")),
-        );
         Navigator.pushReplacementNamed(
           context,
           AppRoutes.signInView,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Email verified successfully")),
         );
       } else if (next.status == AuthStatus.error) {
         ScaffoldMessenger.of(context).showSnackBar(

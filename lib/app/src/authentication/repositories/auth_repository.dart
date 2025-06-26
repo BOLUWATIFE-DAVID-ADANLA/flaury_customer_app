@@ -6,13 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../services/dio.dart';
+import '../../../services/secure_storage.dart';
 
-final authrepositoryProvider = Provider<AuthRepository>(
-    (ref) => AuthRepositoryImpl(ref.read(dioServiceProvider)));
+final authrepositoryProvider = Provider<AuthRepository>((ref) =>
+    AuthRepositoryImpl(
+        ref.read(dioServiceProvider), ref.read(authTokenManagerProvider)));
 
 class AuthRepositoryImpl implements AuthRepository {
   final DioService _dioService;
-  AuthRepositoryImpl(this._dioService);
+  final AuthTokenManager _authTokenManager;
+  AuthRepositoryImpl(this._dioService, this._authTokenManager);
 
   @override
   Future<RegisterResponse> signUp({
@@ -39,16 +42,11 @@ class AuthRepositoryImpl implements AuthRepository {
 
       final registerResponse = RegisterResponse.fromJson(response);
 
-      if (registerResponse.message != "success") {
-        throw CustomException(
-            registerResponse.message ?? "Registration failed");
-      }
-
       return registerResponse;
     } catch (e, s) {
       debugPrint("❗ Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred during registration");
+      throw CustomException(e.toString());
     }
   }
 
@@ -73,7 +71,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -88,16 +86,11 @@ class AuthRepositoryImpl implements AuthRepository {
 
       final response = await _dioService.post(ApiRoutes.login, data: data);
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "Forgot password failed");
-      }
-
       return LoginResponse.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -108,16 +101,11 @@ class AuthRepositoryImpl implements AuthRepository {
         ApiRoutes.logout,
       );
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "logout failed");
-      }
-
       return LogoutResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -130,16 +118,11 @@ class AuthRepositoryImpl implements AuthRepository {
         ApiRoutes.refreshAccessToken,
       );
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "refresh token failed");
-      }
-
       return ApiResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -154,16 +137,11 @@ class AuthRepositoryImpl implements AuthRepository {
         data: data,
       );
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "refresh token failed");
-      }
-
       return ApiResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -183,16 +161,11 @@ class AuthRepositoryImpl implements AuthRepository {
         data: data,
       );
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "reset password  failed");
-      }
-
       return ApiResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
@@ -208,36 +181,29 @@ class AuthRepositoryImpl implements AuthRepository {
         data: data,
       );
 
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "verify email failed");
-      }
-
       return ApiResponseModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 
   @override
   Future<UserModel> verifyUserIsAuthenticated() async {
+    final token = await _authTokenManager.getAuthToken();
+    debugPrint('Token: $token');
     try {
       final response = await _dioService.post(
         ApiRoutes.verifyUserAuth,
+        sessionToken: token,
       );
-
-      if (response["response status"] != "success") {
-        throw CustomException(
-            response["response description"] ?? "verify user auth failed");
-      }
 
       return UserModel.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
-      throw CustomException("An unexpected error occurred");
+      throw CustomException(e.toString());
     }
   }
 }

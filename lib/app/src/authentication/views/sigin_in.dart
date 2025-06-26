@@ -188,7 +188,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
                               onChanged: (value) async {
                                 setState(() {
                                   doYouWantToRemember = value!;
-                                  print('value $doYouWantToRemember');
                                 });
                               },
                               materialTapTargetSize:

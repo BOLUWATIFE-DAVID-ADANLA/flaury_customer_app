@@ -1,8 +1,7 @@
 class UserModel {
   final String id;
   final String email;
-  final String firstName;
-  final String lastName;
+  final String name;
   final String role;
   final bool isVerified;
   final String? userName;
@@ -10,8 +9,7 @@ class UserModel {
   UserModel({
     required this.id,
     required this.email,
-    required this.firstName,
-    required this.lastName,
+    required this.name,
     required this.role,
     required this.isVerified,
     this.userName,
@@ -21,8 +19,7 @@ class UserModel {
     return UserModel(
       id: json['id'],
       email: json['email'],
-      firstName: json['first_name'],
-      lastName: json['last_name'],
+      name: json['name'],
       role: json['role'],
       isVerified: json['is_verified'],
       userName: json['user_name'],

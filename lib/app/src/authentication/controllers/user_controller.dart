@@ -1,25 +1,26 @@
+import 'package:flaury_mobile/app/services/secure_storage.dart';
 import 'package:flaury_mobile/app/src/authentication/models/user_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../repositories/auth_repository.dart';
 
-class UserState {
+class AuthCheckState {
   final UserModel? user;
   final bool isLoading;
   final String? error;
 
-  const UserState({
+  const AuthCheckState({
     this.user,
     this.isLoading = false,
     this.error,
   });
 
-  UserState copyWith({
+  AuthCheckState copyWith({
     UserModel? user,
     bool? isLoading,
     String? error,
   }) {
-    return UserState(
+    return AuthCheckState(
       user: user ?? this.user,
       isLoading: isLoading ?? this.isLoading,
       error: error,
@@ -28,14 +29,17 @@ class UserState {
 }
 
 final userControllerProvider =
-    StateNotifierProvider<UserController, UserState>((ref) {
-  return UserController(ref.read(authrepositoryProvider));
+    StateNotifierProvider<UserController, AuthCheckState>((ref) {
+  return UserController(
+      ref.read(authrepositoryProvider), ref.read(authTokenManagerProvider));
 });
 
-class UserController extends StateNotifier<UserState> {
+class UserController extends StateNotifier<AuthCheckState> {
   final AuthRepository _authRepository;
+  final AuthTokenManager _authTokenManager;
 
-  UserController(this._authRepository) : super(const UserState());
+  UserController(this._authRepository, this._authTokenManager)
+      : super(const AuthCheckState());
 
   Future<void> fetchUser() async {
     state = state.copyWith(isLoading: true);
@@ -48,6 +52,6 @@ class UserController extends StateNotifier<UserState> {
   }
 
   void clearUser() {
-    state = const UserState();
+    state = const AuthCheckState();
   }
 }

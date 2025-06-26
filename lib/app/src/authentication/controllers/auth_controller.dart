@@ -1,4 +1,3 @@
-import 'package:flaury_mobile/app/services/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../services/secure_storage.dart';
@@ -83,8 +82,6 @@ class AuthController extends StateNotifier<AuthState> {
       // await _authTokenManager.saveAuthToken(response);
       // await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
       state = AuthState.success(response.message ?? 'Sign up Succesful ');
-    } on CustomException catch (e) {
-      state = AuthState.error(e.message);
     } catch (e) {
       state = AuthState.error(e.toString());
     }
@@ -100,8 +97,7 @@ class AuthController extends StateNotifier<AuthState> {
       await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
       state = AuthState.success(response.responseDescription);
     } catch (e) {
-      state = AuthState.error(
-          'An error occurred, your email or password is incorrect');
+      state = AuthState.error(e.toString());
     }
   }
 

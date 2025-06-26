@@ -21,9 +21,10 @@ class ProfilePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<AuthState>(authControllerProvider, (prev, next) {
       if (next.status == AuthStatus.success) {
-        Navigator.pushReplacementNamed(
+        Navigator.pushNamedAndRemoveUntil(
           context,
           AppRoutes.signInView,
+          (route) => false,
         );
       } else if (next.status == AuthStatus.error) {
         ScaffoldMessenger.of(context).showSnackBar(
