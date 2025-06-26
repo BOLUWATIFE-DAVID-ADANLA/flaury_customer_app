@@ -9,7 +9,7 @@ import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/chat/models/chat_messages.dart';
 import 'package:flaury_mobile/app/src/chat/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChatDetailsView extends ConsumerWidget {
   const ChatDetailsView({super.key});

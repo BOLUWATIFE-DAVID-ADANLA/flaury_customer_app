@@ -11,7 +11,7 @@ import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../util/app_colors.dart';
 import '../controllers/resend_otp_timer_controller.dart';

@@ -8,7 +8,7 @@ import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/shared/onboarding_pages.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView extends ConsumerStatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flaury_mobile/app/src/authentication/models/register_user_model.
 import 'package:flaury_mobile/app/src/authentication/models/user_model.dart';
 import 'package:flaury_mobile/app/util/api_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../services/dio.dart';
 import '../../../services/secure_storage.dart';

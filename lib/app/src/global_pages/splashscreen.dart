@@ -5,7 +5,7 @@ import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashScreenView extends ConsumerStatefulWidget {
   const SplashScreenView({super.key});

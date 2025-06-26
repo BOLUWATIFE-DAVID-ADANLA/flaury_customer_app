@@ -7,7 +7,7 @@ import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/faq_tiles.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // pages
 List<Widget> tabs = [

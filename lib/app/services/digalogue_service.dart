@@ -5,7 +5,7 @@ import 'package:flaury_mobile/app/util/app_spacing.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/images_icons_illustration.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dialogServiceProvider = Provider<DialogService>((ref) {
   return DialogService();

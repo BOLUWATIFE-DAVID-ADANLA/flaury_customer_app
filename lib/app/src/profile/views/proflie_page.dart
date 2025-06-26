@@ -10,7 +10,7 @@ import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/log_out_button.dart';
 import 'package:flaury_mobile/app/src/profile/widgets/settings_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/custom_button.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flaury_mobile/app/src/authentication/repositories/auth_repository.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum Status {
   inital,

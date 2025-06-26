@@ -9,7 +9,7 @@ import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/book_s
 import 'package:flaury_mobile/app/src/userdashboard-notifications/widgets/profile_service_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductServiceView extends ConsumerStatefulWidget {
   const ProductServiceView({super.key});

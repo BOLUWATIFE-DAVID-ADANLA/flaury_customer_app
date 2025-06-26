@@ -10,7 +10,7 @@ import 'package:flaury_mobile/app/src/bookings/providers/bookings_providers.dart
 import 'package:flaury_mobile/app/src/bookings/widgets/booking_status_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BookingCard extends ConsumerStatefulWidget {
   final bool isBookingCompleted;

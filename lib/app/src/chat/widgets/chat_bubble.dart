@@ -3,7 +3,7 @@ import 'package:flaury_mobile/app/util/app_spacing.dart';
 import 'package:flaury_mobile/app/util/app_text_style.dart';
 import 'package:flaury_mobile/app/util/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math' as math; //
 
 class Triangle extends CustomPainter {

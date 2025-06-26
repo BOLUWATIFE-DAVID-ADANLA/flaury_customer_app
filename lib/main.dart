@@ -6,7 +6,9 @@ import 'package:flaury_mobile/app/util/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'app/util/provider_logger.dart';
 
 void maincommon(Appconfig config) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,7 @@ void maincommon(Appconfig config) async {
     DevicePreview(
       enabled: false,
       builder: (context) => ProviderScope(
+        observers: [ProviderLogger()],
         child: MyApp(
           config: config,
         ),

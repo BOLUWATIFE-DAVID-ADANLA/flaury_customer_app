@@ -11,11 +11,11 @@ import 'package:flaury_mobile/app/shared/textfield.dart';
 import 'package:flaury_mobile/app/shared/custom_button.dart';
 import 'package:flaury_mobile/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../controllers/auth_controller.dart';
 
-class SignInView extends StatefulHookConsumerWidget {
+class SignInView extends ConsumerStatefulWidget {
   const SignInView({super.key});
 
   @override

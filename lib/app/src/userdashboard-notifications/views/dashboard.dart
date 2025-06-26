@@ -8,7 +8,7 @@ import 'package:flaury_mobile/app/src/userdashboard-notifications/providers/prov
 import 'package:flaury_mobile/app/src/userdashboard-notifications/views/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DashboardView extends ConsumerWidget {
   const DashboardView({super.key});

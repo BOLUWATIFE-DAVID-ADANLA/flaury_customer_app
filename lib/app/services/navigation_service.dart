@@ -1,6 +1,6 @@
 import 'package:flaury_mobile/app/routes/navigator_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final navigationServiceProvider = Provider<NavigationService>((ref) {
   final helper = ref.watch(navigatorhelperProvider);
