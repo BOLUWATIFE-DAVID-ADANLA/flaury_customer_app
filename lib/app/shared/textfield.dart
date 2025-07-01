@@ -44,34 +44,38 @@ class AuthTextfield extends StatelessWidget {
               fontSize: 12,
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            // obscuringCharacter: '.',
             controller: controller,
             obscureText: obscureText,
             onChanged: onChanged,
             keyboardType: keyboardType,
-
             validator: validator,
             cursorColor: AppColors.primary,
             decoration: InputDecoration(
               constraints: BoxConstraints(
-                  maxHeight: SizeConfig.fromDesignHeight(context, 90),
-                  minHeight: SizeConfig.fromDesignHeight(context, 42)),
+                maxHeight: SizeConfig.fromDesignHeight(context, 90),
+                minHeight: SizeConfig.fromDesignHeight(context, 42),
+              ),
               hintText: hintext,
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               contentPadding: EdgeInsets.symmetric(
-                  vertical: SizeConfig.fromDesignHeight(context, 2),
-                  horizontal: SizeConfig.fromDesignWidth(context, 15)),
+                vertical: SizeConfig.fromDesignHeight(context, 2),
+                horizontal: SizeConfig.fromDesignWidth(context, 15),
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(
-                  color: AppColors.grey,
+                borderSide: BorderSide(
+                  color: controller!.text.isNotEmpty
+                      ? AppColors.primary
+                      : AppColors.grey,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(
-                  color: AppColors.grey,
+                borderSide: BorderSide(
+                  color: controller!.text.isNotEmpty
+                      ? AppColors.primary
+                      : AppColors.grey,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
@@ -87,7 +91,7 @@ class AuthTextfield extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          )
         ]);
   }
 }

@@ -63,7 +63,6 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
       }
     });
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -194,7 +193,11 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                                 activeColor: AppColors.primary,
                                 value: val,
                                 groupValue: _selectedValue,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedValue = value!;
+                                  });
+                                },
                                 visualDensity: VisualDensity.compact,
                                 materialTapTargetSize:
                                     MaterialTapTargetSize.shrinkWrap,
