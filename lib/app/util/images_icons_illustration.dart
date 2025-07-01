@@ -7,6 +7,7 @@ const String _baseimg = 'assets/images';
 // const String _imagebase = 'assets/images';
 
 //icons
+const String appicon = '$_baseicons/main.svg';
 const String hello = '$_baseicons/waving-hand (1) 1.png';
 const String back = '$_baseicons/backarrow.svg';
 const String lock = '$_baseicons/lock.svg';

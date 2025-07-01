@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../services/secure_storage.dart';
@@ -92,9 +93,17 @@ class AuthController extends StateNotifier<AuthState> {
     try {
       final response =
           await authRepository.login(email: email, password: password);
-      // save tokens to secure storage
+      debugPrint("Login Response: ${response.accessToken}");
       await _authTokenManager.saveAuthToken(response.accessToken);
       await _authTokenManager.saveRefreshAuthToken(response.refreshToken);
+
+      final accessToken = await _authTokenManager.getAuthToken();
+      final refreshToken = await _authTokenManager.getRefreshAuthToken();
+
+      debugPrint('Refresh Token from local : $refreshToken');
+
+      debugPrint('Access Token fromlocal : $accessToken');
+
       state = AuthState.success(response.responseDescription);
     } catch (e) {
       state = AuthState.error(e.toString());

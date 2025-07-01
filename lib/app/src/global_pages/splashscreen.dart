@@ -25,7 +25,7 @@ class _SplashScreenViewState extends ConsumerState<SplashScreenView> {
 
       if (hasSeenOnboarding) {
         // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, AppRoutes.signInView);
+        Navigator.pushReplacementNamed(context, AppRoutes.authchecker);
       } else {
         // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, AppRoutes.onboardingView);

@@ -1,6 +1,6 @@
 import 'package:flaury_mobile/app/src/authentication/models/login_response_model.dart';
 import 'package:flaury_mobile/app/src/authentication/models/register_user_model.dart';
-import 'package:flaury_mobile/app/src/authentication/models/user_model.dart';
+import 'package:flaury_mobile/app/src/authentication/models/auth_ckeck_response.dart';
 import 'package:flaury_mobile/app/util/api_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -190,16 +190,16 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserModel> verifyUserIsAuthenticated() async {
-    final token = await _authTokenManager.getAuthToken();
-    debugPrint('Token: $token');
+  Future<AuthCheckResponse> verifyUserIsAuthenticated() async {
+    final accessToken = await _authTokenManager.getAuthToken();
+    debugPrint('Token: $accessToken');
     try {
-      final response = await _dioService.post(
+      final response = await _dioService.get(
         ApiRoutes.verifyUserAuth,
-        sessionToken: token,
+        sessionToken: accessToken,
       );
 
-      return UserModel.fromJson(response);
+      return AuthCheckResponse.fromJson(response);
     } catch (e, s) {
       debugPrint("Unexpected error: $e");
       debugPrint(s.toString());
@@ -230,5 +230,5 @@ abstract class AuthRepository {
       required String newPassword,
       required String verificationCode});
   Future<ApiResponseModel> verifyEmail(String email, String code);
-  Future<UserModel> verifyUserIsAuthenticated();
+  Future<AuthCheckResponse> verifyUserIsAuthenticated();
 }

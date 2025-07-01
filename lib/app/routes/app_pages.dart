@@ -1,3 +1,4 @@
+import 'package:flaury_mobile/app/src/authentication/views/auth_checker_view.dart';
 import 'package:flaury_mobile/app/src/authentication/views/create_new_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/forgot_password.dart';
 import 'package:flaury_mobile/app/src/authentication/views/register_customer_view.dart';
@@ -25,6 +26,12 @@ class AppPages {
       case AppRoutes.splashScreenView:
         return MaterialPageRoute(
           builder: (_) => const SplashScreenView(),
+          settings: settings,
+        );
+
+      case AppRoutes.authchecker:
+        return MaterialPageRoute(
+          builder: (_) => const AuthCheckerView(),
           settings: settings,
         );
       case AppRoutes.verifyemail:

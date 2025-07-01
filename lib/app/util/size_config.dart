@@ -44,3 +44,40 @@ class SizeConfig {
     return (designWidth / designScreenWidth) * phoneWidth;
   }
 }
+
+// class SizeConfig {
+//   static double fontSize(double size) {
+//     double phoneHeight = ScreenContext.screenHeight;
+//     double phoneWidth = ScreenContext.screenWidth;
+
+//     double referenceWidth = phoneWidth < phoneHeight ? 375 : 1440;
+//     double referenceHeight = phoneWidth < phoneHeight ? 812 : 900;
+
+//     double scalingFactor = phoneWidth < phoneHeight
+//         ? phoneWidth / referenceWidth
+//         : phoneHeight / referenceHeight;
+
+//     return size * scalingFactor;
+//   }
+
+//   static double fromDesignHeight(double designHeight) {
+//     return (designHeight / designScreenHeight) * ScreenContext.screenHeight;
+//   }
+
+//   static double fromDesignWidth(double designWidth) {
+//     return (designWidth / designScreenWidth) * ScreenContext.screenWidth;
+//   }
+// }
+
+class ScreenContext {
+  static late MediaQueryData _mediaQueryData;
+
+  static void init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+  }
+
+  static MediaQueryData get mediaQuery => _mediaQueryData;
+
+  static double get screenHeight => _mediaQueryData.size.height;
+  static double get screenWidth => _mediaQueryData.size.width;
+}

@@ -74,41 +74,52 @@ class SharedPreferenceHelper {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
   }
+
+  Future<bool?> deleteString(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.remove(key);
+  }
 }
 
-final authTokenManagerProvider = Provider<AuthTokenManager>(
-    (ref) => AuthTokenManager(secureStorage: ref.read(secureStorageProvider)));
+final authTokenManagerProvider =
+    Provider<AuthTokenManager>((ref) => AuthTokenManager(
+        secureStorage: ref.read(
+          secureStorageProvider,
+        ),
+        preferenceHelper: ref.read(sharedprefrenceProvider)));
 
 class AuthTokenManager {
   final SecureStorage secureStorage;
+  final SharedPreferenceHelper preferenceHelper;
 
-  AuthTokenManager({required this.secureStorage});
+  AuthTokenManager(
+      {required this.secureStorage, required this.preferenceHelper});
 
   String get authToken => "auth_token";
 
   String get refreshToken => "Refresh_token";
 
   Future<void> saveAuthToken(String token) async {
-    await secureStorage.write('auth_token', token);
+    await preferenceHelper.setString('auth_token', token);
   }
 
   Future<String?> getAuthToken() async {
-    return await secureStorage.read('auth_token');
+    return await preferenceHelper.getString('auth_token');
   }
 
   Future<void> deleteAuthToken() async {
-    await secureStorage.delete('Refresh_token');
+    await preferenceHelper.deleteString('auth_token');
   }
 
   Future<void> saveRefreshAuthToken(String token) async {
-    await secureStorage.write('Refresh_token', token);
+    await preferenceHelper.setString('Refresh_token', token);
   }
 
   Future<String?> getRefreshAuthToken() async {
-    return await secureStorage.read('Refresh_token');
+    return await preferenceHelper.getString('Refresh_token');
   }
 
   Future<void> deleteRefreshAuthToken() async {
-    await secureStorage.delete('Refresh_token');
+    await preferenceHelper.deleteString('Refresh_token');
   }
 }

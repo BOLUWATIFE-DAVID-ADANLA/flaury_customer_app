@@ -24,7 +24,7 @@ class DioService {
   ));
 
   static Options headers(String? sessionToken) =>
-      Options(headers: {"Authorization": '$sessionToken'});
+      Options(headers: {"Authorization": 'Bearer $sessionToken'});
 
   Future<Map<String, dynamic>> _handleResponse(Response response) async {
     final statusCode = response.statusCode;

@@ -1,6 +1,7 @@
 class AppRoutes {
   //general routes
   static const String splashScreenView = '/splashscreen';
+  static const String authchecker = '/authchecker';
   static const String onboardingView = '/onboarding';
   static const String signInView = '/signin';
   static const String welcomeView = '/welcome';
