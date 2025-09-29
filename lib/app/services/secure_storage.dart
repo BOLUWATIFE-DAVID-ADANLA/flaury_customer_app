@@ -15,8 +15,6 @@ final secureStorageProvider = Provider<SecureStorage>((ref) {
   ));
 });
 
-final sharedprefrenceProvider =
-    Provider<SharedPreferenceHelper>((ref) => SharedPreferenceHelper._instance);
 
 class SecureStorage {
   final FlutterSecureStorage strorage;
@@ -41,6 +39,10 @@ class SecureStorage {
     await strorage.delete(key: key);
   }
 }
+
+
+final sharedprefrenceProvider =
+    Provider<SharedPreferenceHelper>((ref) => SharedPreferenceHelper._instance);
 
 class SharedPreferenceHelper {
   // Private constructor

@@ -162,6 +162,9 @@ class _RegisterCustomerViewState extends ConsumerState<RegisterCustomerView> {
                   // ),
 
                   NewCustomDropdown<String>(
+                    borderColor: _selectedValue != null
+                        ? AppColors.primary
+                        : Colors.grey,
                     showBoxShadow: false,
                     value: _selectedValue,
                     items: acceptableGender,

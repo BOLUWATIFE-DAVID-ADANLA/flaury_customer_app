@@ -18,10 +18,12 @@ class NewCustomDropdown<T> extends StatefulWidget {
   final bool isMultiSelect;
   final List<T>? selectedValues;
   final bool useCheckbox;
+  final Color borderColor;
 
   const NewCustomDropdown({
     super.key,
     this.value,
+    this.borderColor = Colors.grey,
     required this.items,
     required this.menuItemBuilder,
     required this.selectedBuilder,
@@ -220,7 +222,7 @@ class _NewCustomDropdownState<T> extends State<NewCustomDropdown<T>> {
           decoration: BoxDecoration(
             color: AppColors.background,
             border: widget.showBorder
-                ? Border.all(color: Colors.grey.shade400)
+                ? Border.all(color: widget.borderColor, width: 1)
                 : null,
             boxShadow: widget.showBoxShadow
                 ? [const BoxShadow(blurRadius: 3, color: Colors.black12)]
